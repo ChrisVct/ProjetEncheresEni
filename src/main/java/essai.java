@@ -2,6 +2,7 @@
 public class essai {
 	private String nom;
 	private String prenom;
-	private String ville;
+	private String adresse;
+	private int codePostal;
 
 }
