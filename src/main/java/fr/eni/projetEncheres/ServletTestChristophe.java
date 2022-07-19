@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.projetEncheres.bll.UtilisateurManager;
 import fr.eni.projetEncheres.bo.Utilisateur;
 import fr.eni.projetEncheres.dal.jdbc.UtilisateurDAOJdbcImpl;
 
@@ -17,12 +18,8 @@ public class ServletTestChristophe extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UtilisateurDAOJdbcImpl dao = new UtilisateurDAOJdbcImpl();
-		List<Utilisateur> listeUtilisateurs = dao.selectAll();
-		for(Utilisateur u : listeUtilisateurs) {
-			System.out.println(u);
-		}
-		
+		UtilisateurManager UManager = new UtilisateurManager();
+		UManager.verifierConnection("vich@gmail.com", "CV");
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

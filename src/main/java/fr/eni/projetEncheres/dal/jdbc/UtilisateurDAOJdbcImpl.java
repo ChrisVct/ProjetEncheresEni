@@ -38,7 +38,7 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 				listeUtilisateurs.add(tmpUtilisateur);
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated method stub
+			e.printStackTrace();
 		}
 		
 		return listeUtilisateurs;
