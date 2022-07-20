@@ -8,7 +8,7 @@ import java.util.List;
 
 import fr.eni.projetEncheres.bo.Utilisateur;
 import fr.eni.projetEncheres.dal.jdbc.UtilisateurDAOJdbcImpl;
-import jersey.repackaged.com.google.common.hash.Hashing;
+
 
 public class UtilisateurManager {
 	private static UtilisateurDAOJdbcImpl dao = new UtilisateurDAOJdbcImpl();
