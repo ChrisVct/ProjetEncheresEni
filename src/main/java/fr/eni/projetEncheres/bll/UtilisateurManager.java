@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.List;
 
+
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bo.Utilisateur;
 import fr.eni.projetEncheres.dal.jdbc.UtilisateurDAOJdbcImpl;
@@ -68,4 +69,23 @@ public class UtilisateurManager {
 		}
 		
 	}
+
+	public void  ajouterUtilisateur(String pseudo, String nom,String prenom,String email,String telephone,String rue,String code_postal,String ville,String mot_de_passe) throws BusinessException {
+		
+		BusinessException businessException = new BusinessException();
+		// nettoyer les données tous en minuscule
+		// verifier la nullité
+		// verifie le password
+		// verifie l'inicité du pseudo
+		// verifie l'inicité de l'email et que l'email est conforme
+		// hasher le mot de passe
+		UtilisateurManager uManager = new UtilisateurManager();
+		Utilisateur utilisateur =new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe);
+		dao.insert(utilisateur);
+		
+	
+	}
+
+
+
 }
