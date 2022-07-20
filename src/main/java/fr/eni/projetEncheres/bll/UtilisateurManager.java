@@ -1,14 +1,9 @@
 package fr.eni.projetEncheres.bll;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 import java.util.List;
 
 import fr.eni.projetEncheres.bo.Utilisateur;
 import fr.eni.projetEncheres.dal.jdbc.UtilisateurDAOJdbcImpl;
-import jersey.repackaged.com.google.common.hash.Hashing;
 
 public class UtilisateurManager {
 	private static UtilisateurDAOJdbcImpl dao = new UtilisateurDAOJdbcImpl();
