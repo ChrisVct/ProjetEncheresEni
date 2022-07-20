@@ -6,18 +6,13 @@ package fr.eni.projetEncheres.bll;
 public abstract class CodesResultatBLL {
 	
 	/**
-	 * Le champs identifiant est vide (ou " " uniquement)
+	 * Un champs null ou rempli avec espacement
 	 */
-	public static final int IDENTIFIANT_ERREUR_VIDE=20000;
+	public static final int CHAMPS_VIDE=20000;
 	/**
-	 * Identifiant n'existe pas en BDD
+	 * Erreur d'authenification
 	 */
-	public static final int IDENTIFIANT_ERREUR_INEXISTANT=20001;
-	/**
-	 * Identifiant OK, mais mot de passe erroné
-	 */
-	public static final int MOT_DE_PASSE_ERREUR_ERRONE=20002;
-
+	public static final int AUTHENTIFICATION_ERREUR=20001;
 
 
 }

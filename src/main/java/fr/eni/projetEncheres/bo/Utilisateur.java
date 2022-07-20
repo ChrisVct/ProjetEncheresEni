@@ -18,29 +18,8 @@ public class Utilisateur {
 	public Utilisateur() {
 	}
 	
-
-
 	/**
-	 * Ce constructeur permet permet de crééer un utilisateur pour lister tous les utilisateurs
-	 * pour vérifier le login
-	 * @param noUtilisateur
-	 * @param pseudo
-	 * @param nom
-	 * @param prenom
-	 * @param email
-	 * @param motDePasse
-	 */
-	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String motDePasse) {
-		super();
-		this.noUtilisateur = noUtilisateur;
-		this.pseudo = pseudo;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.motDePasse = motDePasse;
-	}
-	
-	/**
+	 * Constructeur utilisé pour l'insertion de nouveaux utilisateurs en BDD
 	 * @param pseudo
 	 * @param nom
 	 * @param prenom
@@ -53,7 +32,7 @@ public class Utilisateur {
 	 */
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse) {
-
+		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -64,7 +43,39 @@ public class Utilisateur {
 		this.ville = ville;
 		this.motDePasse = motDePasse;
 	}
-
+	
+	/**
+	 * Ce constructeur permet permet de crééer un utilisateur pour lister tous les utilisateurs
+	 * pour vérifier le login
+	 * @param noUtilisateur
+	 * @param pseudo
+	 * @param nom
+	 * @param prenom
+	 * @param email
+	 * @param telephone
+	 * @param rue
+	 * @param codePostal
+	 * @param ville
+	 * @param motDePasse
+	 * @param credit
+	 * @param administrateur
+	 */
+	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
+		super();
+		this.noUtilisateur = noUtilisateur;
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.motDePasse = motDePasse;
+		this.credit = credit;
+		this.administrateur = administrateur;
+	}
 
 
 	public int getNoUtilisateur() {
