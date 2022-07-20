@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -23,6 +24,12 @@
         action="ServletConnectionUtilisateur"
         method="POST"
       >
+		<c:if test="${!empty listeCodesErreur }">
+			<c:forEach var="err" items="${listeCodesErreur}">
+				<p style="color:red;">${err }</p>
+			</c:forEach>
+		</c:if>
+		
         <div class="mb-3 row">
           <label for="identifiant" class="col-sm-4 col-form-label"
             >Identifiant</label
@@ -34,6 +41,7 @@
               id="identifiant"
               name="identifiant"
               required
+              placeholder="pseudo ou email"
             />
           </div>
         </div>
@@ -43,7 +51,7 @@
           >
           <div class="col-sm-8">
             <input
-              type="text"
+              type="password"
               class="form-control"
               name="motDePasse"
               required
@@ -76,6 +84,7 @@
           Créer un compte
         </a>
       </form>
+
     </main>
 
     <footer></footer>

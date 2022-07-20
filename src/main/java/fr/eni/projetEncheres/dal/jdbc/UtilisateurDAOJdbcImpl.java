@@ -6,9 +6,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bo.Utilisateur;
-import fr.eni.projetEncheres.dal.DAO;
+import fr.eni.projetEncheres.dal.CodesResultatDAL;
 import fr.eni.projetEncheres.dal.ConnectionProvider;
+import fr.eni.projetEncheres.dal.DAO;
 
 public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 	private static final String SELECT_ALL = "SELECT * FROM UTILISATEURS";
@@ -20,7 +22,7 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 	}
 
 	@Override
-	public List<Utilisateur> selectAll() {
+	public List<Utilisateur> selectAll() throws BusinessException {
 		List<Utilisateur> listeUtilisateurs=new ArrayList<>();
 
 		try(Connection cnx = ConnectionProvider.getConnection())
@@ -38,9 +40,10 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 				listeUtilisateurs.add(tmpUtilisateur);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.SELECT_ALL_BDD_ERREUR);
+			throw businessException;
 		}
-		
 		return listeUtilisateurs;
 	}
 

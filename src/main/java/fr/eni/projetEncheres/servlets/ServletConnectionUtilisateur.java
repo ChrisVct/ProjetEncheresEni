@@ -1,14 +1,19 @@
 package fr.eni.projetEncheres.servlets;
 
 import java.io.IOException;
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bll.UtilisateurManager;
+import fr.eni.projetEncheres.messages.LecteurMessage;
 
 @WebServlet("/ServletConnectionUtilisateur")
 public class ServletConnectionUtilisateur extends HttpServlet {
@@ -21,12 +26,28 @@ public class ServletConnectionUtilisateur extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = null;
 		String identifiant = request.getParameter("identifiant");
 		String motDePasse= request.getParameter("motDePasse");
+		boolean connexionOK = false;
 		UtilisateurManager UManager = new UtilisateurManager();
-		UManager.verifierConnection(identifiant, motDePasse);
+		try {
+			connexionOK = UManager.verifierConnection(identifiant, motDePasse);
+			if(connexionOK) {
+				rd=request.getRequestDispatcher("/WEB-INF/JSP/Accueil.jsp");
+			}
+		} catch (BusinessException e) {
+			List<String> msgErr = new ArrayList<>();
+			
+			for(int i : ((BusinessException) e).getListeCodesErreur()) {
+				msgErr.add(LecteurMessage.getMessageErreur(i));
+			}
+			request.setAttribute("listeCodesErreur", msgErr);
+			rd=request.getRequestDispatcher("/WEB-INF/JSP/ConnectionUtilisateur.jsp");
+		}
 		
-		doGet(request, response);
+		rd.forward(request, response);
 	}
+
 
 }
