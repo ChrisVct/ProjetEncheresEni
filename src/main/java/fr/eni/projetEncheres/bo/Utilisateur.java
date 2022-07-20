@@ -23,14 +23,16 @@ public class Utilisateur {
 	/**
 	 * Ce constructeur permet permet de crééer un utilisateur pour lister tous les utilisateurs
 	 * pour vérifier le login
+	 * @param noUtilisateur
 	 * @param pseudo
 	 * @param nom
 	 * @param prenom
 	 * @param email
 	 * @param motDePasse
 	 */
-	public Utilisateur(String pseudo, String nom, String prenom, String email, String motDePasse) {
+	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String motDePasse) {
 		super();
+		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;

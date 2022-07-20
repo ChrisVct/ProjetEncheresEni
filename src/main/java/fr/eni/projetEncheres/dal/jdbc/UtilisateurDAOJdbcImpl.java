@@ -31,12 +31,13 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 			ResultSet rs = stmt.executeQuery(SELECT_ALL);
 			
 			while (rs.next()) {
+				int noUtilisateur = rs.getInt("no_utilisateur");
 				String pseudo = rs.getString("pseudo");
 				String email = rs.getString("email");
 				String pwd = rs.getString("mot_de_passe");
 				String nom =rs.getString("nom");
 				String prenom =rs.getString("prenom");
-				Utilisateur tmpUtilisateur = new Utilisateur(pseudo, nom, prenom, email, pwd);
+				Utilisateur tmpUtilisateur = new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, pwd);
 				listeUtilisateurs.add(tmpUtilisateur);
 			}
 		} catch (Exception e) {
