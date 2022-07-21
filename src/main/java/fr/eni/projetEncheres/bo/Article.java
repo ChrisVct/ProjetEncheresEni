@@ -108,17 +108,30 @@ public class Article {
 
 	@Override
 	public String toString() {
-		return noArticle+" Article : "+this.getNomArticle()+
+		return noArticle+" "+this.getNomArticle()+
 						 " Description=" +this.getDescription()+
 						 " Date de début enchere=" +this.getDateDebutEncheres()+
 						 " Date de fin enchère=" +this.getDateFinEncheres()+
 						 " Prix initial=" +this.getPrixInitial()+
 						 " Prix de vente=" +this.getPrixVente()+
-						 " Categorie=" +this.getCategorie()+
-						 " Vente en attente=" +this.getStatut()+
+						 " Categorie=" +this.getCategorie();
+						 /*" Statut de la vente=" +this.getStatut()+
 						 " Vendeur=" +this.getVendeur()+
 						 " Acheteur=" +this.getAcheteur();
+						 */
 
+	}
+
+	public Article(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
+			LocalDate dateFinEncheres, int prixInitial, int prixVente) {
+		super();
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.prixInitial = prixInitial;
+		this.prixVente = prixVente;
 	}
 	
 	
