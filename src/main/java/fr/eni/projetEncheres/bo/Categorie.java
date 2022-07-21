@@ -7,6 +7,10 @@ public class Categorie {
 	public Categorie() {
 	}
 	
+	@Override
+	public String toString() {
+		return "Categorie : " +this.getNoCategorie()+" - Libelle= " +this.getLibelle();
+	}
 	public int getNoCategorie() {
 		return noCategorie;
 	}
@@ -18,12 +22,6 @@ public class Categorie {
 	}
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
-	}
-	
-	
-	@Override
-	public String toString() {
-		return "Categorie : " +this.getNoCategorie()+" - Libelle= " +this.getLibelle();
 	}
 	
 }

@@ -32,7 +32,6 @@ public class Utilisateur {
 	 */
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse) {
-		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -62,7 +61,6 @@ public class Utilisateur {
 	 */
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
-		super();
 		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -76,7 +74,11 @@ public class Utilisateur {
 		this.credit = credit;
 		this.administrateur = administrateur;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "Pseudo : "+this.getPseudo()+" - Nom : "+this.getNom()+" - Prénom : "+this.getPrenom() + " - mot de passe : " + this.getMotDePasse();
+	}
 
 	public int getNoUtilisateur() {
 		return noUtilisateur;
@@ -151,8 +153,4 @@ public class Utilisateur {
 		this.administrateur = administrateur;
 	}
 	
-	@Override
-	public String toString() {
-		return "Pseudo : "+this.getPseudo()+" - Nom : "+this.getNom()+" - Prénom : "+this.getPrenom() + " - mot de passe : " + this.getMotDePasse();
-	}
 }
