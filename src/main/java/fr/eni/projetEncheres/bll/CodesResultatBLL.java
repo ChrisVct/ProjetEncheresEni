@@ -13,6 +13,7 @@ public abstract class CodesResultatBLL {
 	 * Erreur d'authenification
 	 */
 	public static final int AUTHENTIFICATION_ERREUR=20001;
+	public static final int PSEUDO_PRIS = 20002;
 
 
 }

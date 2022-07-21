@@ -20,13 +20,14 @@
       <h1>ENI-Enchères</h1>
     </header>
     <main>
-        <div class="container text-center"><!--boite principal-->
+  
+        <form class="container text-center" method="post" action="ServletInscription"><!--boite principal-->
             <div >
                 <div class="row">
                   <div class="col">
                     
                 <div class="mb-3 row">
-                    <label for="identifiant" class="col-sm-4 col-form-label"
+                    <label for="pseudo" class="col-sm-4 col-form-label"
                     >Pseudo</label
                     >
                     <div class="col-sm-6">
@@ -41,7 +42,7 @@
                     </div>
                 </div>
                 <div class="mb-3 row"><!-- entrée prenom-->
-                    <label for="identifiant" class="col-sm-4 col-form-label"
+                    <label for="prenom" class="col-sm-4 col-form-label"
                     >Prenom</label
                     >
                     <div class="col-sm-6">
@@ -56,7 +57,7 @@
                     </div>
                 </div>
                 <div class="mb-3 row"><!-- entrée téléphone-->
-                    <label for="identifiant" class="col-sm-4 col-form-label"
+                    <label for="telephone" class="col-sm-4 col-form-label"
                     >Téléphone</label
                     >
                     <div class="col-sm-6">
@@ -72,7 +73,7 @@
                 </div>
                 
                 <div class="mb-3 row"><!-- entrée code postal-->
-                    <label for="identifiant" class="col-sm-4 col-form-label"
+                    <label for="codePostal" class="col-sm-4 col-form-label"
                     >Code Postal</label
                     >
                     <div class="col-sm-6">
@@ -88,7 +89,7 @@
                 </div>
                 
                 <div class="mb-3 row"><!-- entrée mot de passe-->
-                    <label for="identifiant" class="col-sm-4 col-form-label"
+                    <label for="motDePasse" class="col-sm-4 col-form-label"
                     >Votre mot de passe</label
                     >
                     <div class="col-sm-6">
@@ -107,22 +108,22 @@
             <div class="col">
                 <!--colonne de gauche-->
                 <div class="mb-3 row"><!-- entrée nom-->
-                    <label for="identifiant" class="col-sm-4 col-form-label"
+                    <label for="nom" class="col-sm-4 col-form-label"
                     >Nom</label
                     >
                     <div class="col-sm-6">
                     <input
                         type="text"
                         class="form-control"
-                        id="Nom"
-                        name="Nom"
+                        id="nom"
+                        name="nom"
                         required
                         placeholder="Votre nom"
                     />
                     </div>
                 </div>
                 <div class="mb-3 row"><!-- entrée email-->
-                    <label for="identifiant" class="col-sm-4 col-form-label"
+                    <label for="email" class="col-sm-4 col-form-label"
                     >email</label
                     >
                     <div class="col-sm-6">
@@ -137,22 +138,22 @@
                     </div>
                 </div>
                 <div class="mb-3 row"><!-- entrée rue-->
-                    <label for="identifiant" class="col-sm-4 col-form-label"
+                    <label for="rue" class="col-sm-4 col-form-label"
                     >Rue</label
                     >
                     <div class="col-sm-6">
                     <input
                         type="text"
                         class="form-control"
-                        id="Rue"
-                        name="Rue"
+                        id="rue"
+                        name="rue"
                         required
                         placeholder="Nom de rue"
                     />
                     </div>
                 </div>
                 <div class="mb-3 row"><!-- entrée ville-->
-                    <label for="identifiant" class="col-sm-4 col-form-label"
+                    <label for="ville" class="col-sm-4 col-form-label"
                     >Ville</label
                     >
                     <div class="col-sm-6">
@@ -168,15 +169,15 @@
                 
                     </div>
                    <div class="mb-3 row"><!-- entrée confimation-->
-                            <label for="identifiant" class="col-sm-4 col-form-label"
+                            <label for="motDePasseConfirmation" class="col-sm-4 col-form-label"
                             >Confirmation</label
                             >
                             <div class="col-sm-6">
                             <input
                                 type="text"
                                 class="form-control"
-                                id="motDePasse"
-                                name="motDePasse"
+                                id="motDePasseConfirmation"
+                                name="motDePasseConfirmation"
                                 required
                                 placeholder="********"
                             />
@@ -186,21 +187,16 @@
                                                     
             </div> <!--fermeture clonne gauche-->   
         </div class="col-6"> <!--colonne bouton-->
-        <div class="mb-3 row">
-            <button type="submit" class="btn btn-primary col-5 ">Créer</button>  
-            <button type="submit" class="btn btn-primary col-5 offset-1">Annuler</button>                 
-            </div>
-            <a
-    href="cheminversServletconnection"></a>
-
-    
-
-
-                </div><!--fermeture boite principal-->
-            </div>
-        </div>
+	       	<div class="mb-3 row">
+	           <button type="submit" class="btn btn-primary col-5 ">Créer</button>  
+	           <a href="/ServletAccueilEncheres" class="btn btn-secondary col-5 offset-1">Annuler</a>                 
+	        </div>
+	           
+				</div><!--fermeture boite principal-->
+      	</div>
+    </form>
         
-    </main>
+   </main>
 
     <footer></footer>
     <script
