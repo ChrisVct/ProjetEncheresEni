@@ -1,12 +1,9 @@
 package fr.eni.projetEncheres.bll;
 
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bo.Utilisateur;
@@ -16,90 +13,77 @@ import fr.eni.projetEncheres.dal.jdbc.UtilisateurDAOJdbcImpl;
 public class UtilisateurManager {
 	private static UtilisateurDAOJdbcImpl dao = new UtilisateurDAOJdbcImpl();
 	
-	public boolean verifierConnection(String identifiant, String motDePasse) throws BusinessException {
+	public Utilisateur verifierConnection(String identifiant, String motDePasse) throws BusinessException {
+		Utilisateur utilisateurARetouner = null;
 		BusinessException businessException = new BusinessException();
-		boolean identifiantOK=false;
-		boolean motDePasseOK=false;
 		
-		this.verifierIdentifiant(identifiant, businessException);
-		
-		
-		
+		this.verifierNullite(identifiant, businessException);
 		if (businessException.hasErreurs()) {
 			throw businessException;
 		}
 		List<Utilisateur> listeUtilisateurs = dao.selectAll();
-		//Je vérifie si l'identifiant passé en argument est présent dans la liste d'utilisateur
-		for (Utilisateur u : listeUtilisateurs) {
-			if(identifiant.equals(u.getEmail()) ||
-					identifiant.equals(u.getPseudo()))
-			{
-				identifiantOK=true;
-			}
-		}
-		if(!identifiantOK) {
-			businessException.ajouterErreur(CodesResultatBLL.IDENTIFIANT_ERREUR_INEXISTANT);
+		utilisateurARetouner = this.verifierIdentifiants(identifiant,motDePasse, listeUtilisateurs);
+
+		if(utilisateurARetouner==null) {
+			businessException.ajouterErreur(CodesResultatBLL.AUTHENTIFICATION_ERREUR);
 			throw businessException;
 		}
-		
-		//Si l'identifiant est bien présent dans la liste d'utilisateurs je reparcours le tableau
-		//et vérifie si le mot de passe si u = GetEmail() ou u=getPseudo
-		if(identifiantOK==true) {
-			for (Utilisateur u : listeUtilisateurs) {
-				if(identifiant.equals(u.getEmail()) ||
-						identifiant.equals(u.getPseudo()))
-				{
-					if(motDePasse.equals(u.getMotDePasse())) {
-						motDePasseOK=true;
-					}
+		return utilisateurARetouner;
+	}
+	
+
+	private Utilisateur verifierIdentifiants(String identifiant, String motDePasse, List<Utilisateur> listeUtilisateurs) {
+		Utilisateur utilisateurARetourner=null; 
+		for (Utilisateur u : listeUtilisateurs) {
+			if(identifiant.equalsIgnoreCase(u.getEmail()) ||
+					identifiant.equalsIgnoreCase(u.getPseudo()))
+			{
+				if(hasherMotDePasse(motDePasse).equals(u.getMotDePasse())) {
+					utilisateurARetourner=new Utilisateur(u.getNoUtilisateur(), u.getPseudo(), u.getNom(), u.getPrenom(), u.getEmail(),
+							u.getTelephone(), u.getRue(), u.getCodePostal(), u.getVille(), u.getMotDePasse(), u.getCredit(), u.isAdministrateur());
 				}
 			}
 		}
-		if(!motDePasseOK) {
-			businessException.ajouterErreur(CodesResultatBLL.MOT_DE_PASSE_ERREUR_ERRONE);
-			throw businessException;
-		}
-		
-		return true;
-
+		return utilisateurARetourner;
 	}
 
-	private void verifierIdentifiant(String identifiant, BusinessException businessException) {
+	private void verifierNullite(String identifiant, BusinessException businessException) {
 		if(identifiant.trim()=="") {
-			businessException.ajouterErreur(CodesResultatBLL.IDENTIFIANT_ERREUR_VIDE);
+			businessException.ajouterErreur(CodesResultatBLL.CHAMPS_VIDE);
 		}
 		
 	}
-
 	public void  ajouterUtilisateur(String pseudo, String nom,String prenom,String email,String telephone,String rue,String code_postal,String ville,String mot_de_passe) throws BusinessException {
 		
 		BusinessException businessException = new BusinessException();
 		// nettoyer les données tous en minuscule
-		 
-		
-		// verifier la nullité des cases
-		
+		// verifier la nullité (attention le téléphone peut être null)
 		// verifie le password
 		// verifie l'inicité du pseudo
 		// verifie l'inicité de l'email et que l'email est conforme
-		
-		// hasher le mot de passe
+		// hasher le mot de passe --> voir la méthode ci-dessous
 		UtilisateurManager uManager = new UtilisateurManager();
 		Utilisateur utilisateur =new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe);
 		dao.insert(utilisateur);
 		
 	
 	}
-
-	public class checkEmail {
-	    public boolean isEmailAdress(String email) {
-	        Pattern p = Pattern
-	                .compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
-	        Matcher m = p.matcher(email.toUpperCase());
-	        return m.matches();
-	    }
+	
+	public String hasherMotDePasse(String motDePasseClair) {
+		StringBuffer hexString = null;
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA-256");
+			md.update(motDePasseClair.getBytes());
+			byte[] digest = md.digest();
+		      hexString = new StringBuffer();
+		      for (int i = 0;i<digest.length;i++) {
+		         hexString.append(Integer.toHexString(0xFF & digest[i]));
+		      }
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return hexString.toString();
 	}
-
-
 
 }
