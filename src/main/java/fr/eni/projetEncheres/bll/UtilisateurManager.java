@@ -4,24 +4,38 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bo.Utilisateur;
-import fr.eni.projetEncheres.dal.jdbc.UtilisateurDAOJdbcImpl;
+import fr.eni.projetEncheres.dal.DAO;
+import fr.eni.projetEncheres.dal.DAOFactory;
 
 
 public class UtilisateurManager {
-	private static UtilisateurDAOJdbcImpl dao = new UtilisateurDAOJdbcImpl();
+	private DAO<Utilisateur> daoUtilisateur;
+	private static UtilisateurManager instance;
+	
+	public UtilisateurManager() {
+		this.daoUtilisateur = DAOFactory.getDAOUtilisateur();
+	}
+	
+	public static UtilisateurManager getInstance() {
+		if(instance==null) {
+			instance = new UtilisateurManager();
+		}
+		return instance;
+	}
 	
 	public Utilisateur verifierConnection(String identifiant, String motDePasse) throws BusinessException {
 		Utilisateur utilisateurARetouner = null;
 		BusinessException businessException = new BusinessException();
 		
 		this.verifierNullite(identifiant, businessException);
+		
 		if (businessException.hasErreurs()) {
 			throw businessException;
 		}
-		List<Utilisateur> listeUtilisateurs = dao.selectAll();
+		List<Utilisateur> listeUtilisateurs = daoUtilisateur.selectAll();
+		
 		utilisateurARetouner = this.verifierIdentifiants(identifiant,motDePasse, listeUtilisateurs);
 
 		if(utilisateurARetouner==null) {
@@ -47,8 +61,8 @@ public class UtilisateurManager {
 		return utilisateurARetourner;
 	}
 
-	private void verifierNullite(String identifiant, BusinessException businessException) {
-		if(identifiant.trim()=="") {
+	private void verifierNullite(String champsAVerifier, BusinessException businessException) {
+		if(champsAVerifier.trim()=="") {
 			businessException.ajouterErreur(CodesResultatBLL.CHAMPS_VIDE);
 		}
 		
@@ -56,17 +70,15 @@ public class UtilisateurManager {
 	public void  ajouterUtilisateur(String pseudo, String nom,String prenom,String email,String telephone,String rue,String code_postal,String ville,String mot_de_passe) throws BusinessException {
 		
 		BusinessException businessException = new BusinessException();
-		// nettoyer les données tous en minuscule
+		// nettoyer les données
 		// verifier la nullité (attention le téléphone peut être null)
 		// verifie le password
-		// verifie l'inicité du pseudo
-		// verifie l'inicité de l'email et que l'email est conforme
+		// verifie l'unicité du pseudo
+		// verifie l'unicité de l'email et que l'email est conforme
 		// hasher le mot de passe --> voir la méthode ci-dessous
 		UtilisateurManager uManager = new UtilisateurManager();
 		Utilisateur utilisateur =new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe);
-		dao.insert(utilisateur);
-		
-	
+		daoUtilisateur.insert(utilisateur);
 	}
 	
 	public String hasherMotDePasse(String motDePasseClair) {

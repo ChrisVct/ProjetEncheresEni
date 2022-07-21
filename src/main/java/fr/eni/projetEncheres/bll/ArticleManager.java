@@ -13,7 +13,6 @@ import fr.eni.projetEncheres.dal.jdbc.ArticleDAOJdbcImpl;
 public class ArticleManager {
 	private static ArticleDAOJdbcImpl dao = new ArticleDAOJdbcImpl();
 	
-	
 	private static ArticleManager instance;
 	
 	private ArticleManager() {		
