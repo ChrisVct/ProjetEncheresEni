@@ -23,10 +23,12 @@ public class ServletAccueilEncheres extends HttpServlet {
     
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArticleManager aManager =  new ArticleManager();
 		
 		List<Article> listeArticles = null;
+		
 		try {
-			listeArticles = ArticleManager.getInstance().getListeArticles();
+			listeArticles = aManager.recupererListeArticles();
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

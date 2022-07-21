@@ -15,25 +15,15 @@ import fr.eni.projetEncheres.dal.ConnectionProvider;
 import fr.eni.projetEncheres.dal.DAOArticle;
 
 public class ArticleDAOJdbcImpl implements DAOArticle {
-	private static final String SELECT_ALL = "SELECT * FROM ARTICLES" +
-											 "ORDER BY r.date_repas desc, r.heure_repas desc";
-	
-	/*
-	private static final String SELECT_ALL=" SELECT " + " r.id as id_repas," + 
-											"	r.date_repas," + 
-											"	r.heure_repas," + 
-											"	a.id as id_aliment," + 
-											"	a.nom" + 
-											" FROM" + 
-											"	REPAS r" + 
-											"	INNER JOIN ALIMENTS a ON r.id=a.id_repas" +
-											"	ORDER BY r.date_repas desc, r.heure_repas desc";
-	*/
-	
+	private static final String SELECT_ALL = "SELECT * FROM ARTICLES" ;
+											 //"JOIN "
+											 //"ORDER BY r.date_repas desc, r.heure_repas desc";
+	//Jointure entre Article et Utilisateur
+	//Jointure entre Article et categorie
+	//ajouter une jointure vers encheres
 	@Override
 	public void insert(Article t) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -52,10 +42,14 @@ public class ArticleDAOJdbcImpl implements DAOArticle {
 				LocalDate dateFinEncheres = rs.getDate("date_fin_encheres").toLocalDate();
 				int prixInitial = rs.getInt("prix_initial");
 				int prixVente = rs.getInt("prix_vente");
-				/*Categorie categorie = rs.getCategorie("categorie");
-				String statut = rs.getString("");
-				Utilisateur vendeur = rs.getUtilisateur("");
-				Utilisateur acheteur = rs.getUtilisateur("");*/
+				/*Utilisateur vendeur = rs.getInt("no_utilisateur_vendeur");
+				Utilisateur acheteur = rs.getInt("no_utilisateur_acheteur");
+				Categorie categorie = rs.getInt("no_categorie");
+				
+				Categorie categorie = new Categorie(rs.getInt(no_categorie), rs.getString(libelle));
+				
+				String statut = rs.getString("statut_vente");
+				*/
 				Article article = new Article(noArticle, nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial, prixVente);
 				listeArticles.add(article);
 			}
