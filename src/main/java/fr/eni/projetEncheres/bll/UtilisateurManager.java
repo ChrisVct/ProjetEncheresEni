@@ -3,8 +3,8 @@ package fr.eni.projetEncheres.bll;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bo.Utilisateur;
 import fr.eni.projetEncheres.dal.jdbc.UtilisateurDAOJdbcImpl;
@@ -53,10 +53,10 @@ public class UtilisateurManager {
 		}
 		
 	}
-	public void  ajouterUtilisateur(String pseudo, String nom,String prenom,String email,String telephone,String rue,String code_postal,String ville,String mot_de_passe) throws BusinessException {
+	public void ajouterUtilisateur(String pseudo, String nom,String prenom,String email,String telephone,String rue,String code_postal,String ville,String mot_de_passe) throws BusinessException {
 		
 		BusinessException businessException = new BusinessException();
-		// nettoyer les données tous en minuscule
+		
 		// verifier la nullité (attention le téléphone peut être null)
 		// verifie le password
 		// verifie l'inicité du pseudo
@@ -85,5 +85,16 @@ public class UtilisateurManager {
 		}
 		return hexString.toString();
 	}
+	
+	public class checkEmail {
+	    public boolean isEmailAdress(String email) {
+	        Pattern p = Pattern
+	                .compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
+	        Matcher m = p.matcher(email.toUpperCase());
+	        return m.matches();
+	    }
+	}
+	
+	
+	}
 
-}
