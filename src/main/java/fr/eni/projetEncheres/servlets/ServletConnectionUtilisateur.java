@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bll.UtilisateurManager;
+import fr.eni.projetEncheres.bo.Utilisateur;
 import fr.eni.projetEncheres.messages.LecteurMessage;
 
 @WebServlet("/ServletConnectionUtilisateur")
@@ -29,11 +30,14 @@ public class ServletConnectionUtilisateur extends HttpServlet {
 		RequestDispatcher rd = null;
 		String identifiant = request.getParameter("identifiant");
 		String motDePasse= request.getParameter("motDePasse");
-		boolean connexionOK = false;
+		Utilisateur utilisateurATester=null;
 		UtilisateurManager UManager = new UtilisateurManager();
 		try {
-			connexionOK = UManager.verifierConnection(identifiant, motDePasse);
-			if(connexionOK) {
+			utilisateurATester = UManager.verifierConnection(identifiant, motDePasse);
+			if(utilisateurATester!=null) {
+				System.out.println(utilisateurATester);
+		//reste à monter l'utilisateur en session
+				request.getSession().setAttribute(motDePasse, UManager);
 				rd=request.getRequestDispatcher("/WEB-INF/JSP/Accueil.jsp");
 			}
 		} catch (BusinessException e) {
