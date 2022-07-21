@@ -4,22 +4,17 @@ import java.util.List;
 
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bo.Article;
-import fr.eni.projetEncheres.bo.Utilisateur;
 import fr.eni.projetEncheres.dal.DAOArticle;
 import fr.eni.projetEncheres.dal.DAOFactory;
-import fr.eni.projetEncheres.dal.jdbc.ArticleDAOJdbcImpl;
 
 
 public class ArticleManager {
 	private DAOArticle daoArticle;
 	
-<<<<<<< HEAD
 	public ArticleManager() {
 		this.daoArticle = DAOFactory.getDAOArticle();
 	}
 	
-=======
->>>>>>> branch 'main' of https://github.com/ChrisVct/ProjetEncheresEni.git
 	private static ArticleManager instance;
 	
 	public static ArticleManager getInstance() {
@@ -29,8 +24,8 @@ public class ArticleManager {
 		return instance;
 	}
 
-	public List<Article> getListeArticles() throws BusinessException {
-		return DAOFactory.getDAOArticle().selectAll();
+	public List<Article> recupererListeArticles() throws BusinessException {
+		return daoArticle.selectAll();
 	}
 	
 	/*private DAOArticle DAOArticle;

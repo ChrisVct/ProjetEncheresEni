@@ -26,7 +26,7 @@ public class ServletInscription extends HttpServlet {
   
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	}	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -44,24 +44,25 @@ public class ServletInscription extends HttpServlet {
 		UtilisateurManager UManager = new UtilisateurManager();
 		
 		try {
-			ajouterUtilisateur =UManager.ajouterUtilisateur(pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe);
+			 UManager.ajouterUtilisateur(pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe);
 			
-			if(ajouterUtilisateur!=null) {
-				System.out.println(ajouterUtilisateur);
-		//reste à monter l'utilisateur en session
-				request.getSession().setAttribute(pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe);
-				rd=request.getRequestDispatcher("/WEB-INF/JSP/Inscription.jsp");
+//			if(ajouterUtilisateur!=null) {
+//				System.out.println(ajouterUtilisateur);
+//		//reste à monter l'utilisateur en session
+//				request.getSession().setAttribute(pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe);
+//				rd=request.getRequestDispatcher("/WEB-INF/JSP/Inscription.jsp");
 			} catch (BusinessException e) {
-				List<String> msgErr = new ArrayList<>();
+				//List<String> msgErr = new ArrayList<>();
 				
-				for(int i : ((BusinessException) e).getListeCodesErreur()) {
-					msgErr.add(LecteurMessage.getMessageErreur(i));
-				}
-				request.setAttribute("listeCodesErreur", msgErr);
-				rd=request.getRequestDispatcher("/WEB-INF/JSP/Inscription.jsp");	
+//				for(int i : ((BusinessException) e).getListeCodesErreur()) {
+//					msgErr.add(LecteurMessage.getMessageErreur(i));
+//				}
+//				request.setAttribute("listeCodesErreur", msgErr);
+//				rd=request.getRequestDispatcher("/WEB-INF/JSP/Inscription.jsp");	
 			}
 
 		doGet(request, response);
 	
 
+}
 }
