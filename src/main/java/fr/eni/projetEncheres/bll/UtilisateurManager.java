@@ -5,7 +5,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.List;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bo.Utilisateur;
@@ -74,16 +75,29 @@ public class UtilisateurManager {
 		
 		BusinessException businessException = new BusinessException();
 		// nettoyer les données tous en minuscule
-		// verifier la nullité
+		 
+		
+		// verifier la nullité des cases
+		
 		// verifie le password
 		// verifie l'inicité du pseudo
 		// verifie l'inicité de l'email et que l'email est conforme
+		
 		// hasher le mot de passe
 		UtilisateurManager uManager = new UtilisateurManager();
 		Utilisateur utilisateur =new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe);
 		dao.insert(utilisateur);
 		
 	
+	}
+
+	public class checkEmail {
+	    public boolean isEmailAdress(String email) {
+	        Pattern p = Pattern
+	                .compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
+	        Matcher m = p.matcher(email.toUpperCase());
+	        return m.matches();
+	    }
 	}
 
 
