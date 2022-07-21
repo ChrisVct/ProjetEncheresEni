@@ -64,11 +64,19 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 			while (rs.next()) {
 				int noUtilisateur = rs.getInt("no_utilisateur");
 				String pseudo = rs.getString("pseudo");
-				String email = rs.getString("email");
-				String pwd = rs.getString("mot_de_passe");
 				String nom =rs.getString("nom");
 				String prenom =rs.getString("prenom");
-				Utilisateur tmpUtilisateur = new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, pwd);
+				String email = rs.getString("email");
+				String telephone = rs.getString("telephone");
+				String rue = rs.getString("rue");
+				String codePostal = rs.getString("code_postal");
+				String ville = rs.getString("ville");
+				String motDePasse = rs.getString("mot_de_passe");
+				int credit= rs.getInt("credit");
+				boolean administrateur= (rs.getByte("administrateur")) == 0 ? false : true;
+				
+				Utilisateur tmpUtilisateur = new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+				System.out.println(tmpUtilisateur);
 				listeUtilisateurs.add(tmpUtilisateur);
 			}
 		} catch (Exception e) {

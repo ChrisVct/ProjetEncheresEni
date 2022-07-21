@@ -1,6 +1,8 @@
 package fr.eni.projetEncheres;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,12 +17,29 @@ public class ServletTestChristophe extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UtilisateurManager UManager = new UtilisateurManager();
-		UManager.verifierConnection("Pamperss", "123456");
+		//pour obtenir le mot de passe hashé à copier en BDD
+		System.out.println(hasherMotDePasse("CV2"));
+		
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
+	
+	public String hasherMotDePasse(String motDePasseClair) {
+		StringBuffer hexString = null;
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA-256");
+			md.update(motDePasseClair.getBytes());
+			byte[] digest = md.digest();
+		      hexString = new StringBuffer();
+		      for (int i = 0;i<digest.length;i++) {
+		         hexString.append(Integer.toHexString(0xFF & digest[i]));
+		      }
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return hexString.toString();
+	}
 }
