@@ -5,13 +5,33 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bo.Utilisateur;
+import fr.eni.projetEncheres.dal.DAO;
+import fr.eni.projetEncheres.dal.DAOFactory;
 import fr.eni.projetEncheres.dal.jdbc.UtilisateurDAOJdbcImpl;
 
 
 public class UtilisateurManager {
-	private static UtilisateurDAOJdbcImpl dao = new UtilisateurDAOJdbcImpl();
+//	private static UtilisateurDAOJdbcImpl dao = new UtilisateurDAOJdbcImpl();
+	private static DAO<Utilisateur> daoUtilisateur;
+	private static UtilisateurManager instance;
+	private static List<Utilisateur> listeUtilisateurs;
+	
+	private UtilisateurManager() throws BusinessException {
+		this.daoUtilisateur = DAOFactory.getDAOUtilisateur();
+		listeUtilisateurs = daoUtilisateur.selectAll();
+		
+	}
+	
+	public static UtilisateurManager getInstance() throws BusinessException {
+		if(instance==null) {
+			instance = new UtilisateurManager();
+		}
+		return instance;
+	}
+	
 	
 	public Utilisateur verifierConnection(String identifiant, String motDePasse) throws BusinessException {
 		Utilisateur utilisateurARetouner = null;
@@ -21,7 +41,7 @@ public class UtilisateurManager {
 		if (businessException.hasErreurs()) {
 			throw businessException;
 		}
-		List<Utilisateur> listeUtilisateurs = dao.selectAll();
+		
 		utilisateurARetouner = this.verifierIdentifiants(identifiant,motDePasse, listeUtilisateurs);
 
 		if(utilisateurARetouner==null) {
@@ -64,7 +84,9 @@ public class UtilisateurManager {
 		// hasher le mot de passe --> voir la méthode ci-dessous
 		UtilisateurManager uManager = new UtilisateurManager();
 		Utilisateur utilisateur =new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe);
-		dao.insert(utilisateur);
+		daoUtilisateur.insert(utilisateur);
+		
+		//si insert ok, ajouter l'utilisateur à la liste 'listeUtilisateurs'
 		
 	
 	}
