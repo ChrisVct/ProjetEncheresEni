@@ -2,6 +2,9 @@ package fr.eni.projetEncheres.bo;
 
 import java.time.LocalDate;
 
+/*
+ * Cette classe représente les articles vendus sur le site
+ */
 public class Article {
 	private int noArticle;
 	private String nomArticle;
@@ -13,7 +16,6 @@ public class Article {
 	private Categorie categorie;
 	private String statut; 		//Valeur ATT, ECO, FIN
 	private Utilisateur vendeur;
-	private Utilisateur acheteur;
 	
 	public Article() {
 	}
@@ -22,7 +24,7 @@ public class Article {
 	 * Constructeur servant à récupérer la liste des articles
 	 */
 	public Article(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int prixInitial, int prixVente) {
+			LocalDate dateFinEncheres, int prixInitial, int prixVente, Categorie categorie, String statut, Utilisateur vendeur) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -31,7 +33,23 @@ public class Article {
 		this.dateFinEncheres = dateFinEncheres;
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
+		this.categorie = categorie;
+		this.statut = statut;
+		this.vendeur = vendeur;
 	}
+	
+	@Override
+	public String toString() {
+		return noArticle+" "+this.getNomArticle()+
+						 " Description= " +this.getDescription()+
+						 " Date de début enchere= " +this.getDateDebutEncheres()+
+						 " Date de fin enchère= " +this.getDateFinEncheres()+
+						 " Prix initial= " +this.getPrixInitial()+
+						 " Prix de vente= " +this.getPrixVente()+
+						 " Categorie=" +this.getCategorie()+
+						 " Statut=" +this.getStatut()+
+						 " Vendeur=" +this.getVendeur();
+	}					 
 	
 	public int getNoArticle() {
 		return noArticle;
@@ -113,28 +131,4 @@ public class Article {
 		this.vendeur = vendeur;
 	}
 
-	public Utilisateur getAcheteur() {
-		return acheteur;
-	}
-
-	public void setAcheteur(Utilisateur acheteur) {
-		this.acheteur = acheteur;
-	}
-
-	@Override
-	public String toString() {
-		return noArticle+" "+this.getNomArticle()+
-						 " Description=" +this.getDescription()+
-						 " Date de début enchere=" +this.getDateDebutEncheres()+
-						 " Date de fin enchère=" +this.getDateFinEncheres()+
-						 " Prix initial=" +this.getPrixInitial()+
-						 " Prix de vente=" +this.getPrixVente();
-						 /*" Categorie=" +this.getCategorie();
-						 " Statut de la vente=" +this.getStatut()+
-						 " Vendeur=" +this.getVendeur()+
-						 " Acheteur=" +this.getAcheteur();
-						 */
-
-	}
-	
 }

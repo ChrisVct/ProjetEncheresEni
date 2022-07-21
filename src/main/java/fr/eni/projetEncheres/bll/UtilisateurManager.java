@@ -19,7 +19,7 @@ public class UtilisateurManager {
 	private static UtilisateurManager instance;
 	private static List<Utilisateur> listeUtilisateurs;
 	
-	private UtilisateurManager() throws BusinessException {
+	public UtilisateurManager() throws BusinessException {
 		this.daoUtilisateur = DAOFactory.getDAOUtilisateur();
 		listeUtilisateurs = daoUtilisateur.selectAll();
 		
@@ -78,8 +78,32 @@ public class UtilisateurManager {
 		BusinessException businessException = new BusinessException();
 		
 		// verifier la nullité (attention le téléphone peut être null)
+		this.verifierNullite(pseudo, businessException);
+		this.verifierNullite(nom, businessException);
+		this.verifierNullite(prenom, businessException);
+		this.verifierNullite(email, businessException);
+		this.verifierNullite(telephone, businessException);
+		this.verifierNullite(rue, businessException);
+		this.verifierNullite(code_postal, businessException);
+		this.verifierNullite(ville, businessException);
+		this.verifierNullite(mot_de_passe, businessException);
+			if (businessException.hasErreurs()) {
+				businessException.ajouterErreur(CodesResultatBLL.CHAMPS_VIDE);
+				throw businessException;
+				
+			}
+//			
 		// verifie le password
-		// verifie l'inicité du pseudo
+		// verifie l'inicité du pseudo (listeUtilisateurs)
+			for (Utilisateur u : listeUtilisateurs) {
+				if(pseudo.equals(pseudo)){
+					businessException.hasErreurs();
+					businessException.ajouterErreur(CodesResultatBLL.PSEUDO_PRIS);
+					throw businessException;
+				}
+			}
+					
+				
 		// verifie l'inicité de l'email et que l'email est conforme
 		// hasher le mot de passe --> voir la méthode ci-dessous
 		UtilisateurManager uManager = new UtilisateurManager();
