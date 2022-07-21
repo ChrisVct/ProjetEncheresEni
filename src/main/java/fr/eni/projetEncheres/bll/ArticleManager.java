@@ -11,13 +11,13 @@ import fr.eni.projetEncheres.dal.jdbc.ArticleDAOJdbcImpl;
 
 
 public class ArticleManager {
-	private static ArticleDAOJdbcImpl dao = new ArticleDAOJdbcImpl();
+	private DAOArticle daoArticle;
 	
+	public ArticleManager() {
+		this.daoArticle = DAOFactory.getDAOArticle();
+	}
 	
 	private static ArticleManager instance;
-	
-	private ArticleManager() {		
-	}
 	
 	public static ArticleManager getInstance() {
 		if(instance==null) {
