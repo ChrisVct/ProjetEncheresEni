@@ -13,10 +13,13 @@ import fr.eni.projetEncheres.dal.jdbc.ArticleDAOJdbcImpl;
 public class ArticleManager {
 	private DAOArticle daoArticle;
 	
+<<<<<<< HEAD
 	public ArticleManager() {
 		this.daoArticle = DAOFactory.getDAOArticle();
 	}
 	
+=======
+>>>>>>> branch 'main' of https://github.com/ChrisVct/ProjetEncheresEni.git
 	private static ArticleManager instance;
 	
 	public static ArticleManager getInstance() {
