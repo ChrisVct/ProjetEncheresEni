@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.projetEncheres.BusinessException;
-import fr.eni.projetEncheres.bll.ArticleManager;
-import fr.eni.projetEncheres.bo.Article;
+import fr.eni.projetEncheres.bll.EnchereManager;
+import fr.eni.projetEncheres.bo.Enchere;
 
 /**
  * Servlet implementation class ServletAccueilEncheres
@@ -23,18 +23,18 @@ public class ServletAccueilEncheres extends HttpServlet {
     
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArticleManager aManager =  new ArticleManager();
 		
-		List<Article> listeArticles = null;
+		List<Enchere> listeEncheres= null;
 		
 		try {
-			listeArticles = aManager.recupererListeArticles();
+			EnchereManager eManager =EnchereManager.getInstance();
+			listeEncheres=eManager.afficherEncheresEnCours();
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(listeArticles);
-		request.setAttribute("Accueil", listeArticles);
+		System.out.println("coucou servlet : " +listeEncheres);
+		request.setAttribute("listeEncheres", listeEncheres);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/AccueilEncheres.jsp");
 		rd.forward(request, response);

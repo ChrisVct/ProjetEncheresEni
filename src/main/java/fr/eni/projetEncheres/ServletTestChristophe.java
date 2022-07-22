@@ -3,6 +3,7 @@ package fr.eni.projetEncheres;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.projetEncheres.bll.UtilisateurManager;
+import fr.eni.projetEncheres.bo.Enchere;
+import fr.eni.projetEncheres.dal.jdbc.EnchereDAOJdbcImpl;
 
 @WebServlet("/ServletTestChristophe")
 public class ServletTestChristophe extends HttpServlet {
@@ -18,8 +20,17 @@ public class ServletTestChristophe extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//pour obtenir le mot de passe hashé à copier en BDD
-		System.out.println(hasherMotDePasse("CV2"));
+		//System.out.println(hasherMotDePasse("CV2"));
 		
+		EnchereDAOJdbcImpl dao = new EnchereDAOJdbcImpl();
+		List<Enchere> newee;
+		try {
+			newee = dao.selectAll();
+			System.out.println(newee);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

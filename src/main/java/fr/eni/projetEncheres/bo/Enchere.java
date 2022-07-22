@@ -14,10 +14,27 @@ public class Enchere implements Serializable {
 	public Enchere() {
 	}
 	
+	
+	
+	/**
+	 *  utilisé pour le select_all enchere de la page d'accueil(mode non connecte)
+	 * @param montantEnchere
+	 * @param acheteur
+	 * @param article
+	 */
+	public Enchere(int montantEnchere, Utilisateur acheteur, Article article) {
+		this.montantEnchere = montantEnchere;
+		this.acheteur = acheteur;
+		this.article = article;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "Date Enchère : " +this.getDateEnchere()+" - Montant : " +this.getMontantEnchere()+
-				" - Utilisateur : " +this.getAcheteur()+" - Article : " +this.getArticle();
+				" - Utilisateur : " +this.getAcheteur()+" - Article : " +this.getArticle()+
+				"\n";
 	}
 	
 		
