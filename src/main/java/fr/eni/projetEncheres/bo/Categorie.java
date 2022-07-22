@@ -7,6 +7,16 @@ public class Categorie {
 	public Categorie() {
 	}
 	
+	/**
+	 * @param noCategorie
+	 * @param libelle
+	 */
+	public Categorie(int noCategorie, String libelle) {
+		this.noCategorie = noCategorie;
+		this.libelle = libelle;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Categorie : " +this.getNoCategorie()+" - Libelle= " +this.getLibelle();

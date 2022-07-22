@@ -38,6 +38,22 @@ public class Article {
 		this.vendeur = vendeur;
 	}
 	
+	
+	
+	/**
+	 *  utilisé pour le select_all enchere de la page d'accueil(mode non connecte)
+	 * @param noArticle
+	 * @param nomArticle
+	 * @param dateFinEncheres
+	 * @param vendeur
+	 */
+	public Article(int noArticle, String nomArticle, LocalDate dateFinEncheres, Utilisateur vendeur) {
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.dateFinEncheres = dateFinEncheres;
+		this.vendeur = vendeur;
+	}
+
 	@Override
 	public String toString() {
 		return noArticle+" "+this.getNomArticle()+

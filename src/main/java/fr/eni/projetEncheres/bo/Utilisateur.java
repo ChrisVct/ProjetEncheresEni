@@ -18,6 +18,28 @@ public class Utilisateur {
 	public Utilisateur() {
 	}
 	
+	
+	
+	/**
+	 *  utilisé pour le select_all enchere de la page d'accueil(mode non connecte)
+	 * @param noUtilisateur
+	 */
+	public Utilisateur(int noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
+
+
+
+	/**
+	 * utilisé pour le select_all enchere de la page d'accueil(mode non connecte)
+	 * @param pseudo
+	 */
+	public Utilisateur(String pseudo) {
+		this.pseudo = pseudo;
+	}
+
+
+
 	/**
 	 * Constructeur utilisé pour l'insertion de nouveaux utilisateurs en BDD
 	 * @param pseudo
