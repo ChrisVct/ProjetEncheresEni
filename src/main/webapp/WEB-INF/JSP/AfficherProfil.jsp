@@ -31,6 +31,27 @@
     	</div><!-- fermeture boite affichage profil -->
       </div><!-- fermeture boite principale -->
    </main>
+   
+   <a href="ServletProfil?pseudoAAfficher=CV" >Christophe</a>
+   
+	<h2>${utilisateurAAfficher.getNom()}</h2>
+	
+    <div class="mb-3 row">
+       <label for="pseudo" class="col-sm-4 col-form-label"
+       >Pseudo</label
+       >
+       <div class="col-sm-6">
+       <input
+           type="text"
+           class="form-control"
+           id="pseudo"
+           name="pseudo"
+           value="${utilisateurAAfficher.getNom()}"
+           disabled
+       />
+       </div>
+   </div>
+	  
 
     <footer></footer>
     <script

@@ -25,23 +25,25 @@ import fr.eni.projetEncheres.bo.Utilisateur;
 public class ServletProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd= request.getRequestDispatcher("/WEB-INF/JSP/AfficherProfil.jsp");
-		String pseudoAAfficher=request.getParameter("pseudoAAfficher");
 		
-		
-		try {
-			UtilisateurManager uManager=UtilisateurManager.getInstance();
-			uManager.recupererInfoProfil(pseudoAAfficher);
-		} catch (BusinessException e) {
-			e.printStackTrace();
+		if(request.getParameter("pseudoAAfficher")!=null) {
+			
+			String pseudoAAfficher=request.getParameter("pseudoAAfficher");
+			
+			try {
+				UtilisateurManager uManager=UtilisateurManager.getInstance();
+				Utilisateur utilisateurAAfficher = uManager.recupererInfoProfil(pseudoAAfficher);
+				request.setAttribute("utilisateurAAfficher", utilisateurAAfficher);
+				
+			} catch (BusinessException e) {
+				e.printStackTrace();
+			}
 		}
-		
 		
 		rd.forward(request, response);
 		
-	
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

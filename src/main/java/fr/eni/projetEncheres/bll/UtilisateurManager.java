@@ -30,6 +30,18 @@ public class UtilisateurManager {
 		return instance;
 	}
 	
+	public Utilisateur recupererInfoProfil(String pseudo) {
+		Utilisateur utilisateurARetourner=null;
+		
+		for (Utilisateur u : listeUtilisateurs) {
+			if(pseudo.equals(u.getPseudo())) {
+				utilisateurARetourner = new Utilisateur(u.getPseudo(),u.getNom(),u.getPrenom(),u.getEmail(),u.getTelephone(),u.getRue(),u.getCodePostal(),u.getVille());
+			}
+			break;
+		}
+		
+		return utilisateurARetourner;
+	}
 	
 	public Utilisateur verifierConnection(String identifiant, String motDePasse) throws BusinessException {
 		Utilisateur utilisateurARetouner = null;
