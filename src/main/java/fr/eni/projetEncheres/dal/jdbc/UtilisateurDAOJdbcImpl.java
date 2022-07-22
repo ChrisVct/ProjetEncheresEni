@@ -19,7 +19,7 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 	private static final String INSERT_UTILISATEURS ="insert into UTILISATEURS values(?,?,?,?,?,?,?,?,?,100,0)";
 	
 	@Override
-	public void insert(Utilisateur utilisateur)throws BusinessException {
+	public  void insert(Utilisateur utilisateur)throws BusinessException {
 		
 		try (Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement pstmt ;

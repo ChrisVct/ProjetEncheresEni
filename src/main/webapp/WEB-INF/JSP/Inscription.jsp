@@ -7,13 +7,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Page de Connexion utilisateur</title>
+    <title>Page d'inscription utilisateur</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
+      
     />
+    <link rel="icon" href="image/favicon.png" type="image/icon type" />
   </head>
   <body>
     <header>
@@ -22,6 +24,13 @@
     <main>
   
         <form class="container text-center" method="post" action="ServletInscription"><!--boite principal-->
+           
+            <c:if test="${!empty listeCodesErreur }">
+			<c:forEach var="err" items="${listeCodesErreur}">
+				<p style="color:red;">${err }</p>
+			</c:forEach>
+		</c:if>
+		
             <div >
                 <div class="row">
                   <div class="col">
@@ -52,21 +61,21 @@
                         id="prenom"
                         name="prenom"
                         required
-                        placeholder="Votre prenom"
+                        placeholder="Votre prénom"
                     />
                     </div>
                 </div>
                 <div class="mb-3 row"><!-- entrée téléphone-->
-                    <label for="telephone" class="col-sm-4 col-form-label"
+                    <label for="telephone" class="col-sm-4 col-form-label" 
                     >Téléphone</label
                     >
                     <div class="col-sm-6">
                     <input
+                    	
                         type="text"
                         class="form-control"
                         id="telephone"
                         name="telephone"
-                        required
                         placeholder="Ex : 0606060606"
                     />
                     </div>
@@ -89,7 +98,7 @@
                 </div>
                 
                 <div class="mb-3 row"><!-- entrée mot de passe-->
-                    <label for="motDePasse" class="col-sm-4 col-form-label"
+                    <label for="motDePasse" class="col-sm-4 col-form-label" 
                     >Votre mot de passe</label
                     >
                     <div class="col-sm-6">
@@ -170,7 +179,7 @@
                     </div>
                    <div class="mb-3 row"><!-- entrée confimation-->
                             <label for="motDePasseConfirmation" class="col-sm-4 col-form-label"
-                            >Confirmation</label
+                            >Confirmation mot de passe</label
                             >
                             <div class="col-sm-6">
                             <input
@@ -193,7 +202,7 @@
 	        </div>
 	           
 				</div><!--fermeture boite principal-->
-      	</div>
+      
     </form>
         
    </main>
