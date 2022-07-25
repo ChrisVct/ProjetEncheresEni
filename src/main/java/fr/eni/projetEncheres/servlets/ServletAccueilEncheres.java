@@ -25,15 +25,16 @@ public class ServletAccueilEncheres extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<Enchere> listeEncheres= null;
-		
+				
 		try {
-			EnchereManager eManager =EnchereManager.getInstance();
-			listeEncheres=eManager.afficherEncheresEnCours();
+			EnchereManager eManager = EnchereManager.getInstance();
+			
+			listeEncheres = eManager.afficherEncheresEnCours();
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("coucou servlet : " +listeEncheres);
+		System.out.println(listeEncheres);
 		request.setAttribute("listeEncheres", listeEncheres);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/AccueilEncheres.jsp");
