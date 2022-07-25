@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -16,43 +17,72 @@
   </head>
   <body>
     <header>
-      <h1>ENI-Enchères</h1>
+   	  <c:if test="${empty utilisateur_connecte }">
+	  	<%@include file="BarreNavigationNonConnecte.jsp" %>
+	  </c:if>
+	  <c:if test="${!empty utilisateur_connecte }">
+	  	<%@include file="BarreNavigationConnecte.jspf" %>
+	  </c:if>
     </header>
     <main>
 
-    </main>
-    
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="..." class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title" ><a href="https://www.w3schools.com">Nom de l'article</a></h5>
-        <p class="card-text"> Prix : </p>
-        <p class="card-text"> Fin de l'enchère : </p>
-        <p class="card-text"> Vendeur : </p>
-      </div>
-    </div>
-  </div>
-</div>
+	<form class="navbar-form navbar-right p-3 mx-auto" role="search" style="max-width: 600px;" method="POST">
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Le nom de l'article contient...">
+			<span class="input-group-btn">
+				<button type="submit" class="btn btn-default">
+					<span class="glyphicon glyphicon-search"></span>
+				</button>
+			</span>
+		</div>
 
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="..." class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title" ><a href="https://www.w3schools.com">Nom de l'article</a></h5>
-        <p class="card-text"> Prix : </p>
-        <p class="card-text"> Fin de l'enchère : </p>
-        <p class="card-text"> Vendeur : </p>
-      </div>
-    </div>
-  </div>
-</div>
+ 
+		<div class="row mt-2 mx-left" style="max-width: 400px;">
+			<label for="categorie" class="col-sm-4 col-form-label">Catégorie :</label>
+			<div class="col-sm-8">
+				<select class="form-control">
+				  <option>Toutes</option>
+				  <option>Informatique</option>
+				  <option>Ameublement</option>
+				  <option>Vêtements</option>
+				  <option>Sport & Loisirs</option>
+				</select>
+	
+			</div>
+			<button type="submit" class="btn btn-primary mt-2 mx-auto">Rechercher</button>
+		</div>
+	</form>
+	
+    </main>
+
+	<div class="row mx-auto p-5" style="max-width: 1280px;">
+		<c:if test="${!empty listeEncheres}">
+			<c:forEach var ="l" items="${listeEncheres}">
+				<div class="card mb-4 mx-auto" style="max-width: 540px;">
+				  <div class="row g-0">
+				    <div class="col-md-4">
+				      <img src="..." class="img-fluid rounded-start" alt="...">
+				    </div>
+				    <div class="col-md-8">
+				      <div class="card-body">
+				        <h5 class="card-title">Nom de l'article : ${l.article.nomArticle}</h5>
+				        <p class="card-text"> Prix : ${l.montantEnchere} points </p>
+				        <p class="card-text"> Fin de l'enchère : ${l.article.dateFinEncheres}</p>
+				        <p class="card-text"> Vendeur : ${l.article.vendeur.pseudo} </p>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+			</c:forEach>
+		</c:if>
+		<c:if test="${empty listeEncheres}">
+			<h3 class="text-center p-5"> Aucune enchère actuellement en cours !</h3>
+		</c:if>
+	</div>
+
+
+
+
 
     <footer></footer>
     <script

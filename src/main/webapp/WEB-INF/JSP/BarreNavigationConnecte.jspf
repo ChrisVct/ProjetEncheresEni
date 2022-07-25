@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-light col-lg-6 mx-auto">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">ENI-Enchères</a>
+    <a class="navbar-brand" href="ServletAccueilEncheres">ENI-Enchères</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -24,7 +24,7 @@
           <a class="nav-link" href="#">Mon profil (${utilisateur_connecte.getPseudo()})</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Déconnexion</a>
+          <a class="nav-link" href="ServletAccueilEncheres?deconnexion=ok">Déconnexion</a>
         </li>
       </ul>
     </div>

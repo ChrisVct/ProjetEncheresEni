@@ -9,6 +9,7 @@ import java.util.List;
 
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bo.Article;
+import fr.eni.projetEncheres.bo.Categorie;
 import fr.eni.projetEncheres.bo.Enchere;
 import fr.eni.projetEncheres.bo.Utilisateur;
 import fr.eni.projetEncheres.dal.CodesResultatDAL;
@@ -16,13 +17,19 @@ import fr.eni.projetEncheres.dal.ConnectionProvider;
 import fr.eni.projetEncheres.dal.DAO;
 
 public class EnchereDAOJdbcImpl implements DAO<Enchere> {
-	private static final String SELECT_ALL = 	"SELECT nom_article, montant_enchere, date_fin_encheres, pseudo as pseudo_vendeur, "+
-												"ENCHERES.no_utilisateur as no_utilisateur_acheteur, ENCHERES.no_article FROM ARTICLES "+
-												 "JOIN CATEGORIES ON Articles.no_categorie = CATEGORIES.no_categorie "+
-												 "JOIN UTILISATEURS ON ARTICLES.no_utilisateur_vendeur = UTILISATEURS.no_utilisateur "+
-												 "LEFT JOIN ENCHERES ON ARTICLES.no_article = ENCHERES.no_article "+
-												 "WHERE statut_vente LIKE 'ECO' "+
-												 "ORDER BY date_debut_encheres desc; ";
+	private static final String SELECT_ALL = "SELECT nom_article, montant_enchere, date_fin_encheres, prix_initial, pseudo as pseudo_vendeur,"+
+												"ench.no_utilisateur as no_utilisateur_acheteur, ench.no_article, libelle FROM ARTICLES "+
+												"JOIN CATEGORIES ON Articles.no_categorie = CATEGORIES.no_categorie "+
+												"JOIN UTILISATEURS ON ARTICLES.no_utilisateur_vendeur = UTILISATEURS.no_utilisateur "+
+												"LEFT JOIN (select e.* from ENCHERES e JOIN (select no_article, max(montant_enchere) "+
+												"as max_montant from encheres group by no_article) tmp "+
+												"ON e.no_article = tmp.no_article and e.montant_enchere=tmp.max_montant) ench "+
+												"ON ARTICLES.no_article = ench.no_article "+
+												"WHERE statut_vente LIKE 'ECO' "+
+												"ORDER BY date_debut_encheres desc";
+												
+			//"SELECT * FROM ARTICLES JOIN ENCHERES ON ARTICLES.no_article = ENCHERES.no_article JOIN UTILISATEURS ON ARTICLES.no_utilisateur_vendeur = UTILISATEURS.no_utilisateur";
+	
 	@Override
 	public void insert(Enchere t) throws BusinessException {
 		// TODO Auto-generated method stub
@@ -31,7 +38,7 @@ public class EnchereDAOJdbcImpl implements DAO<Enchere> {
 	@Override
 	public List<Enchere> selectAll() throws BusinessException {
 		List<Enchere> listeEncheres = new ArrayList<>();
-		
+				
 		try(Connection cnx = ConnectionProvider.getConnection())
 		{
 			Statement stmt = cnx.createStatement();
@@ -44,9 +51,9 @@ public class EnchereDAOJdbcImpl implements DAO<Enchere> {
 				String pseudoVendeur= rs.getString("pseudo_vendeur");
 				int noUtilisateurAcheteur= rs.getInt("no_utilisateur_acheteur");
 				int noArticle =rs.getInt("no_article");
+				String categorie = rs.getString("libelle");
 				
-				Enchere enchere = new Enchere(montant_enchere,new Utilisateur(noUtilisateurAcheteur),
-						new Article(noArticle,nom_article, dateFinEncheres, new Utilisateur(pseudoVendeur)));
+				Enchere enchere = new Enchere(montant_enchere, new Utilisateur(noUtilisateurAcheteur),new Article(noArticle,nom_article, dateFinEncheres, new Categorie(categorie), new Utilisateur(pseudoVendeur)));
 				
 				listeEncheres.add(enchere);
 			}

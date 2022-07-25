@@ -15,16 +15,15 @@ import fr.eni.projetEncheres.dal.ConnectionProvider;
 import fr.eni.projetEncheres.dal.DAOArticle;
 
 public class ArticleDAOJdbcImpl implements DAOArticle {
-	private static final String SELECT_ALL = SELECT nom_article, montant_enchere, date_fin_encheres, prix_initial, pseudo FROM ARTICLES
-											 JOIN CATEGORIES ON Articles.no_categorie = CATEGORIES.no_categorie
-											 JOIN UTILISATEURS ON ARTICLES.no_utilisateur_vendeur = UTILISATEURS.no_utilisateur
-											 LEFT JOIN ENCHERES ON ARTICLES.no_article = ENCHERES.no_article
-											 WHERE statut_vente LIKE 'ECO'
-											 ORDER BY date_debut_encheres desc;
+	private static final String SELECT_ALL = "SELECT nom_article, montant_enchere, date_fin_encheres, prix_initial, pseudo FROM ARTICLES"+
+											 "JOIN CATEGORIES ON Articles.no_categorie = CATEGORIES.no_categorie"+
+											 "JOIN UTILISATEURS ON ARTICLES.no_utilisateur_vendeur = UTILISATEURS.no_utilisateur"+
+											 "LEFT JOIN ENCHERES ON ARTICLES.no_article = ENCHERES.no_article"+
+											 "WHERE statut_vente LIKE 'ECO'"+
+											 "ORDER BY date_debut_encheres desc";
 	
-	//Jointure entre Article et Utilisateur
-	//Jointure entre Article et categorie
-	//ajouter une jointure vers encheres
+
+	
 	@Override
 	public void insert(Article t) {
 		// TODO Auto-generated method stub
@@ -46,15 +45,18 @@ public class ArticleDAOJdbcImpl implements DAOArticle {
 				LocalDate dateFinEncheres = rs.getDate("date_fin_encheres").toLocalDate();
 				int prixInitial = rs.getInt("prix_initial");
 				int prixVente = rs.getInt("prix_vente");
-				/*Utilisateur vendeur = rs.getInt("no_utilisateur_vendeur");
-				Categorie categorie = rs.getInt("no_categorie");
 				
-				Categorie categorie = new Categorie(rs.getInt(no_categorie), rs.getString(libelle));
+				/*Utilisateur vendeur = rs.getInt("no_utilisateur_vendeur");
+			
+				Utilisateur utilisateur = new Utilisateur
+						
+				Categorie categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
 				
 				String statut = rs.getString("statut_vente");
-				*/
-				Article article = new Article(noArticle, nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial, prixVente);
+				
+				Article article = new Article(noArticle, nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial, prixVente, vendeur, categorie, statut);
 				listeArticles.add(article);
+				*/
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
