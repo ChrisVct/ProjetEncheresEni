@@ -13,6 +13,7 @@
 	  <c:if test="${empty utilisateur_connecte }">
 	  	<%@include file="BarreNavigationNonConnecte.jsp" %>
 	  </c:if>
+	  
 	  <c:if test="${!empty utilisateur_connecte }">
 	  	<%@include file="BarreNavigationConnecte.jspf" %>
 	  </c:if>

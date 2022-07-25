@@ -22,14 +22,14 @@ public class ServletConnectionUtilisateur extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/ConnectionUtilisateur.jsp");
-		Utilisateur moi = new Utilisateur();
-		moi.setPseudo("cricri");
-		request.getSession().setAttribute("utilisateur_connecte", moi);
 		rd.forward(request, response);
 		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+
+		
 		RequestDispatcher rd = null;
 		String identifiant = request.getParameter("identifiant");
 		String motDePasse= request.getParameter("motDePasse");
@@ -39,9 +39,8 @@ public class ServletConnectionUtilisateur extends HttpServlet {
 			utilisateurATester = UManager.verifierConnection(identifiant, motDePasse);
 			if(utilisateurATester!=null) {
 				System.out.println(utilisateurATester);
-		//reste à monter l'utilisateur en session
 				request.getSession().setAttribute("utilisateur_connecte", utilisateurATester);
-				rd=request.getRequestDispatcher("/WEB-INF/JSP/Accueil.jsp");
+				rd=request.getRequestDispatcher("/WEB-INF/JSP/AccueilEncheres.jsp");
 			}
 		} catch (BusinessException e) {
 			List<String> msgErr = new ArrayList<>();

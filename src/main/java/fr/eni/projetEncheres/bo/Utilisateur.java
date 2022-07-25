@@ -1,6 +1,9 @@
 package fr.eni.projetEncheres.bo;
 
-public class Utilisateur {
+import java.io.Serializable;
+
+public class Utilisateur implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private int noUtilisateur;
 	private String pseudo;
@@ -124,7 +127,7 @@ public class Utilisateur {
 	
 	@Override
 	public String toString() {
-		return "Pseudo : "+this.getPseudo()+" - Nom : "+this.getNom()+" - Prénom : "+this.getPrenom() + " - mot de passe : " + this.getMotDePasse();
+		return "no utilisateur = "+ this.getNoUtilisateur() +" Pseudo : "+this.getPseudo()+" - Nom : "+this.getNom()+" - Prénom : "+this.getPrenom() + " - mot de passe : " + this.getMotDePasse();
 	}
 
 	public int getNoUtilisateur() {

@@ -1,11 +1,12 @@
 package fr.eni.projetEncheres.bo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /*
  * Cette classe représente les articles vendus sur le site
  */
-public class Article {
+public class Article implements Serializable {
 	private int noArticle;
 	private String nomArticle;
 	private String description;

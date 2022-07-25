@@ -19,18 +19,18 @@ public class ServletTestChristophe extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//pour obtenir le mot de passe hashé à copier en BDD
-		//System.out.println(hasherMotDePasse("CV2"));
+//		pour obtenir le mot de passe hashé à copier en BDD
+		System.out.println(hasherMotDePasse("CV"));
 		
-		EnchereDAOJdbcImpl dao = new EnchereDAOJdbcImpl();
-		List<Enchere> newee;
-		try {
-			newee = dao.selectAll();
-			System.out.println(newee);
-		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		EnchereDAOJdbcImpl dao = new EnchereDAOJdbcImpl();
+//		List<Enchere> newee;
+//		try {
+//			newee = dao.selectAll();
+//			System.out.println(newee);
+//		} catch (BusinessException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

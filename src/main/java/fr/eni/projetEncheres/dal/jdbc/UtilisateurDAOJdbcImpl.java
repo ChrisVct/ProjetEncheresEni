@@ -20,7 +20,6 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 	
 	@Override
 	public  void insert(Utilisateur utilisateur)throws BusinessException {
-		
 		try (Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement pstmt ;
 			ResultSet rs;
@@ -41,7 +40,7 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 			rs = pstmt.getGeneratedKeys();
 			if(rs.next())
 			{
-				utilisateur.setNoUtilisateur(1);
+				utilisateur.setNoUtilisateur(rs.getInt(1));
 			}
 		}
 		catch(Exception e){
@@ -50,7 +49,7 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 			businessException.ajouterErreur(CodesResultatDAL.INSERT_UTILISATEURS_ECHEC);
 			throw businessException;
 		}
-		}
+	}
 		
 
 	@Override
