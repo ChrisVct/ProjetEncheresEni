@@ -3,17 +3,14 @@ package fr.eni.projetEncheres.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bll.UtilisateurManager;
-import fr.eni.projetEncheres.bo.Utilisateur;
 import fr.eni.projetEncheres.messages.LecteurMessage;
 
 /**
@@ -31,8 +28,7 @@ public class ServletInscription extends HttpServlet {
 	}	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("j'arrive dans le do post");
-		//RequestDispatcher rd = null;
+		
 		String pseudo = request.getParameter("pseudo");
 		String nom= request.getParameter("nom");
 		String prenom= request.getParameter("prenom");
@@ -42,19 +38,25 @@ public class ServletInscription extends HttpServlet {
 		String code_postal= request.getParameter("codePostal");
 		String ville= request.getParameter("ville");
 		String mot_de_passe= request.getParameter("motDePasse");
+		String motDePasseConfirmation=request.getParameter("motDePasseConfirmation");
 		
-		//System.out.println("j'arrive dans le do post après");
+		RequestDispatcher rd = null;
 		try {
 			UtilisateurManager UManager =  UtilisateurManager.getInstance();
-			 UManager.ajouterUtilisateur(pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe);
-			//System.out.println("je passe par le try ");
+			 UManager.ajouterUtilisateur(pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,motDePasseConfirmation);
+			 rd=request.getRequestDispatcher("/WEB-INF/JSP/AccueilEncheres.jsp");
+		} catch (BusinessException e) {
+			List<String> msgErr = new ArrayList<>();
 			
-			} catch (BusinessException e) {
-				e.printStackTrace();	
+			for(int i : ((BusinessException) e).getListeCodesErreur()) {
+				msgErr.add(LecteurMessage.getMessageErreur(i));
 			}
+			request.setAttribute("listeCodesErreur", msgErr);
+			rd=request.getRequestDispatcher("/WEB-INF/JSP/Inscription.jsp");
+			e.printStackTrace();	
+		}
 
-		//System.out.println("traitement fini");
-		//rd.forward(request, response);
+		rd.forward(request, response);
 
-}
+	}
 }

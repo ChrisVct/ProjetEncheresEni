@@ -19,7 +19,7 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 	private static final String INSERT_UTILISATEURS ="insert into UTILISATEURS values(?,?,?,?,?,?,?,?,?,100,0)";
 	
 	@Override
-	public void insert(Utilisateur utilisateur)throws BusinessException {
+	public  void insert(Utilisateur utilisateur)throws BusinessException {
 		
 		try (Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement pstmt ;
@@ -77,7 +77,6 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 				boolean administrateur= (rs.getByte("administrateur")) == 0 ? false : true;
 				
 				Utilisateur tmpUtilisateur = new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
-				System.out.println(tmpUtilisateur);
 				listeUtilisateurs.add(tmpUtilisateur);
 			}
 		} catch (Exception e) {

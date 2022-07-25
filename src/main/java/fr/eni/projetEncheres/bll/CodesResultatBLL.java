@@ -14,6 +14,11 @@ public abstract class CodesResultatBLL {
 	 */
 	public static final int AUTHENTIFICATION_ERREUR=20001;
 	public static final int PSEUDO_PRIS = 20002;
+	public static final int EMAIL_DEJA_ENREGISTRER = 20003;
+	public static final int MDP_COURT = 20004;
+	public static final int TEL_COURT = 20005;
+	public static final int MDP_PAS_IDENTIQUE = 20006;
+	public static final int Password_INCORRECT = 20007;
 
 
 }
