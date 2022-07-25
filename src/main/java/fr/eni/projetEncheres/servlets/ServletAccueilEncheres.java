@@ -24,8 +24,11 @@ public class ServletAccueilEncheres extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		if(request.getParameter("deconnexion")!=null) {
+			request.getSession().invalidate();
+		}
+		
 		List<Enchere> listeEncheres= null;
-				
 		try {
 			EnchereManager eManager = EnchereManager.getInstance();
 			

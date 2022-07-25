@@ -26,7 +26,7 @@
     <main>
       <form
         class="row col-12 col-md-6 position-absolute top-50 start-50 translate-middle"
-        action="ServletConnectionUtilisateur"
+        action="ServletConnexionUtilisateur"
         method="POST"
       >
 		<c:if test="${!empty listeCodesErreur }">
@@ -83,7 +83,7 @@
           </div>
         </div>
         <a
-          href="cheminversServletinscription"
+          href="ServletInscription"
           class="btn btn-secondary btn-lg mt-5 col-10 m-auto"
         >
           Créer un compte

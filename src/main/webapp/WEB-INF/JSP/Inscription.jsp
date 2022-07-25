@@ -205,7 +205,7 @@
         </div class="col-6"> <!--colonne bouton-->
 	       	<div class="mb-3 row">
 	           <button type="submit" class="btn btn-primary col-5 ">Créer</button>  
-	           <a href="/ServletAccueilEncheres" class="btn btn-secondary col-5 offset-1">Annuler</a>                 
+	           <a href="ServletAccueilEncheres" class="btn btn-secondary col-5 offset-1">Annuler</a>                 
 	        </div>
 	           
 				</div><!--fermeture boite principal-->

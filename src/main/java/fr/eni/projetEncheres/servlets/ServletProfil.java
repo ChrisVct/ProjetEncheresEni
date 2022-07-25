@@ -27,6 +27,7 @@ public class ServletProfil extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd= request.getRequestDispatcher("/WEB-INF/JSP/AfficherProfil.jsp");
+		
 		if(request.getParameter("pseudoAAfficher")!=null) {
 			String pseudoAAfficher=request.getParameter("pseudoAAfficher");
 			

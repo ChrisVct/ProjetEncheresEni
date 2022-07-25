@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" href="ServletInscription">Se connecter/S'inscrire</a>
+          <a class="nav-link" href="ServletConnexionUtilisateur">Se connecter/S'inscrire</a>
         </li>
       </ul>
     </div>

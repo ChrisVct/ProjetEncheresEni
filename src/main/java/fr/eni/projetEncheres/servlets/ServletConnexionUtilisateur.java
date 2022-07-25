@@ -16,20 +16,17 @@ import fr.eni.projetEncheres.bll.UtilisateurManager;
 import fr.eni.projetEncheres.bo.Utilisateur;
 import fr.eni.projetEncheres.messages.LecteurMessage;
 
-@WebServlet("/ServletConnectionUtilisateur")
-public class ServletConnectionUtilisateur extends HttpServlet {
+@WebServlet("/ServletConnexionUtilisateur")
+public class ServletConnexionUtilisateur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/ConnectionUtilisateur.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/ConnexionUtilisateur.jsp");
 		rd.forward(request, response);
 		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-
-		
 		RequestDispatcher rd = null;
 		String identifiant = request.getParameter("identifiant");
 		String motDePasse= request.getParameter("motDePasse");
@@ -40,7 +37,7 @@ public class ServletConnectionUtilisateur extends HttpServlet {
 			if(utilisateurATester!=null) {
 				System.out.println(utilisateurATester);
 				request.getSession().setAttribute("utilisateur_connecte", utilisateurATester);
-				rd=request.getRequestDispatcher("/WEB-INF/JSP/AccueilEncheres.jsp");
+				rd=request.getRequestDispatcher("ServletAccueilEncheres");
 			}
 		} catch (BusinessException e) {
 			List<String> msgErr = new ArrayList<>();
@@ -49,7 +46,7 @@ public class ServletConnectionUtilisateur extends HttpServlet {
 				msgErr.add(LecteurMessage.getMessageErreur(i));
 			}
 			request.setAttribute("listeCodesErreur", msgErr);
-			rd=request.getRequestDispatcher("/WEB-INF/JSP/ConnectionUtilisateur.jsp");
+			rd=request.getRequestDispatcher("/WEB-INF/JSP/ConnexionUtilisateur.jsp");
 		}
 		
 		rd.forward(request, response);
