@@ -22,35 +22,149 @@
       <h1>ENI-Enchères</h1>
     </header>
     <main>
-    <div class =""><!-- boite principale -->
-    	<div><!-- boite titre -->
-    		<h2>Profil</h2>
-    	</div>
-    	<div><!-- boite affichage profil -->
+    
     	
+    	<div class ="position-absolute top-50 start-50 translate-middle"><!-- boite affichage profil -->
+    	
+	    	  <div class="mb-3 row">
+	       <label for="pseudo" class="col-sm-6 col-form-label"
+	       >Pseudo</label
+	       >
+	       <div class="col-sm-6">
+	       <input
+	           type="text"
+	           class="form-control"
+	           id="pseudo"
+	           name="pseudo"
+	           value="${utilisateurAAfficher.getPseudo()}"
+	           disabled
+	       />
+	       </div>
+	   </div>
+	   
+	     <div class="mb-3 row">
+	       <label for="nom" class="col-sm-6 col-form-label"
+	       >Nom</label
+	       >
+	       <div class="col-sm-6">
+	       <input
+	           type="text"
+	           class="form-control"
+	           id="nom"
+	           name="nom"
+	           value="${utilisateurAAfficher.getNom()}"
+	           disabled
+	       />
+	       </div>
+	   </div>
+	  
+	   <div class="mb-3 row">
+	       <label for="prenom" class="col-sm-6 col-form-label"
+	       >Prènom</label
+	       >
+	       <div class="col-sm-6">
+	       <input
+	           type="text"
+	           class="form-control"
+	           id="prenom"
+	           name="prenom"
+	           value="${utilisateurAAfficher.getPrenom()}"
+	           disabled
+	       />
+	       </div>
+	   </div>
+	  
+	   <div class="mb-3 row">
+	       <label for="email" class="col-sm-6 col-form-label"
+	       >Email</label
+	       >
+	       <div class="col-sm-6">
+	       <input
+	           type="text"
+	           class="form-control"
+	           id="email"
+	           name="email"
+	           value="${utilisateurAAfficher.getEmail()}"
+	           disabled
+	       />
+	       </div>
+	   </div>
+	   
+	   <div class="mb-3 row">
+	       <label for="telephone" class="col-sm-6 col-form-label"
+	       >Téléphone</label
+	       >
+	       <div class="col-sm-6">
+	       <input
+	           type="text"
+	           class="form-control"
+	           id="telephone"
+	           name="telephone"
+	           value="${utilisateurAAfficher.getTelephone()}"
+	           disabled
+	       />
+	       </div>
+	   </div>
+	   
+	   <div class="mb-3 row">
+	       <label for="rue" class="col-sm-6 col-form-label"
+	       >Rue</label
+	       >
+	       <div class="col-sm-6">
+	       <input
+	           type="text"
+	           class="form-control"
+	           id="rue"
+	           name="rue"
+	           value="${utilisateurAAfficher.getRue()}"
+	           disabled
+	       />
+	       </div>
+	   </div>
+	    	
+	    	<div class="mb-3 row">
+	       <label for="codePostal" class="col-sm-6 col-form-label"
+	       >Code postal</label
+	       >
+	       <div class="col-sm-6">
+	       <input
+	           type="text"
+	           class="form-control"
+	           id="codePostal"
+	           name="codePostal"
+	           value="${utilisateurAAfficher.getCodePostal()}"
+	           disabled
+	       />
+	       </div>
+	   </div>
+	   
+	   <div class="mb-3 row">
+	       <label for="ville" class="col-sm-6 col-form-label"
+	       >Ville</label
+	       >
+	       <div class="col-sm-6">
+	       <input
+	           type="text"
+	           class="form-control"
+	           id="ville"
+	           name="ville"
+	           value="${utilisateurAAfficher.getVille()}"
+	           disabled
+	       />
+	       </div>
+       </div>
+	   <div><!-- bouton modifier -->
+	   <br>
+	   	<div class="position-absolute top-100 start-50 translate-middle">
+	   	<button type="submit" class="btn btn-secondary" >Modifier</button>
+	   	
+	   </div><!-- fermeture bouton -->
+  
     	</div><!-- fermeture boite affichage profil -->
-      </div><!-- fermeture boite principale -->
+    
    </main>
    
-   <a href="ServletProfil?pseudoAAfficher=CV" >Christophe</a>
-   
-	<h2>${utilisateurAAfficher.getNom()}</h2>
-	
-    <div class="mb-3 row">
-       <label for="pseudo" class="col-sm-4 col-form-label"
-       >Pseudo</label
-       >
-       <div class="col-sm-6">
-       <input
-           type="text"
-           class="form-control"
-           id="pseudo"
-           name="pseudo"
-           value="${utilisateurAAfficher.getNom()}"
-           disabled
-       />
-       </div>
-   </div>
+  
 	  
 
     <footer></footer>

@@ -103,12 +103,12 @@
                     >
                     <div class="col-sm-6">
                     <input
-                        type="text"
+                        type="password"
                         class="form-control"
                         id="motDePasse"
                         name="motDePasse"
                         required
-                        placeholder="********"
+                        placeholder="doit contenir 1 MAJ et 1 MIN @!:/;.?, "
                     />
                     
                     </div>
@@ -183,7 +183,7 @@
                             >
                             <div class="col-sm-6">
                             <input
-                                type="text"
+                                type="password"
                                 class="form-control"
                                 id="motDePasseConfirmation"
                                 name="motDePasseConfirmation"

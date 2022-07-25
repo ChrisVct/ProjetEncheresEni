@@ -18,6 +18,7 @@ public abstract class CodesResultatBLL {
 	public static final int MDP_COURT = 20004;
 	public static final int TEL_COURT = 20005;
 	public static final int MDP_PAS_IDENTIQUE = 20006;
+	public static final int Password_INCORRECT = 20007;
 
 
 }

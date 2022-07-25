@@ -104,12 +104,49 @@ public class UtilisateurManager {
 				}
 				
 			// verifie le password
-				
-			if(motDePasse.length()<=11){
-				businessException.ajouterErreur(CodesResultatBLL.MDP_COURT);
-				throw businessException;
-			}
-	
+			   final int MAX=12;
+               			 final int MIN_Uppercase=1;
+			             // nombre minimun de lettre minuscule dans le mot de passe
+			             final int MIN_Lowercase=1;
+			             // nombre minimun de lettre majuscule dans le mot de passe
+			             final int NUM_Digits=1;
+			             // Indique le nombre minimum de lettres en majuscules
+			             final int Special=1;
+			             // Compte le nombre de lettres majuscules dans un mot de passe
+			             int uppercaseCounter=1;
+			             // Compte les lettres minuscules dans un mot de passe
+			             int lowercaseCounter=1;
+			             // Count digits in a password
+			             int digitCounter=0;
+			             // count special case letters in a password
+			             int specialCounter=0;
+			             
+			            
+			             for (int i=0; i < motDePasse.length(); i++ ) {
+			                    char c = motDePasse.charAt(i);
+			                    if(Character.isUpperCase(c)) 
+			                          uppercaseCounter++;
+			                     else if(Character.isLowerCase(c)) 
+			                          lowercaseCounter++;
+			                    else if(Character.isDigit(c)) 
+			                          digitCounter++;     
+			                     if(c>=33&&c<=46||c==64){
+			                      specialCounter++;
+			                  }
+			                     
+			                           
+			             }
+			             
+			             
+			             if (motDePasse.length() >= MAX && uppercaseCounter >= MIN_Uppercase 
+			&& lowercaseCounter >= MIN_Lowercase && digitCounter >= NUM_Digits && specialCounter >= Special) { 
+			                    
+			             }else{
+			            	
+			            	 businessException.ajouterErreur(CodesResultatBLL.Password_INCORRECT);
+			     				throw businessException;
+			             }
+			   
 			// Concordance des mot de passe		
 			if(!motDePasseConfirmation.equals(motDePasse) ) {
 				businessException.ajouterErreur(CodesResultatBLL.MDP_PAS_IDENTIQUE);
@@ -117,11 +154,14 @@ public class UtilisateurManager {
 			}
 			// test du téléphone pour 10 caractère 
 			
-			if(telephone.length()<10 || telephone.length()>10){
+			
+			if(telephone != null) {
+			
+				if(telephone.length()<10 || telephone.length()>10) {
 				businessException.ajouterErreur(CodesResultatBLL.TEL_COURT);
 				throw businessException;
-			}
-					
+				}
+			}		
 					
 					
 			// verifie l'unicité du pseudo (listeUtilisateurs)
