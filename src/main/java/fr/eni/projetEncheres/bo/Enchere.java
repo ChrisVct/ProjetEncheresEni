@@ -27,9 +27,7 @@ public class Enchere implements Serializable {
 		this.acheteur = acheteur;
 		this.article = article;
 	}
-
-
-
+	
 	@Override
 	public String toString() {
 		return "Date Enchère : " +this.getDateEnchere()+" - Montant : " +this.getMontantEnchere()+
@@ -59,16 +57,13 @@ public class Enchere implements Serializable {
 	public Article getArticle() {
 		return article;
 	}
+	
 	public void setArticle(Article article) {
 		this.article = article;
 	}
 	
 }
 
-
-//association bidirectionnelle
-
-//quand je cree une enchere elle est a jour dans article
 
 //this.article ajouterencheres
 

@@ -1,11 +1,14 @@
 package fr.eni.projetEncheres.bo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /*
  * Cette classe représente les articles vendus sur le site
  */
-public class Article {
+public class Article implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private int noArticle;
 	private String nomArticle;
 	private String description;
@@ -47,10 +50,11 @@ public class Article {
 	 * @param dateFinEncheres
 	 * @param vendeur
 	 */
-	public Article(int noArticle, String nomArticle, LocalDate dateFinEncheres, Utilisateur vendeur) {
+	public Article(int noArticle, String nomArticle, LocalDate dateFinEncheres, Categorie categorie, Utilisateur vendeur) {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.dateFinEncheres = dateFinEncheres;
+		this.categorie = categorie;
 		this.vendeur = vendeur;
 	}
 

@@ -1,6 +1,10 @@
 package fr.eni.projetEncheres.bo;
 
-public class Categorie {
+import java.io.Serializable;
+
+public class Categorie implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private int noCategorie;
 	private String libelle;
 	
@@ -8,14 +12,11 @@ public class Categorie {
 	}
 	
 	/**
-	 * @param noCategorie
 	 * @param libelle
 	 */
-	public Categorie(int noCategorie, String libelle) {
-		this.noCategorie = noCategorie;
+	public Categorie(String libelle) {
 		this.libelle = libelle;
 	}
-
 
 	@Override
 	public String toString() {

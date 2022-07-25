@@ -3,19 +3,21 @@ package fr.eni.projetEncheres.bll;
 import java.util.List;
 
 import fr.eni.projetEncheres.BusinessException;
+import fr.eni.projetEncheres.bo.Categorie;
 import fr.eni.projetEncheres.bo.Enchere;
 import fr.eni.projetEncheres.dal.DAO;
 import fr.eni.projetEncheres.dal.DAOFactory;
 
 
 public class EnchereManager {
-//	private static UtilisateurDAOJdbcImpl dao = new UtilisateurDAOJdbcImpl();
 	private DAO<Enchere> daoEnchere;
 	private static EnchereManager instance;
-//	private static List<Enchere> listeUtilisateurs;
+	private static List<Enchere> listeEncheres;
 	
-	public  EnchereManager() throws BusinessException {
+	private  EnchereManager() throws BusinessException {
 		this.daoEnchere = DAOFactory.getDAOEnchere();
+		listeEncheres = daoEnchere.selectAll();
+		
 	}
 	
 	public static EnchereManager getInstance() throws BusinessException {
@@ -25,9 +27,22 @@ public class EnchereManager {
 		return instance;
 	}
 	
-	public List<Enchere> afficherEncheresEnCours() throws BusinessException{
-		List<Enchere> listeEncheres= daoEnchere.selectAll();
+	public List<Enchere> afficherEncheresEnCours() throws BusinessException {
 		return listeEncheres;
+	}
+	
+	public List<Enchere> afficherEncheresAvecParametres(String nomArticle, String libelle, List<Enchere> listeEncheres) {		
+		List<Enchere> listeEncheresAvecParametres = null;
+					
+		/*for (List<Enchere> e : listeEncheres)
+		
+		if (nomArticle.equals(e.getArticle()))	
+			listeEncheresAvecParametres = new List<Enchere>();
+		
+		if ( libelle.equals(libelle)  || nomArticle.equals(nomArticle)) {
+		}
+		*/
+		return listeEncheresAvecParametres;
 	}
 	
 }
