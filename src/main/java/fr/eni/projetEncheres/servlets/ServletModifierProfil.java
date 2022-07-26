@@ -19,7 +19,7 @@ import fr.eni.projetEncheres.messages.LecteurMessage;
 /**
  * Servlet implementation class ServletModifierProfil
  */
-@WebServlet("/co/ServletModifierProfil")
+@WebServlet("/ServletModifierProfil")
 public class ServletModifierProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
