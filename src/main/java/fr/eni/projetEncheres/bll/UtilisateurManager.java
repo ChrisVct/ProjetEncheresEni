@@ -57,7 +57,6 @@ public class UtilisateurManager {
 		}
 		return utilisateurARetouner;
 	}
-	
 
 	private Utilisateur verifierIdentifiants(String identifiant, String motDePasse, List<Utilisateur> listeUtilisateurs) {
 		Utilisateur utilisateurARetourner=null; 
@@ -67,7 +66,7 @@ public class UtilisateurManager {
 			{
 				if(hasherMotDePasse(motDePasse).equals(u.getMotDePasse())) {
 					utilisateurARetourner=new Utilisateur(u.getNoUtilisateur(), u.getPseudo(), u.getNom(), u.getPrenom(), u.getEmail(),
-							u.getTelephone(), u.getRue(), u.getCodePostal(), u.getVille(), u.getMotDePasse(), u.getCredit(), u.isAdministrateur());
+							u.getTelephone(), u.getRue(), u.getCodePostal(), u.getVille(), "", u.getCredit(), u.isAdministrateur());
 				}
 			}
 		}

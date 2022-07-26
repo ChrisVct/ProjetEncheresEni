@@ -1,4 +1,4 @@
-a<nav class="navbar navbar-expand-lg bg-light col-lg-6 mx-auto">
+<nav class="navbar navbar-expand-lg bg-light col-lg-6 mx-auto">
   <div class="container-fluid">
     <a class="navbar-brand" href="<%=request.getContextPath()%>/ServletAccueilEncheres">ENI-Enchères</a>
     <button

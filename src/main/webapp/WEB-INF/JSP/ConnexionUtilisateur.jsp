@@ -1,4 +1,4 @@
-a<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -83,7 +83,7 @@ a<%@ page language="java" contentType="text/html; charset=UTF-8"
           </div>
         </div>
         <a
-          href="<%=request.getContextPath()%>/co/ServletInscription"
+          href="<%=request.getContextPath()%>/ServletInscription"
           class="btn btn-secondary btn-lg mt-5 col-10 m-auto"
         >
           Créer un compte
