@@ -29,7 +29,7 @@
     </header>
     <main>
   
-        <form class="container text-center" method="post" action="ServletInscription"><!--boite principal-->
+        <form class="container text-center" method="post" action="<%=request.getContextPath()%>/co/ServletInscription"><!--boite principal-->
            
             <c:if test="${!empty listeCodesErreur }">
 			<c:forEach var="err" items="${listeCodesErreur}">
@@ -205,9 +205,9 @@
         </div class="col-6"> <!--colonne bouton-->
 	       	<div class="mb-3 row">
 	           <button type="submit" class="btn btn-primary col-5 ">Créer</button>  
-	           <a href="ServletAccueilEncheres" class="btn btn-secondary col-5 offset-1">Annuler</a>                 
+	           <a href="<%=request.getContextPath()%>/ServletAccueilEncheres" class="btn btn-secondary col-5 offset-1">Annuler</a>                 
 	        </div>
-	           
+<%-- 	           <%request.getContextPath(); %> --%>
 				</div><!--fermeture boite principal-->
       
     </form>

@@ -21,16 +21,16 @@ public class ServletTestChristophe extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		pour obtenir le mot de passe hashé à copier en BDD
-//		System.out.println(hasherMotDePasse("CV"));
+		System.out.println(hasherMotDePasse("admin"));
 		
-		try {
-			EnchereManager eManager = EnchereManager.getInstance();
-			List<Enchere> toto = eManager.afficherEncheresAvecParametres("cH", "Toutes");
-			System.out.println(toto);
-		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			EnchereManager eManager = EnchereManager.getInstance();
+//			List<Enchere> toto = eManager.afficherEncheresAvecParametres("cH", "Toutes");
+//			System.out.println(toto);
+//		} catch (BusinessException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -146,8 +146,7 @@ public class UtilisateurManager {
 		}
 		// test du téléphone pour 10 caractère 
 		
-		if(telephone != null) {
-		
+		if(telephone != "") {
 			if(telephone.length()<10 || telephone.length()>10) {
 			businessException.ajouterErreur(CodesResultatBLL.TEL_COURT);
 			throw businessException;
@@ -197,12 +196,8 @@ public class UtilisateurManager {
 	}
 	
 	
-	public void miseAJourUtilisateur(String pseudo,String email,String telephone,String rue,String codePostal,String ville) throws BusinessException {
+	public void miseAJourUtilisateur(int noUtilisateur,String pseudo,String nom,String prenom,String email,String telephone,String rue,String codePostal,String ville,String motDePasse,Integer credit,boolean administrateur) throws BusinessException {
 			BusinessException businessException = new BusinessException();
-				
-			
-				
-		
 			
 		// verifie la nullité (attention le téléphone peut être null)
 				this.verifierNullite(pseudo, businessException);
@@ -218,11 +213,13 @@ public class UtilisateurManager {
 					}
 		
 				// Verification du numéro de telephone	
-				if(telephone != null) {
-						
-						if(telephone.length()<10 || telephone.length()>10) {
-						businessException.ajouterErreur(CodesResultatBLL.TEL_COURT);
-						throw businessException;
+				System.out.println(telephone);
+				if(telephone !="") {
+					System.out.println("je rentre dans le if");
+					if(telephone.length()<10 || telephone.length()>10) {
+					businessException.ajouterErreur(CodesResultatBLL.TEL_COURT);
+					throw businessException;
+					
 						}
 						
 					}
@@ -237,10 +234,11 @@ public class UtilisateurManager {
 				}
 		
 					
-	//pensez a mettre à jour la liste utilisateur tempon	
-		Utilisateur utilisateur =new Utilisateur(pseudo,email,telephone,rue,codePostal,ville);
+	//pensez a mettre à jour la liste utilisateur tampon
+		
+		Utilisateur utilisateur =new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
 		daoUtilisateur.update(utilisateur);
-		utilisateur.setAdministrateur(false);
+		
 	
 		}
 	}

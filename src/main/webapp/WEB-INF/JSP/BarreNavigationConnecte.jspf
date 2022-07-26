@@ -21,7 +21,7 @@
           <a class="nav-link" href="#">Vendre un article</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="co/ServletProfil?pseudoAAfficher=${utilisateur_connecte.getPseudo()}">Mon profil (${utilisateur_connecte.getPseudo()})</a>
+          <a class="nav-link" href="<%=request.getContextPath()%>/co/ServletProfil?pseudoAAfficher=${utilisateur_connecte.getPseudo()}">Mon profil (${utilisateur_connecte.getPseudo()})</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<%=request.getContextPath()%>/ServletAccueilEncheres?deconnexion=ok">Déconnexion</a>

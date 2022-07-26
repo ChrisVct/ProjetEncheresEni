@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bll.UtilisateurManager;
+import fr.eni.projetEncheres.bo.Utilisateur;
 import fr.eni.projetEncheres.messages.LecteurMessage;
 
 /**
@@ -23,7 +24,7 @@ public class ServletInscription extends HttpServlet {
   
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	RequestDispatcher rd= request.getRequestDispatcher("WEB-INF/JSP/Inscription.jsp");
+	RequestDispatcher rd= request.getRequestDispatcher("/WEB-INF/JSP/Inscription.jsp");
 	rd.forward(request, response);
 	}	
 	
@@ -44,7 +45,7 @@ public class ServletInscription extends HttpServlet {
 		try {
 			UtilisateurManager UManager =  UtilisateurManager.getInstance();
 			 UManager.ajouterUtilisateur(pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,motDePasseConfirmation);
-			 rd=request.getRequestDispatcher("/WEB-INF/JSP/AccueilEncheres.jsp");
+			 rd=request.getRequestDispatcher(request.getContextPath()+"ServletAccueilEncheres");
 		} catch (BusinessException e) {
 			List<String> msgErr = new ArrayList<>();
 			

@@ -75,9 +75,12 @@
           <label for="ville" class="col-sm-6 col-form-label">Ville</label>
           <p class="col-sm-6">${utilisateurAAfficher.getVille()}</p>
         </div>
-        <button type="submit" class="btn btn-secondary col-6 m-auto">
+        <a 
+         href="<%=request.getContextPath()%>/co/ServletModifierProfil"
+         class="btn btn-secondary col-6 m-auto" 
+         >
           Modifier
-        </button>
+        </a>
       </div>
       <!-- fermeture boite affichage profil -->
     </main>

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.projetEncheres.bo.Utilisateur;
 
 @WebFilter(
-		urlPatterns = "/co/*",
+		urlPatterns = "/co/co/*",
 		dispatcherTypes = {
 					DispatcherType.REQUEST
 		}
@@ -31,11 +31,11 @@ public class FilterRedirigeantUtilisateurNonConnecte extends HttpFilter implemen
 		
 		
 				//A supprimer plus tard, sert à simuler l'utilisateur connecté
-				Utilisateur moi = new Utilisateur("cricri", "vichit", "christophe", "mail@mail.com", "0606060606", "rue", "14000", "caen");
-				httpRequest.getSession().setAttribute("utilisateur_connecte", moi);
+//				Utilisateur moi = new Utilisateur("cricri", "vichit", "christophe", "mail@mail.com", "0606060606", "rue", "14000", "caen");
+//				httpRequest.getSession().setAttribute("utilisateur_connecte", moi);
 		
 		if(httpRequest.getSession().getAttribute("utilisateur_connecte")==null) {
-			RequestDispatcher rd = httpRequest.getRequestDispatcher("/ServletConnectionUtilisateur");
+			RequestDispatcher rd = httpRequest.getRequestDispatcher("/ServletConnexionUtilisateur");
 			rd.forward(httpRequest, httpResponse);
 		}else {
 			chain.doFilter(request, response);
