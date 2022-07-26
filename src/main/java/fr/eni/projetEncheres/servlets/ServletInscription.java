@@ -44,8 +44,11 @@ public class ServletInscription extends HttpServlet {
 		RequestDispatcher rd = null;
 		try {
 			UtilisateurManager UManager =  UtilisateurManager.getInstance();
-			 UManager.ajouterUtilisateur(pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,motDePasseConfirmation);
-			 rd=request.getRequestDispatcher(request.getContextPath()+"ServletAccueilEncheres");
+			Utilisateur utilisateurConnecte = UManager.ajouterUtilisateur(pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,motDePasseConfirmation);
+			
+			request.getSession().setAttribute("utilisateur_connecte", utilisateurConnecte);
+			request.setAttribute("connexion", "ok");
+			rd=request.getRequestDispatcher("ServletAccueilEncheres");
 		} catch (BusinessException e) {
 			List<String> msgErr = new ArrayList<>();
 			

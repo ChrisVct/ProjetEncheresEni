@@ -27,7 +27,13 @@ public class ArticleManager {
 	}
 //ici
 	public void ajouterArticle(String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int prixInitial, int prixVente, Categorie categorie, String statut, Utilisateur vendeur) {
+			LocalDate dateFinEncheres, int prixInitial, int prixVente, Categorie categorie, String statut,
+			Utilisateur vendeur, String rueRetrait, String codePostalRetrait, String villeRetrait) {
+		
+		//vérifier données
+		//pré remplir en JSP les données de l'adresse
+		//envoyer données en DAL
+		//
 		
 	}
 
