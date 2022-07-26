@@ -24,7 +24,7 @@
 	    
 	    
 	    
-	    <form class="container text-center" method="post" action="ServletInscription">
+	    <form class="container text-center" method="post" action="ServletModifierProfil">
 	    
 	       <c:if test="${!empty listeCodesErreur }">
 			<c:forEach var="err" items="${listeCodesErreur}">

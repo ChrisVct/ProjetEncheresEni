@@ -58,7 +58,7 @@ public class ServletModifierProfil extends HttpServlet {
 			uManager.miseAJourUtilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
 			request.setAttribute("utilisateurAAfficher", tmpUtilisateur);
 			request.setAttribute("succes", "Votre profil a bien était mis à jour");
-			rd=request.getRequestDispatcher("/AfficherProfil");
+			rd=request.getRequestDispatcher("ServletProfil");
 		} catch (BusinessException e) {
 			List<String> msgErr = new ArrayList<>();
 			
