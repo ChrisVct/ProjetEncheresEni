@@ -24,7 +24,7 @@ public class ServletModifierProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("on rentre dans le doget");
+		
 		RequestDispatcher rd= request.getRequestDispatcher("/WEB-INF/JSP/ModifierProfil.jsp");
 		rd.forward(request, response);
 		
@@ -58,7 +58,7 @@ public class ServletModifierProfil extends HttpServlet {
 			uManager.miseAJourUtilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
 			request.setAttribute("utilisateurAAfficher", tmpUtilisateur);
 			request.setAttribute("succes", "Votre profil a bien était mis à jour");
-			rd=request.getRequestDispatcher("/AfficherProfil");
+			rd=request.getRequestDispatcher("ServletProfil");
 		} catch (BusinessException e) {
 			List<String> msgErr = new ArrayList<>();
 			

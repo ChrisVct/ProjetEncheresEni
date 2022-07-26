@@ -191,13 +191,13 @@ public class UtilisateurManager {
 			this.verifierNullite(rue, businessException);
 			this.verifierNullite(codePostal, businessException);
 			this.verifierNullite(ville, businessException);
+			
 			if (businessException.hasErreurs()) {
 					throw businessException;
 				}
 	
 			// Verification du numéro de telephone	
 			if(telephone !="") {
-				System.out.println("je rentre dans le if");
 				if(telephone.length()<10 || telephone.length()>10) {
 				businessException.ajouterErreur(CodesResultatBLL.TEL_COURT);
 				throw businessException;
@@ -207,6 +207,7 @@ public class UtilisateurManager {
 			//Verification du format de l'email
 			for (Utilisateur u : listeUtilisateurs) {
 				email.matches(".+@.+\\.[a-z]+");
+				
 				if(email.equals(u.getEmail())){
 					businessException.ajouterErreur(CodesResultatBLL.EMAIL_DEJA_ENREGISTRER);
 					throw businessException;
