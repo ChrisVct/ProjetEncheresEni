@@ -1,6 +1,7 @@
 package fr.eni.projetEncheres.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -13,8 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bll.EnchereManager;
 import fr.eni.projetEncheres.bo.Enchere;
-import fr.eni.projetEncheres.bo.Utilisateur;
-import fr.eni.projetEncheres.dal.DAOFactory;
+
 
 /**
  * Servlet implementation class ServletAccueilEncheres
@@ -38,7 +38,7 @@ public class ServletAccueilEncheres extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(listeEncheres);
+//		System.out.println(listeEncheres);
 		request.setAttribute("listeEncheres", listeEncheres);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/AccueilEncheres.jsp");
@@ -48,21 +48,26 @@ public class ServletAccueilEncheres extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getAttribute("connexion")==null) {
 			//Récuperer les données du formulaire
-//			String nomArticle = request.getParameter("nomArticle");
-//			String libelle = request.getParameter("libelle");
-//			System.out.println(nomArticle + libelle);
-			
+			String nomArticle = request.getParameter("nomArticle");
+			String libelle = request.getParameter("libelle");
+			System.out.println(nomArticle + libelle);
+			List<Enchere> listeEncheres = new ArrayList<>();
 			//Envoi des données à la BLL
-			//déclarer une liste(tableau) (listeEnchere) + (afficherEncheresAvecParametres)
-			//puis la liste retourner à la JSP
-			
-			//request.setAttribute("listeEncheres", listeEncheres);
+			try {
+				EnchereManager eManager = EnchereManager.getInstance();
+				//déclarer une liste(tableau) (listeEnchere) + (afficherEncheresAvecParametres)
+				listeEncheres = eManager.afficherEncheresAvecParametres(nomArticle, libelle);
+				//Retourner la liste à la JSP
+				request.setAttribute("listeEncheres", listeEncheres);
+			} catch (BusinessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/WEB-INF/JSP/AccueilEncheres.jsp");
 			rd.forward(request, response);
+			
 		}else if(request.getAttribute("connexion")!=null){
 			doGet(request, response);
 		}
-						
-		
 	}
 }

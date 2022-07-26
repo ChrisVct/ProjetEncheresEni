@@ -24,34 +24,46 @@
 	  	<%@include file="BarreNavigationConnecte.jspf" %>
 	  </c:if>
     </header>
+    
     <main>
-
-	<form class="navbar-form navbar-right p-3 mx-auto" role="search" style="max-width: 600px;" action="ServletAccueilEncheres" method="POST">
-		<div class="input-group">
-			<input type="text" class="form-control" name="nomArticle" placeholder="Le nom de l'article contient...">
+	<div><h1 class="text-center p-5">Liste des enchères</h1></div>
+	<div class="container">
+	<div class="row">
+	<form class="col-md mt-4 p-6 mx-auto" role="search" style="max-width: 1000px;" action="ServletAccueilEncheres" method="POST">
+		<div class="input">
+			<input type="text" class="form-control" style="max-width: 500px;" name="nomArticle" placeholder="Le nom de l'article contient...">
 			<span class="input-group-btn">
-				<button type="submit" class="btn btn-default">
-					<span class="glyphicon glyphicon-search"></span>
-				</button>
 			</span>
 		</div>
- 
-		<div class="row mt-2 mx-left" style="max-width: 400px;">
+		<div class="row mt-2" style="max-width: 524px;">
 			<label for="libelle" class="col-sm-4 col-form-label">Catégorie :</label>
 			<div class="col-sm-8">
-				<select class="form-control" name="libelle">
+				<select class="form-select" name="libelle">
 				  <option>Toutes</option>
 				  <option>Informatique</option>
 				  <option>Ameublement</option>
-				  <option>Vêtements</option>
-				  <option>Sport & Loisirs</option>
+				  <option>Vêtement</option>
+				  <option>Sport&Loisirs</option>
 				</select>
-	
 			</div>
-			<button type="submit" class="btn btn-primary mt-2 mx-auto">Rechercher</button>
 		</div>
+		<button type="submit" class="btn btn-primary mt-2 mx-auto">Rechercher</button>
+		 
 	</form>
+	</div>
+	</div>
 	
+<div class="container">
+  <div class="row">
+    <div class="col-md text-center">
+      One of three columns
+    </div>
+    <div class="col-md text-center">
+      One of three columns
+    </div>
+  </div>
+</div>
+
     </main>
 
 	<div class="row mx-auto p-5" style="max-width: 1280px;">
@@ -78,10 +90,6 @@
 			<h3 class="text-center p-5"> Aucune enchère actuellement en cours !</h3>
 		</c:if>
 	</div>
-
-
-
-
 
     <footer></footer>
     <script

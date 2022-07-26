@@ -16,7 +16,6 @@ public class EnchereManager {
 	private  EnchereManager() throws BusinessException {
 		this.daoEnchere = DAOFactory.getDAOEnchere();
 		listeEncheres = daoEnchere.selectAll();
-		
 	}
 	
 	public static EnchereManager getInstance() throws BusinessException {
@@ -37,15 +36,6 @@ public class EnchereManager {
 					(libelle.equals("Toutes") ? true : (e.getArticle().getCategorie().getLibelle().equals(libelle))) ) {
 				listeEncheresAvecParametres.add(e);
 			}
-//			if ((e.getArticle().getNomArticle().toLowerCase()).contains(nomArticle.toLowerCase())) {
-//				if(libelle.equals("Toutes")) {
-//					listeEncheresAvecParametres.add(e);
-//				}
-//				else if (e.getArticle().getCategorie().getLibelle().equals(libelle))
-//				{
-//					listeEncheresAvecParametres.add(e);
-//				}
-//			}
 		}	
 		return listeEncheresAvecParametres;
 	}
