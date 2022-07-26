@@ -146,8 +146,7 @@ public class UtilisateurManager {
 		}
 		// test du téléphone pour 10 caractère 
 		
-		if(telephone != null) {
-		
+		if(telephone != "") {
 			if(telephone.length()<10 || telephone.length()>10) {
 			businessException.ajouterErreur(CodesResultatBLL.TEL_COURT);
 			throw businessException;
@@ -214,11 +213,13 @@ public class UtilisateurManager {
 					}
 		
 				// Verification du numéro de telephone	
-				if(telephone != null) {
-						
-						if(telephone.length()<10 || telephone.length()>10) {
-						businessException.ajouterErreur(CodesResultatBLL.TEL_COURT);
-						throw businessException;
+				System.out.println(telephone);
+				if(telephone !="") {
+					System.out.println("je rentre dans le if");
+					if(telephone.length()<10 || telephone.length()>10) {
+					businessException.ajouterErreur(CodesResultatBLL.TEL_COURT);
+					throw businessException;
+					
 						}
 						
 					}

@@ -22,7 +22,7 @@
 	  <body>
 	 
 	    
-	    <h1 class="position-absolute top-50 start-50 translate-middle-x">Mon profil</h1>
+	    
 	    
 	    <form class="container text-center" method="post" action="ServletInscription">
 	    
@@ -32,9 +32,10 @@
 			</c:forEach>
 		</c:if>
 		
-	    	<div class="row"><!-- ouverture boite info  -->
-	    		<div><!-- ouverture boite de gauche -->
-				    	 <div class="mb-3 row">
+	    	<div class="position-absolute top-50 start-50 translate-middle row col-12 col-md-6"><!-- ouverture boite info  -->
+	    		<h1 class="position-absolute top-0 start-50 translate-middle-x">Mon profil</h1>
+	    		<div class="position-absolute top-50 start-0 translate-middle"><!-- ouverture boite de gauche -->
+				    	 <div class=" mb-3 row">
 			                    <label for="pseudo" class="col-sm-4 col-form-label"
 			                    >Pseudo</label
 			                    >
@@ -85,12 +86,13 @@
 			                    </div>
 		                    </div>
 			                    <div class="mb-3 row">
+			                    
 					          <label for="MotDePasse" class="col-sm-6 col-form-label">Mot de passe actuel</label>
 					          <p class="col-sm-6">${utilisateur_connecte.getMotDePasse()}</p>
 					      </div>
 			                    
 		         </div>   <!-- fermeture boite de gauche -->   
-		         <div><!-- ouverture boite de droite -->
+		         <div class="position-absolute top-50 start-100 translate-middle"><!-- ouverture boite de droite -->
 		         	<div class="mb-3 row">
 					          <label for="nom" class="col-sm-6 col-form-label">Nom</label>
 					          <p class="col-sm-6">${utilisateur_connecte.getNom()}</p>
