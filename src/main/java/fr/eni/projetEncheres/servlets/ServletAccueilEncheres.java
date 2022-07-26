@@ -58,7 +58,7 @@ public class ServletAccueilEncheres extends HttpServlet {
 		
 		
 		
-		request.setAttribute("listeEncheres", listeEncheres);
+		//request.setAttribute("listeEncheres", listeEncheres);
 						
 		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/WEB-INF/AccueilEncheres.jsp");
 		rd.forward(request, response);
