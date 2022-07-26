@@ -29,7 +29,7 @@
     </header>
     <main>
   
-        <form class="container text-center" method="post" action="ServletInscription"><!--boite principal-->
+        <form class="container text-center" method="post" action="<%=request.getContextPath()%>/co/ServletInscription"><!--boite principal-->
            
             <c:if test="${!empty listeCodesErreur }">
 			<c:forEach var="err" items="${listeCodesErreur}">

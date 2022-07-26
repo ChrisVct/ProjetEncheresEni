@@ -24,7 +24,8 @@ public class ServletModifierProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd= request.getRequestDispatcher("WEB-INF/JSP/ModifierProfil.jsp");
+		System.out.println("on rentre dans le doget");
+		RequestDispatcher rd= request.getRequestDispatcher("/WEB-INF/JSP/ModifierProfil.jsp");
 		rd.forward(request, response);
 		
 	}

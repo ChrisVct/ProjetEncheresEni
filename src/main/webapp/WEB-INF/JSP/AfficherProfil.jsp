@@ -76,7 +76,7 @@
           <p class="col-sm-6">${utilisateurAAfficher.getVille()}</p>
         </div>
         <a 
-         href="/co/ServletModifierProfil"
+         href="<%=request.getContextPath()%>/co/ServletModifierProfil"
          class="btn btn-secondary col-6 m-auto" 
          >
           Modifier
