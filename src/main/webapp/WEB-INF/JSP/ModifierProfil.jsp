@@ -33,10 +33,13 @@
 		</c:if>
 		
 	    	<div class="position-absolute top-50 start-50 translate-middle row col-12 col-md-6"><!-- ouverture boite info  -->
-	    		<div class="position-absolute top-0 start-50 translate-middle-x">
+	    		<div class="col-4 offset-4 ">
 	    		<h1 >Mon profil</h1>
 	    		</div>
-	    		<div class="position-absolute top-50 start-0 translate-middle"><!-- ouverture boite de gauche -->
+				
+	    		<div class="row"><!--ouverture boite de colonne -->
+	    		<div class="col-6 "><!-- ouverture boite de gauche -->
+				    	 
 				    	 <div class=" mb-3 row">
 			                    <label for="pseudo" class="col-sm-4 col-form-label"
 			                    >Pseudo</label
@@ -48,15 +51,16 @@
 			                        id="pseudo"
 			                        name="pseudo"
 			                        required
-			                        values="${miseAJourUtilisateur.getPseudo()}"
+			                        value="${utilisateur_connecte.getPseudo()}"
 			                    />
 			                    </div>
 			                </div>
 			               
 					      <div class="mb-3 row">
-					          <label for="prenom" class="col-sm-6 col-form-label ">Prènom</label>
-					          <p class="col-sm-6">${utilisateur_connecte.getPrenom()}</p>
+					          <label for="prenom" class="col-sm-4 ">Prènom</label>
+					          <p class="col-sm-5">${utilisateur_connecte.getPrenom()}</p>
 					      </div>
+					      
 					       <div class="mb-3 row">
 			                    <label for="telephone" class="col-sm-4 col-form-label"
 			                    >Téléphone</label
@@ -68,7 +72,7 @@
 			                        id="telephone"
 			                        name="telephone"
 			                        required
-			                        values="${miseAJourUtilisateur.getTelephone()}"
+			                        value="${utilisateur_connecte.getTelephone()}"
 			                    />
 			                    </div>
 			                 </div>
@@ -83,21 +87,21 @@
 			                        id="codePostal"
 			                        name="codePostal"
 			                        required
-			                        values="${miseAJourUtilisateur.getCodePostal()}"
+			                        value="${utilisateur_connecte.getCodePostal()}"
 			                    />
 			                    </div>
 		                    </div>
 			                    <div class="mb-3 row">
 			                    
-					          <label for="MotDePasse" class="col-sm-6 col-form-label">Mot de passe actuel</label>
-					          <p class="col-sm-6">${utilisateur_connecte.getMotDePasse()}</p>
+					          <label for="MotDePasse" class="col-sm-4 " >Mot de passe actuel</label>
+					         <p class="col-sm-5" >${utilisateur_connecte.getMotDePasse()}</p>
 					      </div>
 			                    
 		         </div>   <!-- fermeture boite de gauche -->   
-		         <div class="position-absolute top-50 start-100 translate-middle"><!-- ouverture boite de droite -->
+		         <div class="col-6"><!-- ouverture boite de droite -->
 		         	<div class="mb-3 row">
-					          <label for="nom" class="col-sm-6 col-form-label">Nom</label>
-					          <p class="col-sm-6">${utilisateur_connecte.getNom()}</p>
+					          <label for="nom" class="col-sm-4 ">Nom</label>
+					          <p class="col-sm-5">${utilisateur_connecte.getNom()}</p>
 					        </div>
 					        
 					         <div class="mb-3 row">
@@ -111,7 +115,7 @@
 			                        id="email"
 			                        name="email"
 			                        required
-			                        values="${miseAJourUtilisateur.getEmail()}"
+			                        value="${utilisateur_connecte.getEmail()}"
 			                    />
 			                    </div>
 		                    </div>
@@ -126,7 +130,7 @@
 			                        id="rue"
 			                        name="rue"
 			                        required
-			                        values="${miseAJourUtilisateur.getRue()}"
+			                        value="${utilisateur_connecte.getRue()}"
 			                    />
 			                    </div>
 	                       </div>
@@ -141,13 +145,15 @@
 			                        id="ville"
 			                        name="ville"
 			                        required
-			                        values="${miseAJourUtilisateur.getVille()}"
+			                        value="${utilisateur_connecte.getVille()}"
 			                    />
 			                    </div>
 		                    </div>
 		         </div><!-- fermeture boite de droite -->
+		         </div><!-- fermeture boite de colonne -->
+	    		<button type="submit" class="btn btn-primary col-4 offset-4">Enregistrer</button> 
 	    	</div><!-- fermetureboite info  -->
-	   
+	    
 	    
 	  
 	    
