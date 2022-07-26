@@ -52,7 +52,7 @@
 			                </div>
 			               
 					      <div class="mb-3 row">
-					          <label for="prenom" class="col-sm-6 col-form-label">Prènom</label>
+					          <label for="prenom" class="col-sm-6 col-form-label ">Prènom</label>
 					          <p class="col-sm-6">${utilisateur_connecte.getPrenom()}</p>
 					      </div>
 					       <div class="mb-3 row">
@@ -144,7 +144,6 @@
 			                    </div>
 		                    </div>
 		         </div><!-- fermeture boite de droite -->
-		        
 	    	</div><!-- fermetureboite info  -->
 	   
 	    
