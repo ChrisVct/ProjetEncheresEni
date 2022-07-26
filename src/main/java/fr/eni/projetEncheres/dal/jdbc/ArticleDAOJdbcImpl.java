@@ -1,70 +1,49 @@
 package fr.eni.projetEncheres.dal.jdbc;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bo.Article;
-import fr.eni.projetEncheres.bo.Categorie;
-import fr.eni.projetEncheres.bo.Utilisateur;
+import fr.eni.projetEncheres.dal.CodesResultatDAL;
 import fr.eni.projetEncheres.dal.ConnectionProvider;
-import fr.eni.projetEncheres.dal.DAOArticle;
+import fr.eni.projetEncheres.dal.DAO;
 
-public class ArticleDAOJdbcImpl implements DAOArticle {
-	private static final String SELECT_ALL = "SELECT nom_article, montant_enchere, date_fin_encheres, prix_initial, pseudo FROM ARTICLES"+
-											 "JOIN CATEGORIES ON Articles.no_categorie = CATEGORIES.no_categorie"+
-											 "JOIN UTILISATEURS ON ARTICLES.no_utilisateur_vendeur = UTILISATEURS.no_utilisateur"+
-											 "LEFT JOIN ENCHERES ON ARTICLES.no_article = ENCHERES.no_article"+
-											 "WHERE statut_vente LIKE 'ECO'"+
-											 "ORDER BY date_debut_encheres desc";
+public class ArticleDAOJdbcImpl implements DAO<Article> {
 	
+	private static final String INSERT_ARTICLES ="INSERT INTO ARTICLES VALUES (?, ?,?,?,?,?,?,?,?)";
 
 	
 	@Override
-	public void insert(Article t) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public List<Article> selectAll() {
-		
-		List<Article> listeArticles = new ArrayList<>();
-		
-		try(Connection cnx = ConnectionProvider.getConnection()) {
-			Statement stmt = cnx.createStatement();
-			ResultSet rs = stmt.executeQuery(SELECT_ALL);
-			while (rs.next()) {
-				int noArticle = rs.getInt("no_article");
-				String nomArticle = rs.getString("nom_article");
-				String description = rs.getString("description");
-				LocalDate dateDebutEncheres = rs.getDate("date_debut_encheres").toLocalDate();
-				LocalDate dateFinEncheres = rs.getDate("date_fin_encheres").toLocalDate();
-				int prixInitial = rs.getInt("prix_initial");
-				int prixVente = rs.getInt("prix_vente");
-				
-				/*Utilisateur vendeur = rs.getInt("no_utilisateur_vendeur");
-			
-				Utilisateur utilisateur = new Utilisateur
-						
-				Categorie categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
-				
-				String statut = rs.getString("statut_vente");
-				
-				Article article = new Article(noArticle, nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial, prixVente, vendeur, categorie, statut);
-				listeArticles.add(article);
-				*/
+	public void insert(Article t) throws BusinessException {
+		try (Connection cnx = ConnectionProvider.getConnection())
+		{
+			PreparedStatement pstmt = cnx.prepareStatement(INSERT_ARTICLES, PreparedStatement.RETURN_GENERATED_KEYS);
+			pstmt.setString(1, t.getNomArticle());
+			pstmt.setString(2, t.getDescription());
+			pstmt.setString(3, String.valueOf(t.getDateDebutEncheres()));
+			pstmt.setString(4, String.valueOf(t.getDateFinEncheres()));
+			pstmt.setInt(5, t.getPrixInitial());
+			pstmt.setInt(6, t.getPrixVente());
+			pstmt.setInt(7, t.getVendeur().getNoUtilisateur());
+			pstmt.setInt(8, t.getCategorie().getNoCategorie());
+			pstmt.setString(9, t.getStatut());
+			pstmt.executeUpdate();
+			ResultSet rs = pstmt.getGeneratedKeys();
+			if(rs.next())
+			{
+				t.setNoArticle(rs.getInt(1));
 			}
-		} catch (SQLException e) {
+			
+		} catch (Exception e) {
 			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.INSERT_ARTICLES_ECHEC);
+			throw businessException;
 		}
-		
-		return listeArticles;
 	}
-	
 
 	@Override
 	public Article selectByID(int id) {
@@ -85,12 +64,10 @@ public class ArticleDAOJdbcImpl implements DAOArticle {
 	}
 
 	@Override
-	public Article selectByNomArticle(String NomArticle) {
+	public List<Article> selectAll() throws BusinessException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
-
-
 }
 
