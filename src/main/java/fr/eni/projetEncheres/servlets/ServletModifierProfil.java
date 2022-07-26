@@ -19,7 +19,7 @@ import fr.eni.projetEncheres.messages.LecteurMessage;
 /**
  * Servlet implementation class ServletModifierProfil
  */
-@WebServlet("/ServletModifierProfil")
+@WebServlet("/co/ServletModifierProfil")
 public class ServletModifierProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -37,17 +37,27 @@ public class ServletModifierProfil extends HttpServlet {
 		String email= request.getParameter("email");
 		String telephone= request.getParameter("telephone");
 		String rue= request.getParameter("rue");
-		String code_postal= request.getParameter("codePostal");
+		String codePostal= request.getParameter("codePostal");
 		String ville= request.getParameter("ville");
 		
+		String nom = ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).getNom();
+		String prenom = ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).getPrenom();
+		String motDePasse = ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).getMotDePasse();
+		int noUtilisateur = ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).getNoUtilisateur();
+		int credit = ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).getCredit();
+		boolean administrateur = ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).isAdministrateur();
+		
+		//recupere nom prénom credit admin 
 		
 		RequestDispatcher rd = null;
-		
+		Utilisateur tmpUtilisateur = new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
 		
 		try {
 			UtilisateurManager uManager=UtilisateurManager.getInstance();
-			Utilisateur utilisateurMiseAJour = uManager.miseAJourUtilisateur(utilisateurMiseAJour);
-			request.setAttribute("miseAJourUtilisateur", utilisateurMiseAJour);
+			uManager.miseAJourUtilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+			request.setAttribute("utilisateurAAfficher", tmpUtilisateur);
+			request.setAttribute("succes", "Votre profil a bien était mis à jour");
+			rd=request.getRequestDispatcher("/AfficherProfil");
 		} catch (BusinessException e) {
 			List<String> msgErr = new ArrayList<>();
 			
@@ -55,7 +65,7 @@ public class ServletModifierProfil extends HttpServlet {
 				msgErr.add(LecteurMessage.getMessageErreur(i));
 			}
 			request.setAttribute("listeCodesErreur", msgErr);
-			rd=request.getRequestDispatcher("/WEB-INF/JSP/AfficherProfil.jsp");
+			rd=request.getRequestDispatcher("/WEB-INF/JSP/ModifierProfil.jsp");
 			e.printStackTrace();	
 		}
 	

@@ -33,34 +33,120 @@
 		</c:if>
 		
 	    	<div class="row"><!-- ouverture boite info  -->
-	    	
-	    	 <div class="mb-3 row">
-                    <label for="pseudo" class="col-sm-4 col-form-label"
-                    >Pseudo</label
-                    >
-                    <div class="col-sm-6">
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="pseudo"
-                        name="pseudo"
-                        required
-                        placeholder="${miseAJourUtilisateur.getPseudo()}"
-                    />
-                    </div>
-                </div>
-		      <div class="mb-3 row">
-		          <label for="nom" class="col-sm-6 col-form-label">Nom</label>
-		          <p class="col-sm-6">${utilisateurAAfficher.getNom()}</p>
-		        </div>
-		
-		        <div class="mb-3 row">
-		          <label for="prenom" class="col-sm-6 col-form-label">Prènom</label>
-		          <p class="col-sm-6">${utilisateurAAfficher.getPrenom()}</p>
-		      </div>
-		                
-	    	</div>
+	    		<div><!-- ouverture boite de gauche -->
+				    	 <div class="mb-3 row">
+			                    <label for="pseudo" class="col-sm-4 col-form-label"
+			                    >Pseudo</label
+			                    >
+			                    <div class="col-sm-6">
+			                    <input
+			                        type="text"
+			                        class="form-control"
+			                        id="pseudo"
+			                        name="pseudo"
+			                        required
+			                        values="${miseAJourUtilisateur.getPseudo()}"
+			                    />
+			                    </div>
+			                </div>
+			               
+					      <div class="mb-3 row">
+					          <label for="prenom" class="col-sm-6 col-form-label">Prènom</label>
+					          <p class="col-sm-6">${utilisateur_connecte.getPrenom()}</p>
+					      </div>
+					       <div class="mb-3 row">
+			                    <label for="telephone" class="col-sm-4 col-form-label"
+			                    >Téléphone</label
+			                    >
+			                    <div class="col-sm-6">
+			                    <input
+			                        type="text"
+			                        class="form-control"
+			                        id="telephone"
+			                        name="telephone"
+			                        required
+			                        values="${miseAJourUtilisateur.getTelephone()}"
+			                    />
+			                    </div>
+			                 </div>
+			                     <div class="mb-3 row">
+			                    <label for="codePostal" class="col-sm-4 col-form-label"
+			                    >Code postal</label
+			                    >
+			                    <div class="col-sm-6">
+			                    <input
+			                        type="text"
+			                        class="form-control"
+			                        id="codePostal"
+			                        name="codePostal"
+			                        required
+			                        values="${miseAJourUtilisateur.getCodePostal()}"
+			                    />
+			                    </div>
+		                    </div>
+			                    <div class="mb-3 row">
+					          <label for="MotDePasse" class="col-sm-6 col-form-label">Mot de passe actuel</label>
+					          <p class="col-sm-6">${utilisateur_connecte.getMotDePasse()}</p>
+					      </div>
+			                    
+		         </div>   <!-- fermeture boite de gauche -->   
+		         <div><!-- ouverture boite de droite -->
+		         	<div class="mb-3 row">
+					          <label for="nom" class="col-sm-6 col-form-label">Nom</label>
+					          <p class="col-sm-6">${utilisateur_connecte.getNom()}</p>
+					        </div>
+					        
+					         <div class="mb-3 row">
+			                    <label for="email" class="col-sm-4 col-form-label"
+			                    >email</label
+			                    >
+			                    <div class="col-sm-6">
+			                    <input
+			                        type="text"
+			                        class="form-control"
+			                        id="email"
+			                        name="email"
+			                        required
+			                        values="${miseAJourUtilisateur.getEmail()}"
+			                    />
+			                    </div>
+		                    </div>
+			                    <div class="mb-3 row">
+			                    <label for="rue" class="col-sm-4 col-form-label"
+			                    >Rue</label
+			                    >
+			                    <div class="col-sm-6">
+			                    <input
+			                        type="text"
+			                        class="form-control"
+			                        id="rue"
+			                        name="rue"
+			                        required
+			                        values="${miseAJourUtilisateur.getRue()}"
+			                    />
+			                    </div>
+	                       </div>
+			                    <div class="mb-3 row">
+			                    <label for="ville" class="col-sm-4 col-form-label"
+			                    >Ville</label
+			                    >
+			                    <div class="col-sm-6">
+			                    <input
+			                        type="text"
+			                        class="form-control"
+			                        id="ville"
+			                        name="ville"
+			                        required
+			                        values="${miseAJourUtilisateur.getVille()}"
+			                    />
+			                    </div>
+		                    </div>
+		         </div><!-- fermeture boite de droite -->
+		        
+	    	</div><!-- fermetureboite info  -->
+	   
 	    
+	  
 	    
 	    </form>
 	    
