@@ -33,19 +33,19 @@ public class EnchereManager {
 	public List<Enchere> afficherEncheresAvecParametres(String nomArticle, String libelle) {		
 		List<Enchere> listeEncheresAvecParametres = new ArrayList<>();
 		for (Enchere e : listeEncheres) {
-//			if ((e.getArticle().getNomArticle().toLowerCase()).contains(nomArticle.toLowerCase()) &&
-//					(libelle.equals("Toutes") ? true : (e.getArticle().getCategorie().getLibelle().equals(libelle))) ) {
-//				listeEncheresAvecParametres.add(e);
-//			}
-			if ((e.getArticle().getNomArticle().toLowerCase()).contains(nomArticle.toLowerCase())) {
-				if(libelle.equals("Toutes")) {
-					listeEncheresAvecParametres.add(e);
-				}
-				else if (e.getArticle().getCategorie().getLibelle().equals(libelle))
-				{
-					listeEncheresAvecParametres.add(e);
-				}
+			if ((e.getArticle().getNomArticle().toLowerCase()).contains(nomArticle.toLowerCase().trim()) &&
+					(libelle.equals("Toutes") ? true : (e.getArticle().getCategorie().getLibelle().equals(libelle))) ) {
+				listeEncheresAvecParametres.add(e);
 			}
+//			if ((e.getArticle().getNomArticle().toLowerCase()).contains(nomArticle.toLowerCase())) {
+//				if(libelle.equals("Toutes")) {
+//					listeEncheresAvecParametres.add(e);
+//				}
+//				else if (e.getArticle().getCategorie().getLibelle().equals(libelle))
+//				{
+//					listeEncheresAvecParametres.add(e);
+//				}
+//			}
 		}	
 		return listeEncheresAvecParametres;
 	}

@@ -26,21 +26,20 @@
     </header>
     <main>
 
-	<form class="navbar-form navbar-right p-3 mx-auto" role="search" style="max-width: 600px;" method="POST">
+	<form class="navbar-form navbar-right p-3 mx-auto" role="search" style="max-width: 600px;" action="ServletAccueilEncheres" method="POST">
 		<div class="input-group">
-			<input type="text" class="form-control" placeholder="Le nom de l'article contient...">
+			<input type="text" class="form-control" name="nomArticle" placeholder="Le nom de l'article contient...">
 			<span class="input-group-btn">
 				<button type="submit" class="btn btn-default">
 					<span class="glyphicon glyphicon-search"></span>
 				</button>
 			</span>
 		</div>
-
  
 		<div class="row mt-2 mx-left" style="max-width: 400px;">
-			<label for="categorie" class="col-sm-4 col-form-label">Catégorie :</label>
+			<label for="libelle" class="col-sm-4 col-form-label">Catégorie :</label>
 			<div class="col-sm-8">
-				<select class="form-control">
+				<select class="form-control" name="libelle">
 				  <option>Toutes</option>
 				  <option>Informatique</option>
 				  <option>Ameublement</option>
