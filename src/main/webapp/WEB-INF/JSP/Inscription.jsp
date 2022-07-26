@@ -1,4 +1,4 @@
-a<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -29,7 +29,7 @@ a<%@ page language="java" contentType="text/html; charset=UTF-8"
     </header>
     <main>
   
-        <form class="container text-center" method="post" action="<%=request.getContextPath()%>/co/ServletInscription"><!--boite principal-->
+        <form class="container text-center" method="post" action="<%=request.getContextPath()%>/ServletInscription"><!--boite principal-->
            
             <c:if test="${!empty listeCodesErreur }">
 			<c:forEach var="err" items="${listeCodesErreur}">

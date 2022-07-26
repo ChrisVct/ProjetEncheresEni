@@ -48,9 +48,9 @@ public class ServletAccueilEncheres extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//Récuperer les données du formulaire
-		String nomArticle = request.getParameter("nomArticle");
-		String libelle = request.getParameter("libelle");
-		System.out.println(nomArticle + libelle);
+//		String nomArticle = request.getParameter("nomArticle");
+//		String libelle = request.getParameter("libelle");
+//		System.out.println(nomArticle + libelle);
 		
 		//Envoi des données à la BLL
 		//déclarer une liste(tableau) (listeEnchere) + (afficherEncheresAvecParametres)
@@ -58,9 +58,9 @@ public class ServletAccueilEncheres extends HttpServlet {
 		
 		
 		
-		request.setAttribute("listeEncheres", listeEncheres);
+		//request.setAttribute("listeEncheres", listeEncheres);
 						
-		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/WEB-INF/AccueilEncheres.jsp");
+		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/WEB-INF/JSP/AccueilEncheres.jsp");
 		rd.forward(request, response);
 		
 	}
