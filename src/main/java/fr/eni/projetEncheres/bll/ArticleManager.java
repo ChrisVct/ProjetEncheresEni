@@ -1,21 +1,23 @@
 package fr.eni.projetEncheres.bll;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bo.Article;
-import fr.eni.projetEncheres.dal.DAOArticle;
+import fr.eni.projetEncheres.bo.Categorie;
+import fr.eni.projetEncheres.bo.Utilisateur;
+import fr.eni.projetEncheres.dal.DAO;
 import fr.eni.projetEncheres.dal.DAOFactory;
 
 
 public class ArticleManager {
-	private DAOArticle daoArticle;
+	private DAO<Article> daoArticle;
+	private static ArticleManager instance;
 	
 	private ArticleManager() {
 		this.daoArticle = DAOFactory.getDAOArticle();
 	}
-	
-	private static ArticleManager instance;
 	
 	public static ArticleManager getInstance() {
 		if(instance==null) {
@@ -23,11 +25,11 @@ public class ArticleManager {
 		}
 		return instance;
 	}
-
-	public List<Article> recupererListeArticles() throws BusinessException {
-		return daoArticle.selectAll();
+//ici
+	public void ajouterArticle(String nomArticle, String description, LocalDate dateDebutEncheres,
+			LocalDate dateFinEncheres, int prixInitial, int prixVente, Categorie categorie, String statut, Utilisateur vendeur) {
+		
 	}
 
-	
 
 }

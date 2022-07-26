@@ -25,7 +25,7 @@ public class ServletTestChristophe extends HttpServlet {
 		
 		try {
 			EnchereManager eManager = EnchereManager.getInstance();
-			List<Enchere> toto = eManager.afficherEncheresAvecParametres("Ch", "Toutes");
+			List<Enchere> toto = eManager.afficherEncheresAvecParametres("cH", "Toutes");
 			System.out.println(toto);
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
