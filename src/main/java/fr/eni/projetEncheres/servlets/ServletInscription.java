@@ -17,7 +17,7 @@ import fr.eni.projetEncheres.messages.LecteurMessage;
 /**
  * Servlet implementation class ServletInscription
  */
-@WebServlet("/ServletInscription")
+@WebServlet("/co/ServletInscription")
 public class ServletInscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
