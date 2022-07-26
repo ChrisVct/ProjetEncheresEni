@@ -33,7 +33,9 @@
 		</c:if>
 		
 	    	<div class="position-absolute top-50 start-50 translate-middle row col-12 col-md-6"><!-- ouverture boite info  -->
-	    		<h1 class="position-absolute top-0 start-50 translate-middle-x">Mon profil</h1>
+	    		<div class="position-absolute top-0 start-50 translate-middle-x">
+	    		<h1 >Mon profil</h1>
+	    		</div>
 	    		<div class="position-absolute top-50 start-0 translate-middle"><!-- ouverture boite de gauche -->
 				    	 <div class=" mb-3 row">
 			                    <label for="pseudo" class="col-sm-4 col-form-label"
