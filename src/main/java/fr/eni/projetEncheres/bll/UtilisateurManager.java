@@ -9,8 +9,6 @@ import fr.eni.projetEncheres.bo.Utilisateur;
 import fr.eni.projetEncheres.dal.DAO;
 import fr.eni.projetEncheres.dal.DAOFactory;
 
-
-
 public class UtilisateurManager {
 	private DAO<Utilisateur> daoUtilisateur;
 	private static UtilisateurManager instance;
@@ -36,14 +34,12 @@ public class UtilisateurManager {
 				utilisateurARetourner = new Utilisateur(u.getPseudo(),u.getNom(),u.getPrenom(),u.getEmail(),u.getTelephone(),u.getRue(),u.getCodePostal(),u.getVille());
 			}
 		}
-		
 		return utilisateurARetourner;
 	}
 	
 	public Utilisateur verifierConnection(String identifiant, String motDePasse) throws BusinessException {
 		Utilisateur utilisateurARetouner = null;
 		BusinessException businessException = new BusinessException();
-		
 		this.verifierNullite(identifiant, businessException);
 		if (businessException.hasErreurs()) {
 			throw businessException;
@@ -79,9 +75,10 @@ public class UtilisateurManager {
 		}
 		
 	}
-	public void ajouterUtilisateur(String pseudo, String nom,String prenom,String email,String telephone,String rue,String codePostal,String ville,String motDePasse, String motDePasseConfirmation) throws BusinessException {
+	public Utilisateur ajouterUtilisateur(String pseudo, String nom,String prenom,String email,String telephone,String rue,String codePostal,String ville,String motDePasse, String motDePasseConfirmation) throws BusinessException {
 		
 		BusinessException businessException = new BusinessException();
+		Utilisateur utilisateurARetourner = null;
 		
 		// verifier la nullité (attention le téléphone peut être null)
 		this.verifierNullite(pseudo, businessException);
@@ -95,44 +92,35 @@ public class UtilisateurManager {
 			
 		if (businessException.hasErreurs()) {
 				throw businessException;
-				
 			}
 				
 		// verifie le password
 		final int MAX=12;
-		 final int MIN_Uppercase=1;
-		 // nombre minimun de lettre minuscule dans le mot de passe
-		 final int MIN_Lowercase=1;
-		 // nombre minimun de lettre majuscule dans le mot de passe
-		 final int NUM_Digits=1;
-		 // Indique le nombre minimum de lettres en majuscules
-		 final int Special=1;
-		 // Compte le nombre de lettres majuscules dans un mot de passe
-		 int uppercaseCounter=1;
-		 // Compte les lettres minuscules dans un mot de passe
-		 int lowercaseCounter=1;
-		 // Count digits in a password
-		 int digitCounter=0;
-		 // count special case letters in a password
-		 int specialCounter=0;
+		 final int MIN_UPPERCASE=1;// nombre minimun de lettres majuscules dans le mot de passe
+		 final int MIN_LOWERCASE=1;// nombre minimun de lettres minuscules dans le mot de passe
+		 final int NUM_DIGITS=1;// nombre minimun de numéro dans le mot de passe
+		 final int SPECIAL=1;// nombre minimun de caractères spéciaux dans le mot de passe
+		 
+		 int uppercaseCounter=1;// Compte le nombre de lettres majuscules dans un mot de passe
+		 int lowercaseCounter=1;// Compte les lettres minuscules dans un mot de passe
+		 int digitCounter=0;// Compte le nombre de digit dans le mot de passe
+		 int specialCounter=0;// Compte le nombre de caractères spéciaux dans le mot de passe
 		
 		 for (int i=0; i < motDePasse.length(); i++ ) {
 		        char c = motDePasse.charAt(i);
 		        if(Character.isUpperCase(c)) 
 		              uppercaseCounter++;
-		         else if(Character.isLowerCase(c)) 
+		        else if(Character.isLowerCase(c)) 
 		              lowercaseCounter++;
 		        else if(Character.isDigit(c)) 
 		              digitCounter++;     
-		         if(c>=33&&c<=46||c==64){
+		        if(c>=33&&c<=46||c==64){
 		          specialCounter++;
-		      }
-		         
-		               
+		         }
 		 }
 			             
-         if (motDePasse.length() >= MAX && uppercaseCounter >= MIN_Uppercase 
-        		 	&& lowercaseCounter >= MIN_Lowercase && digitCounter >= NUM_Digits && specialCounter >= Special) { 
+         if (motDePasse.length() >= MAX && uppercaseCounter >= MIN_UPPERCASE 
+        		 	&& lowercaseCounter >= MIN_LOWERCASE && digitCounter >= NUM_DIGITS && specialCounter >= SPECIAL) { 
          }else{
         	 businessException.ajouterErreur(CodesResultatBLL.Password_INCORRECT);
  				throw businessException;
@@ -144,7 +132,6 @@ public class UtilisateurManager {
 			throw businessException;
 		}
 		// test du téléphone pour 10 caractère 
-		
 		if(telephone != "") {
 			if(telephone.length()<10 || telephone.length()>10) {
 			businessException.ajouterErreur(CodesResultatBLL.TEL_COURT);
@@ -161,7 +148,6 @@ public class UtilisateurManager {
 		}
 				
 		// verifie l'unicité de l'email et que l'email est conforme
-					
 		for (Utilisateur u : listeUtilisateurs) {
 			email.matches(".+@.+\\.[a-z]+");
 			if(email.equals(u.getEmail())){
@@ -174,8 +160,10 @@ public class UtilisateurManager {
 		daoUtilisateur.insert(utilisateur);
 		utilisateur.setCredit(100);
 		utilisateur.setAdministrateur(false);
+		utilisateur.setMotDePasse("");
 		
 		listeUtilisateurs.add(utilisateur);
+		return utilisateurARetourner;
 	}
 
 	public String hasherMotDePasse(String motDePasseClair) {
@@ -194,51 +182,40 @@ public class UtilisateurManager {
 		return hexString.toString();
 	}
 	
-	
 	public void miseAJourUtilisateur(int noUtilisateur,String pseudo,String nom,String prenom,String email,String telephone,String rue,String codePostal,String ville,String motDePasse,Integer credit,boolean administrateur) throws BusinessException {
 			BusinessException businessException = new BusinessException();
 			
-		// verifie la nullité (attention le téléphone peut être null)
-				this.verifierNullite(pseudo, businessException);
-				this.verifierNullite(email, businessException);
-				this.verifierNullite(rue, businessException);
-				this.verifierNullite(codePostal, businessException);
-				this.verifierNullite(ville, businessException);
-				
-					
-				if (businessException.hasErreurs()) {
-						throw businessException;
-						
-					}
-		
-				// Verification du numéro de telephone	
-				System.out.println(telephone);
-				if(telephone !="") {
-					System.out.println("je rentre dans le if");
-					if(telephone.length()<10 || telephone.length()>10) {
-					businessException.ajouterErreur(CodesResultatBLL.TEL_COURT);
+			// verifie la nullité (attention le téléphone peut être null)
+			this.verifierNullite(pseudo, businessException);
+			this.verifierNullite(email, businessException);
+			this.verifierNullite(rue, businessException);
+			this.verifierNullite(codePostal, businessException);
+			this.verifierNullite(ville, businessException);
+			if (businessException.hasErreurs()) {
 					throw businessException;
-					
-						}
-						
-					}
-				
-				//Verification du format de l'email
-				for (Utilisateur u : listeUtilisateurs) {
-					email.matches(".+@.+\\.[a-z]+");
-					if(email.equals(u.getEmail())){
-						businessException.ajouterErreur(CodesResultatBLL.EMAIL_DEJA_ENREGISTRER);
-						throw businessException;
-					}
 				}
-		
-					
-	//pensez a mettre à jour la liste utilisateur tampon
-		
-		Utilisateur utilisateur =new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
-		daoUtilisateur.update(utilisateur);
-		
 	
+			// Verification du numéro de telephone	
+			if(telephone !="") {
+				System.out.println("je rentre dans le if");
+				if(telephone.length()<10 || telephone.length()>10) {
+				businessException.ajouterErreur(CodesResultatBLL.TEL_COURT);
+				throw businessException;
+					}
+			}
+			
+			//Verification du format de l'email
+			for (Utilisateur u : listeUtilisateurs) {
+				email.matches(".+@.+\\.[a-z]+");
+				if(email.equals(u.getEmail())){
+					businessException.ajouterErreur(CodesResultatBLL.EMAIL_DEJA_ENREGISTRER);
+					throw businessException;
+				}
+			}
+					
+			//pensez a mettre à jour la liste utilisateur tampon
+			Utilisateur utilisateur =new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+			daoUtilisateur.update(utilisateur);
 		}
 	}
 
