@@ -1,13 +1,12 @@
 package fr.eni.projetEncheres.bll;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.projetEncheres.BusinessException;
-import fr.eni.projetEncheres.bo.Categorie;
 import fr.eni.projetEncheres.bo.Enchere;
 import fr.eni.projetEncheres.dal.DAO;
 import fr.eni.projetEncheres.dal.DAOFactory;
-
 
 public class EnchereManager {
 	private DAO<Enchere> daoEnchere;
@@ -31,17 +30,19 @@ public class EnchereManager {
 		return listeEncheres;
 	}
 	
-	public List<Enchere> afficherEncheresAvecParametres(String nomArticle, String libelle, List<Enchere> listeEncheres) {		
-		List<Enchere> listeEncheresAvecParametres = null;
+	public List<Enchere> afficherEncheresAvecParametres(String nomArticle, String libelle) {		
+		List<Enchere> listeEncheresAvecParametres = new ArrayList<>();
+		for (Enchere e : listeEncheres) {
+			if ((e.getArticle().getNomArticle().toLowerCase()).contains(nomArticle.toLowerCase()) && (e.getArticle().getCategorie().getLibelle().equals(libelle))) {
+				if(libelle.equals("Toutes")){
+					//Je veux que tu m'affiches uniquement les enchères selon leur nom d'article uniquement !!!!!!
 					
-		/*for (List<Enchere> e : listeEncheres)
+				}
+				
+				listeEncheresAvecParametres.add(e);
+			}
 		
-		if (nomArticle.equals(e.getArticle()))	
-			listeEncheresAvecParametres = new List<Enchere>();
-		
-		if ( libelle.equals(libelle)  || nomArticle.equals(nomArticle)) {
-		}
-		*/
+		}	
 		return listeEncheresAvecParametres;
 	}
 	

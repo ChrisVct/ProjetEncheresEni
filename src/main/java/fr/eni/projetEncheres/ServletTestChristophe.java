@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.projetEncheres.bll.EnchereManager;
 import fr.eni.projetEncheres.bo.Enchere;
 import fr.eni.projetEncheres.dal.jdbc.EnchereDAOJdbcImpl;
 
@@ -20,17 +21,16 @@ public class ServletTestChristophe extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		pour obtenir le mot de passe hashé à copier en BDD
-		System.out.println(hasherMotDePasse("CV"));
+//		System.out.println(hasherMotDePasse("CV"));
 		
-//		EnchereDAOJdbcImpl dao = new EnchereDAOJdbcImpl();
-//		List<Enchere> newee;
-//		try {
-//			newee = dao.selectAll();
-//			System.out.println(newee);
-//		} catch (BusinessException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			EnchereManager eManager = EnchereManager.getInstance();
+			List<Enchere> toto = eManager.afficherEncheresAvecParametres("Ch", "Toutes");
+			System.out.println(toto);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

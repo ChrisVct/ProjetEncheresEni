@@ -14,7 +14,10 @@ public class Enchere implements Serializable {
 	public Enchere() {
 	}
 	
-	
+	public Enchere(String nomArticle, Utilisateur acheteur, Article article) {
+		this.acheteur = acheteur;
+		this.article = article;
+	}
 	
 	/**
 	 *  utilisé pour le select_all enchere de la page d'accueil(mode non connecte)
