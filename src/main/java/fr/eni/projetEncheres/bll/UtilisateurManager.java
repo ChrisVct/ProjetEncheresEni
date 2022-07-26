@@ -195,8 +195,55 @@ public class UtilisateurManager {
 		}
 		return hexString.toString();
 	}
-
 	
-}
+	
+	public void miseAJourUtilisateur(String pseudo,String email,String telephone,String rue,String codePostal,String ville) throws BusinessException {
+			BusinessException businessException = new BusinessException();
+				
+			
+				
+		
+			
+		// verifie la nullité (attention le téléphone peut être null)
+				this.verifierNullite(pseudo, businessException);
+				this.verifierNullite(email, businessException);
+				this.verifierNullite(rue, businessException);
+				this.verifierNullite(codePostal, businessException);
+				this.verifierNullite(ville, businessException);
+				
+					
+				if (businessException.hasErreurs()) {
+						throw businessException;
+						
+					}
+		
+				// Verification du numéro de telephone	
+				if(telephone != null) {
+						
+						if(telephone.length()<10 || telephone.length()>10) {
+						businessException.ajouterErreur(CodesResultatBLL.TEL_COURT);
+						throw businessException;
+						}
+						
+					}
+				
+				//Verification du format de l'email
+				for (Utilisateur u : listeUtilisateurs) {
+					email.matches(".+@.+\\.[a-z]+");
+					if(email.equals(u.getEmail())){
+						businessException.ajouterErreur(CodesResultatBLL.EMAIL_DEJA_ENREGISTRER);
+						throw businessException;
+					}
+				}
+		
+					
+	//pensez a mettre à jour la liste utilisateur tempon	
+		Utilisateur utilisateur =new Utilisateur(pseudo,email,telephone,rue,codePostal,ville);
+		daoUtilisateur.update(utilisateur);
+		utilisateur.setAdministrateur(false);
+	
+		}
+	}
+
 
 

@@ -125,6 +125,27 @@ public class Utilisateur implements Serializable {
 		this.administrateur = administrateur;
 	}
 	
+	/**
+	 * Ce constructeur permet la mise à jour d'un utilisateur
+	 * @param pseudo
+	 * @param email
+	 * @param telephone
+	 * @param rue
+	 * @param codePostal
+	 * @param ville
+	 */
+	public Utilisateur(String pseudo, String email, String telephone, String rue, String codePostal, String ville) {
+		super();
+		this.pseudo = pseudo;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "no utilisateur = "+ this.getNoUtilisateur() +" Pseudo : "+this.getPseudo()+" - Nom : "+this.getNom()+" - Prénom : "+this.getPrenom() + " - mot de passe : " + this.getMotDePasse();

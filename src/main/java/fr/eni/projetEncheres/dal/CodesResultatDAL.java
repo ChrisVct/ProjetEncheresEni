@@ -16,6 +16,11 @@ public abstract class CodesResultatDAL {
 	 */
 	public static final int INSERT_UTILISATEURS_ECHEC = 10001;
 
+	/**
+	 * Echec de la mise à jour de l'utilisateur.
+	 */
+	public static final int Update_UTILISATEUR_ERREUR =10003;
+
 
 
 }
