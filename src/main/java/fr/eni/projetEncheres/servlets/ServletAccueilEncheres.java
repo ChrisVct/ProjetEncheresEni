@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bll.EnchereManager;
 import fr.eni.projetEncheres.bo.Enchere;
+import fr.eni.projetEncheres.bo.Utilisateur;
 
 
 /**
@@ -33,7 +34,7 @@ public class ServletAccueilEncheres extends HttpServlet {
 		List<Enchere> listeEncheres= null;
 		try {
 			EnchereManager eManager = EnchereManager.getInstance();
-			listeEncheres = eManager.afficherEncheresEnCours();
+			listeEncheres = eManager.afficherEncheresOuvertes();
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -69,5 +70,9 @@ public class ServletAccueilEncheres extends HttpServlet {
 			System.out.println("je passe dans e esleif");
 			doGet(request, response);
 		}
+	
+		//si tu recois ... tu fais ...
+		
+		int noUtilisateur = ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).getNoUtilisateur();
 	}
 }

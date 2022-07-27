@@ -6,10 +6,11 @@ import java.util.List;
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bo.Enchere;
 import fr.eni.projetEncheres.dal.DAO;
+import fr.eni.projetEncheres.dal.DAOEnchere;
 import fr.eni.projetEncheres.dal.DAOFactory;
 
 public class EnchereManager {
-	private DAO<Enchere> daoEnchere;
+	private DAOEnchere daoEnchere;
 	private static EnchereManager instance;
 	private static List<Enchere> listeEncheres;
 	
@@ -25,7 +26,7 @@ public class EnchereManager {
 		return instance;
 	}
 	
-	public List<Enchere> afficherEncheresEnCours() throws BusinessException {
+	public List<Enchere> afficherEncheresOuvertes() throws BusinessException {
 		return listeEncheres;
 	}
 	
@@ -39,6 +40,14 @@ public class EnchereManager {
 		}	
 		return listeEncheresAvecParametres;
 	}
+	
+	public List<Enchere> afficherAchatEnCours(int noUtilisateur) throws BusinessException {
+		List<Enchere> listeAchatsEnCours = new ArrayList<>();
+		listeAchatsEnCours = daoEnchere.selectEcoById(noUtilisateur);
+		
+		return listeAchatsEnCours;
+	}
+
 	
 }
 
