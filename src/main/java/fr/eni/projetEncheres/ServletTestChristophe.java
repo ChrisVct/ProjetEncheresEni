@@ -3,6 +3,7 @@ package fr.eni.projetEncheres;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.projetEncheres.bll.EnchereManager;
 import fr.eni.projetEncheres.bo.Enchere;
 import fr.eni.projetEncheres.dal.jdbc.EnchereDAOJdbcImpl;
 
@@ -21,7 +21,17 @@ public class ServletTestChristophe extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		pour obtenir le mot de passe hashé à copier en BDD
-		System.out.println(hasherMotDePasse("admin"));
+		//System.out.println(hasherMotDePasse("admin"));
+		EnchereDAOJdbcImpl dao = new EnchereDAOJdbcImpl();
+		List<Enchere> liste = new ArrayList<>();
+		
+		try {
+			liste=dao.selectAllEcoById(1);
+			System.out.println("la liste eco by id est : " +liste);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 //		try {
 //			EnchereManager eManager = EnchereManager.getInstance();
