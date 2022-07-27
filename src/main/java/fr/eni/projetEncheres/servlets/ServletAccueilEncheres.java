@@ -40,7 +40,7 @@ public class ServletAccueilEncheres extends HttpServlet {
 		}
 //		System.out.println(listeEncheres);
 		request.setAttribute("listeEncheres", listeEncheres);
-		
+		System.out.println(request.getSession().getAttribute("utilisateur_connecte"));
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/AccueilEncheres.jsp");
 		rd.forward(request, response);
 	}
@@ -66,6 +66,7 @@ public class ServletAccueilEncheres extends HttpServlet {
 			rd.forward(request, response);
 			
 		}else if(request.getAttribute("connexion")!=null){
+			System.out.println("je passe dans e esleif");
 			doGet(request, response);
 		}
 	}

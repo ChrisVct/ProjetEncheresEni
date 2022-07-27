@@ -35,7 +35,6 @@ public class ServletConnexionUtilisateur extends HttpServlet {
 			UtilisateurManager UManager = UtilisateurManager.getInstance();
 			utilisateurATester = UManager.verifierConnection(identifiant, motDePasse);
 			if(utilisateurATester!=null) {
-				System.out.println(utilisateurATester);
 				request.getSession().setAttribute("utilisateur_connecte", utilisateurATester);
 				request.setAttribute("connexion", "ok");
 				rd=request.getRequestDispatcher("ServletAccueilEncheres");

@@ -75,9 +75,7 @@ public class UtilisateurManager {
 		
 	}
 	public Utilisateur ajouterUtilisateur(String pseudo, String nom,String prenom,String email,String telephone,String rue,String codePostal,String ville,String motDePasse, String motDePasseConfirmation) throws BusinessException {
-		
 		BusinessException businessException = new BusinessException();
-		Utilisateur utilisateurARetourner = null;
 		
 		// verifier la nullité (attention le téléphone peut être null)
 		this.verifierNullite(pseudo, businessException);
@@ -158,9 +156,6 @@ public class UtilisateurManager {
 			}
 		}
 			// verifier la conformite du mail 
-		 
-		
-		
 		
 		Utilisateur utilisateur =new Utilisateur(pseudo.trim(), nom.trim(), prenom.trim(), email.trim(), telephone.trim(), rue.trim(), codePostal.trim(), ville.trim(), hasherMotDePasse(motDePasse));
 		daoUtilisateur.insert(utilisateur);
@@ -169,7 +164,7 @@ public class UtilisateurManager {
 		utilisateur.setMotDePasse("");
 		
 		listeUtilisateurs.add(utilisateur);
-		return utilisateurARetourner;
+		return utilisateur;
 	}
 
 	public String hasherMotDePasse(String motDePasseClair) {
@@ -192,7 +187,6 @@ public class UtilisateurManager {
 			BusinessException businessException = new BusinessException();
 			Utilisateur utilisateurARetourner =null;
 
-			
 			for(Utilisateur util : listeUtilisateurs) {
 				if(noUtilisateur == util.getNoUtilisateur()) {
 					//vérfier si pseudo a été changé
@@ -260,9 +254,7 @@ public class UtilisateurManager {
 					u.setVille(ville.trim());
 				}
 			}
-			
 			return utilisateurARetourner;
-
 		}
 	}
 

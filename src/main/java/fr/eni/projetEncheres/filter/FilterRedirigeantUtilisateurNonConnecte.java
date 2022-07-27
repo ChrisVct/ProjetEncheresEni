@@ -17,22 +17,24 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.projetEncheres.bo.Utilisateur;
 
 @WebFilter(
+		dispatcherTypes = {
+					DispatcherType.REQUEST,
+					
+		},		
 		urlPatterns = {
 				"/ServletProfil",
-				"/ServletInscription",
 				"/ServletModifierProfil",
-				"/ServletVendreNouvelArticle"},
-		dispatcherTypes = {
-					DispatcherType.REQUEST
-		}
+				"/ServletVendreNouvelArticle"
+//				,"/ServletInscription"
+				}
 		)
+
 public class FilterRedirigeantUtilisateurNonConnecte extends HttpFilter implements Filter {
 	private static final long serialVersionUID = 1L;
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		
 		
 				//A supprimer plus tard, sert à simuler l'utilisateur connecté
 //				Utilisateur moi = new Utilisateur("cricri", "vichit", "christophe", "mail@mail.com", "0606060606", "rue", "14000", "caen");
@@ -44,6 +46,7 @@ public class FilterRedirigeantUtilisateurNonConnecte extends HttpFilter implemen
 		}else {
 			chain.doFilter(request, response);
 		}
+
 	}
 
 }
