@@ -4,6 +4,7 @@ package fr.eni.projetEncheres.bll;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import javax.websocket.Session;
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bo.Utilisateur;
 import fr.eni.projetEncheres.dal.DAO;
@@ -185,8 +186,24 @@ public class UtilisateurManager {
 	public void miseAJourUtilisateur(int noUtilisateur,String pseudo,String nom,String prenom,String email,String telephone,String rue,String codePostal,String ville,String motDePasse,Integer credit,boolean administrateur) throws BusinessException {
 			BusinessException businessException = new BusinessException();
 			
-			// verifie la nullité (attention le téléphone peut être null)
+			Utilisateur utilisateur =new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville);
+
 			this.verifierNullite(pseudo, businessException);
+			
+			for (Utilisateur u : listeUtilisateurs) {
+			if(pseudo.equalsIgnoreCase(u.getPseudo())){
+				}
+			else(pseudo.equalsIgnoreCase("listeUtilisateurs")) {
+					businessException.ajouterErreur(CodesResultatBLL.PSEUDO_PRIS);
+					throw businessException;
+				}
+			}
+				
+			
+			// rechercher dans list utilisateur dont le noUtilisateur est egal a l'utilisateur
+			
+			// verifie la nullité (attention le téléphone peut être null)
+			
 			this.verifierNullite(email, businessException);
 			this.verifierNullite(rue, businessException);
 			this.verifierNullite(codePostal, businessException);
@@ -215,8 +232,8 @@ public class UtilisateurManager {
 			}
 					
 			//pensez a mettre à jour la liste utilisateur tampon
-			Utilisateur utilisateur =new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
-			daoUtilisateur.update(utilisateur);
+			//Utilisateur utilisateur =new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+			listeUtilisateurs.update(utilisateur);
 		}
 	}
 
