@@ -27,43 +27,70 @@
     
     <main>
 	<div><h1 class="text-center p-5">Liste des enchères</h1></div>
-	<div class="container">
-	<div class="row">
-	<form class="col-md mt-4 p-6 mx-auto" role="search" style="max-width: 1000px;" action="ServletAccueilEncheres" method="POST">
-		<div class="input">
-			<input type="text" class="form-control" style="max-width: 500px;" name="nomArticle" placeholder="Le nom de l'article contient...">
-			<span class="input-group-btn">
-			</span>
-		</div>
-		<div class="row mt-2" style="max-width: 524px;">
-			<label for="libelle" class="col-sm-4 col-form-label">Catégorie :</label>
-			<div class="col-sm-8">
-				<select class="form-select" name="libelle">
-				  <option>Toutes</option>
-				  <option>Informatique</option>
-				  <option>Ameublement</option>
-				  <option>Vêtement</option>
-				  <option>Sport&Loisirs</option>
-				</select>
+		<div class="container">
+		  <form class="row mt-4 p-6 mx-auto" role="search" style="max-width: 1000px;" action="ServletAccueilEncheres" method="POST">
+		    <div class="col-md text-center">
+			    <div class="input">
+					<input type="text" class="form-control" style="max-width: 500px;" name="nomArticle" placeholder="Le nom de l'article contient...">
+				</div>
+		    		
+			<div class="row mt-2" style="max-width: 524px;">
+				<label for="libelle" class="col-sm-4 col-form-label">Catégorie :</label>
+				<div class="col-sm-8">
+					<select class="form-select" name="libelle">
+					  <option>Toutes</option>
+					  <option>Informatique</option>
+					  <option>Ameublement</option>
+					  <option>Vêtement</option>
+					  <option>Sport&Loisirs</option>
+					</select>
+				</div>
 			</div>
+		    </div>
+		    <div class="col-md text-center">
+		      <button type="submit" name="recherche" class="btn btn-primary btn-lg btn-block mt-3">Rechercher</button>
+		    </div>
+		    
+				<div class="container mt-3">
+					<div class="row">
+						<div class="col-md">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+								<label class="form-check-label" for="">Mes achats</label>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+									<label class="form-check-label" for="flexCheckChecked">Enchères ouvertes</label>
+								</div>
+								<div class="form-check">
+							  		<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+									<label class="form-check-label" for="flexCheckDefault">Enchères en cours</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+									<label class="form-check-label" for="flexCheckDefault">Enchères remportées</label>
+								</div>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+							<label class="form-check-label" for="">Mes ventes</label>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+									<label class="form-check-label" for="flexCheckDefault">Ventes en cours</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+									<label class="form-check-label" for="flexCheckDefault">Ventes non débutées</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+									<label class="form-check-label" for="flexCheckDefault">Ventes terminées</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		  </form>
 		</div>
-		<button type="submit" class="btn btn-primary mt-2 mx-auto">Rechercher</button>
-		 
-	</form>
-	</div>
-	</div>
-	
-<div class="container">
-  <div class="row">
-    <div class="col-md text-center">
-      One of three columns
-    </div>
-    <div class="col-md text-center">
-      One of three columns
-    </div>
-  </div>
-</div>
-
     </main>
 
 	<div class="row mx-auto p-5" style="max-width: 1280px;">

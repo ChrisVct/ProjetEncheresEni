@@ -50,7 +50,6 @@ public class ServletAccueilEncheres extends HttpServlet {
 			//Récuperer les données du formulaire
 			String nomArticle = request.getParameter("nomArticle");
 			String libelle = request.getParameter("libelle");
-			System.out.println(nomArticle + libelle);
 			List<Enchere> listeEncheres = new ArrayList<>();
 			//Envoi des données à la BLL
 			try {
