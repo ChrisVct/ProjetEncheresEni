@@ -71,8 +71,13 @@
 								</div>
 							</div>
 							<div class="form-check form-check-inline">
+<<<<<<< HEAD
 								<input class="form-check-input" type="radio"  value="" id="flexRadioDefault2" name="flexRadioDefault1">
 							<label class="form-check-label" for="flexRadioDefault2">Mes ventes</label>
+=======
+								<input class="form-check-input" type="radio" name="flexRadioDefault" id="inlineRadio2" value="option2">
+							<label class="form-check-label" for="">Mes ventes</label>
+>>>>>>> branch 'main' of https://github.com/ChrisVct/ProjetEncheresEni.git
 								<div class="form-check">
 									<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="">
 									<label class="form-check-label" for="flexCheckDefault">Ventes en cours</label>

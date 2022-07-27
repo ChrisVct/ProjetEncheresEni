@@ -44,6 +44,29 @@ public class Article implements Serializable {
 	
 	
 	/**
+	 * Constructeur pou l'ajout d'un nouvel article
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param prixInitial
+	 * @param categorie
+	 * @param statut
+	 * @param vendeur
+	 */
+	public Article(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+			int prixInitial, Categorie categorie, String statut, Utilisateur vendeur) {
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.prixInitial = prixInitial;
+		this.categorie = categorie;
+		this.statut = statut;
+		this.vendeur = vendeur;
+	}
+
+	/**
 	 *  utilisé pour le select_all enchere de la page d'accueil(mode non connecte)
 	 * @param noArticle
 	 * @param nomArticle

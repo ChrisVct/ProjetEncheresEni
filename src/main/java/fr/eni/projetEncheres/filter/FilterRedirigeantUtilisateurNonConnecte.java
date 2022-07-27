@@ -17,7 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.projetEncheres.bo.Utilisateur;
 
 @WebFilter(
-		urlPatterns = "/co/co/*",
+		urlPatterns = {
+				"/ServletProfil",
+				"/ServletInscription",
+				"/ServletModifierProfil",
+				"/ServletVendreNouvelArticle"},
 		dispatcherTypes = {
 					DispatcherType.REQUEST
 		}

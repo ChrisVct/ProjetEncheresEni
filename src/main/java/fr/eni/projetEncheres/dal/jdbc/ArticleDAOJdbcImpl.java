@@ -39,12 +39,14 @@ public class ArticleDAOJdbcImpl implements DAOArticle {
 			if(rs.next())
 			{
 				article.setNoArticle(rs.getInt(1));
+				System.out.println(rs.getInt(1));
 			}
 			pstmt = cnx.prepareStatement(INSERT_RETRAITS);
 			pstmt.setInt(1, article.getNoArticle());
 			pstmt.setString(2, retrait.getRue());
 			pstmt.setString(3, retrait.getCodePostal());
 			pstmt.setString(4, retrait.getVille());
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
