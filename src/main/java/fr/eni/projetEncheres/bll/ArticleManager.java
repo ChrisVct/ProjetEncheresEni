@@ -25,7 +25,7 @@ public class ArticleManager {
 		}
 		return instance;
 	}
-//ici
+	
 	public void ajouterArticle(String nomArticle, String description, LocalDate dateDebutEncheres,
 			LocalDate dateFinEncheres, int prixInitial, int prixVente, Categorie categorie, String statut,
 			Utilisateur vendeur, String rueRetrait, String codePostalRetrait, String villeRetrait) {
@@ -36,6 +36,4 @@ public class ArticleManager {
 		//
 		
 	}
-
-
 }

@@ -14,9 +14,9 @@ import fr.eni.projetEncheres.bo.Enchere;
 import fr.eni.projetEncheres.bo.Utilisateur;
 import fr.eni.projetEncheres.dal.CodesResultatDAL;
 import fr.eni.projetEncheres.dal.ConnectionProvider;
-import fr.eni.projetEncheres.dal.DAO;
+import fr.eni.projetEncheres.dal.DAOEnchere;
 
-public class EnchereDAOJdbcImpl implements DAO<Enchere> {
+public class EnchereDAOJdbcImpl implements DAOEnchere {
 	private static final String SELECT_ALL = "SELECT nom_article, montant_enchere, date_fin_encheres, prix_initial, pseudo as pseudo_vendeur,"+
 												"ench.no_utilisateur as no_utilisateur_acheteur, ench.no_article, libelle FROM ARTICLES "+
 												"JOIN CATEGORIES ON Articles.no_categorie = CATEGORIES.no_categorie "+
@@ -27,6 +27,28 @@ public class EnchereDAOJdbcImpl implements DAO<Enchere> {
 												"ON ARTICLES.no_article = ench.no_article "+
 												"WHERE statut_vente LIKE 'ECO' "+
 												"ORDER BY date_debut_encheres desc";
+	
+	private static final String SELECT_ECO_BY_ID="SELECT nom_article, montant_enchere, date_fin_encheres, prix_initial, pseudo as pseudo_vendeur,"
+													+ " ENCHERES.no_utilisateur as no_utilisateur_acheteur, ENCHERES.no_article, libelle, statut_vente FROM ARTICLES "
+													+ " JOIN CATEGORIES ON Articles.no_categorie = CATEGORIES.no_categorie "
+													+ " JOIN UTILISATEURS ON ARTICLES.no_utilisateur_vendeur = UTILISATEURS.no_utilisateur "
+													+ " JOIN ENCHERES ON ENCHERES.no_article=ARTICLES.no_article"
+													+ " WHERE statut_vente LIKE 'ECO'"
+													+ " AND ENCHERES.no_utilisateur=?"
+													+ " ORDER BY date_debut_encheres desc";
+	
+	private static final String SELECT_FIN_WINNED_BY_ID="SELECT nom_article, montant_enchere, date_fin_encheres, prix_initial, pseudo as pseudo_vendeur,"
+														+ "	ench.no_utilisateur as no_utilisateur_acheteur, ench.no_article, libelle, statut_vente FROM ARTICLES "
+														+ "	JOIN CATEGORIES ON Articles.no_categorie = CATEGORIES.no_categorie "
+														+ "	JOIN UTILISATEURS ON ARTICLES.no_utilisateur_vendeur = UTILISATEURS.no_utilisateur "
+														+ "	LEFT JOIN (select e.* from ENCHERES e JOIN (select no_article, max(montant_enchere) "
+														+ "	as max_montant from encheres group by no_article) tmp "
+														+ "	ON e.no_article = tmp.no_article and e.montant_enchere=tmp.max_montant) ench "
+														+ "	ON ARTICLES.no_article = ench.no_article "
+														+ "	WHERE statut_vente LIKE 'FIN'"
+														+ "	AND ench.no_utilisateur= ? "
+														+ "	ORDER BY date_debut_encheres desc";
+	
 												
 			//"SELECT * FROM ARTICLES JOIN ENCHERES ON ARTICLES.no_article = ENCHERES.no_article JOIN UTILISATEURS ON ARTICLES.no_utilisateur_vendeur = UTILISATEURS.no_utilisateur";
 	
@@ -79,6 +101,16 @@ public class EnchereDAOJdbcImpl implements DAO<Enchere> {
 	public void delete(int id) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public List<Enchere> selectAllEcoById(int id) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<Enchere> selectAllFinWinnedById(int id) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
