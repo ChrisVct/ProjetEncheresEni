@@ -4,7 +4,6 @@ package fr.eni.projetEncheres.bll;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-import javax.websocket.Session;
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bo.Utilisateur;
 import fr.eni.projetEncheres.dal.DAO;
@@ -146,16 +145,23 @@ public class UtilisateurManager {
 				throw businessException;
 			}
 		}
-				
+		if(email.matches(".+@.+\\.[a-z]+")==false) {
+		businessException.ajouterErreur(CodesResultatBLL.FORMAT_EMAIL_INCORRECT);
+		throw businessException;
+		}	
 		// verifie l'unicité de l'email et que l'email est conforme
 		for (Utilisateur u : listeUtilisateurs) {
-			email.matches(".+@.+\\.[a-z]+");
+			
 			if(email.equals(u.getEmail())){
 				businessException.ajouterErreur(CodesResultatBLL.EMAIL_DEJA_ENREGISTRER);
 				throw businessException;
 			}
 		}
-			
+			// verifier la conformite du mail 
+		 
+		
+		
+		
 		Utilisateur utilisateur =new Utilisateur(pseudo.trim(), nom.trim(), prenom.trim(), email.trim(), telephone.trim(), rue.trim(), codePostal.trim(), ville.trim(), hasherMotDePasse(motDePasse));
 		daoUtilisateur.insert(utilisateur);
 		utilisateur.setCredit(100);
@@ -201,9 +207,39 @@ public class UtilisateurManager {
 						}
 					}
 					//vérifier email a changé (si oui, faire les vérifs)
+					if(!email.equalsIgnoreCase(util.getEmail())) {
+						this.verifierNullite(email, businessException);
+						//verifie le format de l'email
+						if(email.matches(".+@.+\\.[a-z]+")==false) {
+							businessException.ajouterErreur(CodesResultatBLL.FORMAT_EMAIL_INCORRECT);
+						}
+						for (Utilisateur u : listeUtilisateurs) {
+							if(email.equalsIgnoreCase(u.getEmail())){
+								businessException.ajouterErreur(CodesResultatBLL.EMAIL_DEJA_ENREGISTRER);
+							}
+						}
+					}
+					//vérifier code postal a changé (si oui, faire les vérifs)
+					if(!rue.trim().equalsIgnoreCase(util.getRue())) {
+						//vérifier nullité
+						this.verifierNullite(rue, businessException);
+					}
+					if(!ville.trim().equalsIgnoreCase(util.getVille())) {
+						//vérifier nullité
+						this.verifierNullite(ville, businessException);
+					}
+					if(!codePostal.trim().equalsIgnoreCase(util.getCodePostal())) {
+						//vérifier nullité
+						this.verifierNullite(codePostal, businessException);
+					}
 					//vérifier telephone a changé (si oui, faire les vérifs)
-					//vérifier rue a changé (si oui, faire les vérifs)
-					//...
+					
+					if(!telephone.trim().equals(util.getTelephone())) {
+						if(telephone.length()!=10) {
+							businessException.ajouterErreur(CodesResultatBLL.TEL_COURT);
+						}
+					}
+					//vérifier telephone a changé (si oui, faire les vérifs)
 				}
 			}
 			
@@ -226,53 +262,7 @@ public class UtilisateurManager {
 			}
 			
 			return utilisateurARetourner;
-//
-//			this.verifierNullite(pseudo, businessException);
-//			
-//			for (Utilisateur u : listeUtilisateurs) {
-//			if(pseudo.equalsIgnoreCase(u.getPseudo())){
-//				}
-//			else(pseudo.equalsIgnoreCase("listeUtilisateurs")) {
-//					businessException.ajouterErreur(CodesResultatBLL.PSEUDO_PRIS);
-//					throw businessException;
-//				}
-//			}
-//				
-//			
-//			// rechercher dans list utilisateur dont le noUtilisateur est egal a l'utilisateur
-//			
-//			// verifie la nullité (attention le téléphone peut être null)
-//			
-//			this.verifierNullite(email, businessException);
-//			this.verifierNullite(rue, businessException);
-//			this.verifierNullite(codePostal, businessException);
-//			this.verifierNullite(ville, businessException);
-//			
-//			if (businessException.hasErreurs()) {
-//					throw businessException;
-//				}
-//	
-//			// Verification du numéro de telephone	
-//			if(telephone !="") {
-//				if(telephone.length()<10 || telephone.length()>10) {
-//				businessException.ajouterErreur(CodesResultatBLL.TEL_COURT);
-//				throw businessException;
-//					}
-//			}
-//			
-//			//Verification du format de l'email
-//			for (Utilisateur u : listeUtilisateurs) {
-//				email.matches(".+@.+\\.[a-z]+");
-//				
-//				if(email.equals(u.getEmail())){
-//					businessException.ajouterErreur(CodesResultatBLL.EMAIL_DEJA_ENREGISTRER);
-//					throw businessException;
-//				}
-//			}
-//					
-//			//pensez a mettre à jour la liste utilisateur tampon
-//			//Utilisateur utilisateur =new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
-//			listeUtilisateurs.update(utilisateur);
+
 		}
 	}
 
