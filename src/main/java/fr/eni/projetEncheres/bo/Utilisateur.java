@@ -21,10 +21,9 @@ public class Utilisateur implements Serializable {
 	public Utilisateur() {
 	}
 	
-	
-	
 	/**
 	 *  utilisé pour le select_all enchere de la page d'accueil(mode non connecte)
+	 *  et pour l'ajout d'un nouvel article
 	 * @param noUtilisateur
 	 */
 	public Utilisateur(int noUtilisateur) {

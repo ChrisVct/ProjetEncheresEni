@@ -14,6 +14,19 @@ public class Retrait implements Serializable {
 	 */
 	public Retrait() {
 	}
+	
+	/**
+	 * Constructeur utilisé pour l'insertion d'un nouvel article
+	 * @param rue
+	 * @param codePostal
+	 * @param ville
+	 */
+	public Retrait(String rue, String codePostal, String ville) {
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+	}
+
 	@Override
 	public String toString() {
 		return "Retrait [rue=" + rue + ", codePostal=" + codePostal + ", ville=" + ville + ", article=" + article + "]";

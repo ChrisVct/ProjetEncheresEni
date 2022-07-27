@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bootstrap demo</title>
+    <title>Vendre un nouvel article</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -26,14 +26,15 @@
   <body>
     <main>
       <h2 class="mx-auto text-center col-6">Nouvelle vente</h2>
+      <p class="mx-auto text-center col-6 text-danger">(*Champs obligatoires)</p>
       <form
-        class="row col-4 position-absolute top-50 start-50 translate-middle"
-        action=""
+        class="row col-4 mx-auto"
+        action="ServletVendreNouvelArticle"
         method="POST"
       >
         <div class="mb-3 row">
           <label for="nomArticle" class="col-sm-4 col-form-label"
-            >Article</label
+            >Article*</label
           >
           <div class="col-sm-8">
             <input
@@ -58,15 +59,15 @@
         </div>
         <div class="mb-3 row">
           <label for="libelle" class="col-sm-4 col-form-label"
-            >Catégories</label
+            >Catégories*</label
           >
           <div class="col-sm-8">
-            <select class="form-select" name="libelle">
-              <option>Toutes</option>
-              <option>Informatique</option>
-              <option>Ameublement</option>
-              <option>Vêtement</option>
-              <option>Sport&Loisirs</option>
+            <select class="form-select" name="libelle" required>
+              <option selected disabled value="">Toutes</option>
+              <option >Informatique</option>
+              <option >Ameublement</option>
+              <option >Vêtement</option>
+              <option >Sport&Loisirs</option>
             </select>
           </div>
         </div>
@@ -80,14 +81,13 @@
               class="form-control"
               id="photoArticle"
               name="photoArticle"
-              required
               value="UPLOADER"
             />
           </div>
         </div>
         <div class="mb-3 row">
           <label for="prixInitial" class="col-sm-4 col-form-label"
-            >Mise à prix</label
+            >Mise à prix*</label
           >
           <div class="col-sm-8">
             <input
@@ -101,7 +101,7 @@
         </div>
         <div class="mb-3 row">
           <label for="dateDebutEncheres" class="col-sm-4 col-form-label"
-            >Début de l'enchère</label
+            >Début de l'enchère*</label
           >
           <div class="col-sm-8">
             <input
@@ -115,7 +115,7 @@
         </div>
         <div class="mb-3 row">
           <label for="dateFinEncheres" class="col-sm-4 col-form-label"
-            >Fin de l'enchère</label
+            >Fin de l'enchère*</label
           >
           <div class="col-sm-8">
             <input
@@ -129,20 +129,21 @@
         </div>
         <div class="border border-dark p-3 my-3">
           <div class="mb-3 row">
-            <label for="rueRetrait" class="col-sm-4 col-form-label">Rue</label>
+            <label for="rueRetrait" class="col-sm-4 col-form-label" >Rue*</label>
             <div class="col-sm-8">
               <input
                 type="text"
                 class="form-control"
                 id="rueRetrait"
                 name="rueRetrait"
+                value="${utilisateur_connecte.getRue()}"
                 required
               />
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="codePostalRetrait" class="col-sm-4 col-form-label"
-              >Code Postal</label
+            <label for="codePostalRetrait" class="col-sm-4 col-form-label" 
+              >Code Postal*</label
             >
             <div class="col-sm-8">
               <input
@@ -150,13 +151,14 @@
                 class="form-control"
                 id="codePostalRetrait"
                 name="codePostalRetrait"
+                value="${utilisateur_connecte.getCodePostal()}"
                 required
               />
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="villeRetrait" class="col-sm-4 col-form-label"
-              >Ville</label
+            <label for="villeRetrait" class="col-sm-4 col-form-label" 
+              >Ville*</label
             >
             <div class="col-sm-8">
               <input
@@ -164,6 +166,7 @@
                 class="form-control"
                 id="villeRetrait"
                 name="villeRetrait"
+                value="${utilisateur_connecte.getVille()}"
                 required
               />
             </div>

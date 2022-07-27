@@ -1,18 +1,18 @@
 package fr.eni.projetEncheres.bll;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bo.Article;
 import fr.eni.projetEncheres.bo.Categorie;
+import fr.eni.projetEncheres.bo.Retrait;
 import fr.eni.projetEncheres.bo.Utilisateur;
-import fr.eni.projetEncheres.dal.DAO;
+import fr.eni.projetEncheres.dal.DAOArticle;
 import fr.eni.projetEncheres.dal.DAOFactory;
 
 
 public class ArticleManager {
-	private DAO<Article> daoArticle;
+	private DAOArticle daoArticle;
 	private static ArticleManager instance;
 	
 	private ArticleManager() {
@@ -27,13 +27,25 @@ public class ArticleManager {
 	}
 	
 	public void ajouterArticle(String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int prixInitial, int prixVente, Categorie categorie, String statut,
-			Utilisateur vendeur, String rueRetrait, String codePostalRetrait, String villeRetrait) {
+			LocalDate dateFinEncheres, int prixInitial, String libelle,
+			int noUtilisateur, String rueRetrait, String codePostalRetrait, String villeRetrait) {
 		
 		//vérifier données
-		//pré remplir en JSP les données de l'adresse
 		//envoyer données en DAL
-		//
+		String statut = "ATT";
+		if(dateDebutEncheres.isEqual(LocalDate.now())) {
+			statut="ECO";
+		}
+		Article article = new Article(nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial,
+				new Categorie(libelle), statut, new Utilisateur(noUtilisateur));
+		Retrait retrait = new Retrait(rueRetrait, codePostalRetrait, villeRetrait);
+		
+		try {
+			daoArticle.insertArticleRetrait(article, retrait);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 }
