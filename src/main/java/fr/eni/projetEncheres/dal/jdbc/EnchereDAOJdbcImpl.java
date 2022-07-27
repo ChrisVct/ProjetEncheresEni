@@ -1,6 +1,7 @@
 package fr.eni.projetEncheres.dal.jdbc;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
@@ -34,7 +35,7 @@ public class EnchereDAOJdbcImpl implements DAOEnchere {
 													+ " JOIN UTILISATEURS ON ARTICLES.no_utilisateur_vendeur = UTILISATEURS.no_utilisateur "
 													+ " JOIN ENCHERES ON ENCHERES.no_article=ARTICLES.no_article"
 													+ " WHERE statut_vente LIKE 'ECO'"
-													+ " AND ENCHERES.no_utilisateur=?"
+													+ " AND ENCHERES.no_utilisateur= ?"
 													+ " ORDER BY date_debut_encheres desc";
 	
 	private static final String SELECT_FIN_WINNED_BY_ID="SELECT nom_article, montant_enchere, date_fin_encheres, prix_initial, pseudo as pseudo_vendeur,"
@@ -48,10 +49,7 @@ public class EnchereDAOJdbcImpl implements DAOEnchere {
 														+ "	WHERE statut_vente LIKE 'FIN'"
 														+ "	AND ench.no_utilisateur= ? "
 														+ "	ORDER BY date_debut_encheres desc";
-	
-												
-			//"SELECT * FROM ARTICLES JOIN ENCHERES ON ARTICLES.no_article = ENCHERES.no_article JOIN UTILISATEURS ON ARTICLES.no_utilisateur_vendeur = UTILISATEURS.no_utilisateur";
-	
+
 	@Override
 	public void insert(Enchere t) throws BusinessException {
 		// TODO Auto-generated method stub
@@ -87,6 +85,49 @@ public class EnchereDAOJdbcImpl implements DAOEnchere {
 		}
 		return listeEncheres;
 	}
+	
+	@Override
+	public List<Enchere> selectEcoById(int id) throws BusinessException {
+		
+		List<Enchere> listeEncheres = new ArrayList<>();
+		
+		try(Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ECO_BY_ID);
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				String nom_article = rs.getString("nom_article");
+				LocalDate dateFinEncheres = rs.getDate("date_fin_encheres").toLocalDate();
+				int montant_enchere=rs.getInt("montant_enchere");
+				String pseudoVendeur= rs.getString("pseudo_vendeur");
+				int noUtilisateurAcheteur= rs.getInt("no_utilisateur_acheteur");
+				int noArticle =rs.getInt("no_article");
+				String categorie = rs.getString("libelle");
+				String statut = rs.getString("statut_vente");
+				
+				Enchere enchere = new Enchere(montant_enchere, new Utilisateur(noUtilisateurAcheteur),new Article(noArticle,nom_article, dateFinEncheres, statut, new Categorie(categorie), new Utilisateur(pseudoVendeur)));
+
+				listeEncheres.add(enchere);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.SELECT_ALL_BDD_ERREUR);
+			throw businessException;
+		}
+			
+		return listeEncheres;
+	}
+	
+	@Override
+	public List<Enchere> selectAllFinWinnedById(int id) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	@Override
 	public Enchere selectByID(int id) {
 		// TODO Auto-generated method stub
@@ -102,17 +143,5 @@ public class EnchereDAOJdbcImpl implements DAOEnchere {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
-	public List<Enchere> selectAllEcoById(int id) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public List<Enchere> selectAllFinWinnedById(int id) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
 
 }
