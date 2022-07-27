@@ -48,15 +48,14 @@ public class ServletModifierProfil extends HttpServlet {
 		int credit = ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).getCredit();
 		boolean administrateur = ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).isAdministrateur();
 		
-		//recupere nom prénom credit admin 
-		
 		RequestDispatcher rd = null;
-		Utilisateur tmpUtilisateur = new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
 		
 		try {
 			UtilisateurManager uManager=UtilisateurManager.getInstance();
-			uManager.miseAJourUtilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+			Utilisateur tmpUtilisateur = uManager.miseAJourUtilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
 			request.setAttribute("utilisateurAAfficher", tmpUtilisateur);
+			request.getSession().invalidate();
+			request.getSession().setAttribute("utilisateur_connecte", tmpUtilisateur);
 			request.setAttribute("succes", "Votre profil a bien était mis à jour");
 			rd=request.getRequestDispatcher("ServletProfil");
 		} catch (BusinessException e) {

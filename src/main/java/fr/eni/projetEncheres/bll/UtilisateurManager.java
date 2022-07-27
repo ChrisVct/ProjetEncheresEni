@@ -18,7 +18,6 @@ public class UtilisateurManager {
 	private UtilisateurManager() throws BusinessException {
 		this.daoUtilisateur = DAOFactory.getDAOUtilisateur();
 		listeUtilisateurs = daoUtilisateur.selectAll();
-		
 	}
 	
 	public static UtilisateurManager getInstance() throws BusinessException {
@@ -93,7 +92,7 @@ public class UtilisateurManager {
 			
 		if (businessException.hasErreurs()) {
 				throw businessException;
-			}
+		}
 				
 		// verifie le password
 		final int MAX=12;
@@ -157,7 +156,7 @@ public class UtilisateurManager {
 			}
 		}
 			
-		Utilisateur utilisateur =new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, hasherMotDePasse(motDePasse));
+		Utilisateur utilisateur =new Utilisateur(pseudo.trim(), nom.trim(), prenom.trim(), email.trim(), telephone.trim(), rue.trim(), codePostal.trim(), ville.trim(), hasherMotDePasse(motDePasse));
 		daoUtilisateur.insert(utilisateur);
 		utilisateur.setCredit(100);
 		utilisateur.setAdministrateur(false);
@@ -183,57 +182,97 @@ public class UtilisateurManager {
 		return hexString.toString();
 	}
 	
-	public void miseAJourUtilisateur(int noUtilisateur,String pseudo,String nom,String prenom,String email,String telephone,String rue,String codePostal,String ville,String motDePasse,Integer credit,boolean administrateur) throws BusinessException {
+	public Utilisateur miseAJourUtilisateur(int noUtilisateur,String pseudo,String nom,String prenom,String email,String telephone,String rue,String codePostal,String ville,String motDePasse,Integer credit,boolean administrateur) throws BusinessException {
 			BusinessException businessException = new BusinessException();
-			
-			Utilisateur utilisateur =new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville);
+			Utilisateur utilisateurARetourner =null;
 
-			this.verifierNullite(pseudo, businessException);
 			
-			for (Utilisateur u : listeUtilisateurs) {
-			if(pseudo.equalsIgnoreCase(u.getPseudo())){
-				}
-			else(pseudo.equalsIgnoreCase("listeUtilisateurs")) {
-					businessException.ajouterErreur(CodesResultatBLL.PSEUDO_PRIS);
-					throw businessException;
+			for(Utilisateur util : listeUtilisateurs) {
+				if(noUtilisateur == util.getNoUtilisateur()) {
+					//vérfier si pseudo a été changé
+					if(!pseudo.trim().equalsIgnoreCase(util.getPseudo())) {
+						//vérifier nullité
+						this.verifierNullite(pseudo, businessException);
+						//vérifier si pas déjà pris
+						for (Utilisateur u : listeUtilisateurs) {
+							if(pseudo.equalsIgnoreCase(u.getPseudo())){
+								businessException.ajouterErreur(CodesResultatBLL.PSEUDO_PRIS);
+							}
+						}
+					}
+					//vérifier email a changé (si oui, faire les vérifs)
+					//vérifier telephone a changé (si oui, faire les vérifs)
+					//vérifier rue a changé (si oui, faire les vérifs)
+					//...
 				}
 			}
-				
-			
-			// rechercher dans list utilisateur dont le noUtilisateur est egal a l'utilisateur
-			
-			// verifie la nullité (attention le téléphone peut être null)
-			
-			this.verifierNullite(email, businessException);
-			this.verifierNullite(rue, businessException);
-			this.verifierNullite(codePostal, businessException);
-			this.verifierNullite(ville, businessException);
 			
 			if (businessException.hasErreurs()) {
-					throw businessException;
-				}
-	
-			// Verification du numéro de telephone	
-			if(telephone !="") {
-				if(telephone.length()<10 || telephone.length()>10) {
-				businessException.ajouterErreur(CodesResultatBLL.TEL_COURT);
 				throw businessException;
-					}
 			}
 			
-			//Verification du format de l'email
+			utilisateurARetourner= new Utilisateur(noUtilisateur, pseudo.trim(), nom.trim(), prenom.trim(), email.trim(), telephone.trim(), rue.trim(), codePostal.trim(), ville.trim(), motDePasse, credit, administrateur);
+			daoUtilisateur.update(utilisateurARetourner);
+			
 			for (Utilisateur u : listeUtilisateurs) {
-				email.matches(".+@.+\\.[a-z]+");
-				
-				if(email.equals(u.getEmail())){
-					businessException.ajouterErreur(CodesResultatBLL.EMAIL_DEJA_ENREGISTRER);
-					throw businessException;
+				if(noUtilisateur == u.getNoUtilisateur()) {
+					u.setPseudo(pseudo.trim());
+					u.setEmail(email.trim());
+					u.setTelephone(telephone.trim());
+					u.setRue(rue.trim());
+					u.setCodePostal(codePostal.trim());
+					u.setVille(ville.trim());
 				}
 			}
-					
-			//pensez a mettre à jour la liste utilisateur tampon
-			//Utilisateur utilisateur =new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
-			listeUtilisateurs.update(utilisateur);
+			
+			return utilisateurARetourner;
+//
+//			this.verifierNullite(pseudo, businessException);
+//			
+//			for (Utilisateur u : listeUtilisateurs) {
+//			if(pseudo.equalsIgnoreCase(u.getPseudo())){
+//				}
+//			else(pseudo.equalsIgnoreCase("listeUtilisateurs")) {
+//					businessException.ajouterErreur(CodesResultatBLL.PSEUDO_PRIS);
+//					throw businessException;
+//				}
+//			}
+//				
+//			
+//			// rechercher dans list utilisateur dont le noUtilisateur est egal a l'utilisateur
+//			
+//			// verifie la nullité (attention le téléphone peut être null)
+//			
+//			this.verifierNullite(email, businessException);
+//			this.verifierNullite(rue, businessException);
+//			this.verifierNullite(codePostal, businessException);
+//			this.verifierNullite(ville, businessException);
+//			
+//			if (businessException.hasErreurs()) {
+//					throw businessException;
+//				}
+//	
+//			// Verification du numéro de telephone	
+//			if(telephone !="") {
+//				if(telephone.length()<10 || telephone.length()>10) {
+//				businessException.ajouterErreur(CodesResultatBLL.TEL_COURT);
+//				throw businessException;
+//					}
+//			}
+//			
+//			//Verification du format de l'email
+//			for (Utilisateur u : listeUtilisateurs) {
+//				email.matches(".+@.+\\.[a-z]+");
+//				
+//				if(email.equals(u.getEmail())){
+//					businessException.ajouterErreur(CodesResultatBLL.EMAIL_DEJA_ENREGISTRER);
+//					throw businessException;
+//				}
+//			}
+//					
+//			//pensez a mettre à jour la liste utilisateur tampon
+//			//Utilisateur utilisateur =new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+//			listeUtilisateurs.update(utilisateur);
 		}
 	}
 
