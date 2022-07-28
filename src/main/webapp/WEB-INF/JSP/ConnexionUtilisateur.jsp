@@ -25,7 +25,7 @@
     </header>
     <main>
       <form
-        class="row col-12 col-md-6 position-absolute top-50 start-50 translate-middle"
+        class="row col-12 col-md-4 position-absolute top-50 start-50 translate-middle "
         action="ServletConnexionUtilisateur"
         method="POST"
       >
@@ -64,7 +64,7 @@
           </div>
         </div>
         <div class="row">
-          <button type="submit" class="btn btn-primary col-3">Connexion</button>
+          <button type="submit" class="btn btn-info col-3">Connexion</button>
 
           <div class="col-8 offset-1">
             <div class="form-check">
