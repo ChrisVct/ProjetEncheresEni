@@ -189,14 +189,10 @@ public class UtilisateurManager {
 	public Utilisateur miseAJourUtilisateur(int noUtilisateur,String pseudo,String nom,String prenom,String email,String telephone,String rue,String codePostal,String ville,String motDePasse,Integer credit,boolean administrateur) throws BusinessException {
 			BusinessException businessException = new BusinessException();
 			Utilisateur utilisateurARetourner =null;
-
-<<<<<<< HEAD
 			if(pseudo.length()>32) {
 				businessException.ajouterErreur(CodesResultatBLL.PSEUDO_TROP_LONG);
 				throw businessException;	
 			}
-=======
->>>>>>> branch 'main' of https://github.com/ChrisVct/ProjetEncheresEni.git
 			for(Utilisateur util : listeUtilisateurs) {
 				if(noUtilisateur == util.getNoUtilisateur()) {
 					//vérfier si pseudo a été changé
