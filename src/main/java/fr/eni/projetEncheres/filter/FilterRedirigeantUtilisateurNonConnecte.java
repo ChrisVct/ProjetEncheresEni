@@ -19,7 +19,7 @@ import fr.eni.projetEncheres.bo.Utilisateur;
 @WebFilter(
 		urlPatterns = {
 				"/ServletProfil",
-				"/ServletInscription",
+				
 				"/ServletModifierProfil",
 				"/ServletVendreNouvelArticle"},
 		dispatcherTypes = {

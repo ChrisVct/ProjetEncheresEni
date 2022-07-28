@@ -137,7 +137,10 @@ public class UtilisateurManager {
 			throw businessException;
 			}
 		}		
-				
+			if(pseudo.length()>32) {
+				businessException.ajouterErreur(CodesResultatBLL.PSEUDO_TROP_LONG);
+				throw businessException;	
+			}
 		// verifie l'unicité du pseudo (listeUtilisateurs)
 		for (Utilisateur u : listeUtilisateurs) {
 			if(pseudo.equalsIgnoreCase(u.getPseudo())){
@@ -192,7 +195,10 @@ public class UtilisateurManager {
 			BusinessException businessException = new BusinessException();
 			Utilisateur utilisateurARetourner =null;
 
-			
+			if(pseudo.length()>32) {
+				businessException.ajouterErreur(CodesResultatBLL.PSEUDO_TROP_LONG);
+				throw businessException;	
+			}
 			for(Utilisateur util : listeUtilisateurs) {
 				if(noUtilisateur == util.getNoUtilisateur()) {
 					//vérfier si pseudo a été changé
