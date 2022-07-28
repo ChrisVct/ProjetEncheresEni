@@ -26,7 +26,7 @@ public class ServletTestChristophe extends HttpServlet {
 		List<Enchere> liste = new ArrayList<>();
 		
 		try {
-			liste=dao.selectAllEcoById(1);
+			liste=dao.selectEcoById(1);
 			System.out.println("la liste eco by id est : " +liste);
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block

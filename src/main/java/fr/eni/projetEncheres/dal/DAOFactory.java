@@ -14,7 +14,7 @@ public class DAOFactory {
 	public static DAO<Utilisateur> getDAOUtilisateur(){
 		return new UtilisateurDAOJdbcImpl();
 	}
-	public static DAO<Enchere> getDAOEnchere(){
+	public static DAOEnchere getDAOEnchere(){
 		return new EnchereDAOJdbcImpl();
 	}
 }

@@ -80,6 +80,23 @@ public class Article implements Serializable {
 		this.categorie = categorie;
 		this.vendeur = vendeur;
 	}
+	
+	/**
+	 *  utilisé pour le select_ECO_BY_ID enchère de la page d'accueil(mode connecté)
+	 * @param noArticle
+	 * @param nomArticle
+	 * @param dateFinEncheres
+	 * @param vendeur
+	 * @param statut
+	 */
+	public Article(int noArticle, String nomArticle, LocalDate dateFinEncheres, String statut, Categorie categorie, Utilisateur vendeur) {
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.dateFinEncheres = dateFinEncheres;
+		this.categorie = categorie;
+		this.vendeur = vendeur;
+		this.statut = statut;
+	}
 
 	@Override
 	public String toString() {
