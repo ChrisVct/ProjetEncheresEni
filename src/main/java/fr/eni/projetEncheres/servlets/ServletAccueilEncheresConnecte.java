@@ -33,35 +33,38 @@ public class ServletAccueilEncheresConnecte extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getAttribute("connexion")!=null) {
-			doGet(request, response);
-		}
-		int noUtilisateur =  ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).getNoUtilisateur();
-		List<Enchere> listeEncheres=new ArrayList<>();
-		try {
-			EnchereManager eManager = EnchereManager.getInstance();
-			if(request.getParameter("encheresOuvertes")!=null) {
-				List<Enchere> tmp = eManager.afficherEncheresOuvertes();
-				listeEncheres.addAll(tmp);
-			}
-			if(request.getParameter("mesEncheresEnCours")!=null) {
-				if(request.getParameter("encheresOuvertes")==null) {
-					List<Enchere> tmp = eManager.afficherAchatEnCours(noUtilisateur);
+		if(request.getAttribute("connexion")==null) {
+
+			int noUtilisateur =  ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).getNoUtilisateur();
+			List<Enchere> listeEncheres=new ArrayList<>();
+			try {
+				EnchereManager eManager = EnchereManager.getInstance();
+				if(request.getParameter("encheresOuvertes")!=null) {
+					List<Enchere> tmp = eManager.afficherEncheresOuvertes();
 					listeEncheres.addAll(tmp);
 				}
-			}
-			if(request.getParameter("mesAchatsRemportes")!=null) {
-				List<Enchere> tmp = eManager.afficherAchatsRemportes(noUtilisateur);
-				listeEncheres.addAll(tmp);
-			}
-			String nomArticle = request.getParameter("nomArticle");
-			String libelle = request.getParameter("libelle");
-			listeEncheres = eManager.afficherEncheresAvecParametres(nomArticle, libelle, listeEncheres);
-			request.setAttribute("listeEncheres", listeEncheres);
-		} catch (BusinessException e) {
-			e.printStackTrace();
-		  }
-		RequestDispatcher rd =request.getRequestDispatcher("/WEB-INF/JSP/AccueilEncheresConnecte.jsp");
-		rd.forward(request, response);
+				if(request.getParameter("mesEncheresEnCours")!=null) {
+					if(request.getParameter("encheresOuvertes")==null) {
+						List<Enchere> tmp = eManager.afficherAchatEnCours(noUtilisateur);
+						listeEncheres.addAll(tmp);
+					}
+				}
+				if(request.getParameter("mesAchatsRemportes")!=null) {
+					List<Enchere> tmp = eManager.afficherAchatsRemportes(noUtilisateur);
+					listeEncheres.addAll(tmp);
+				}
+				String nomArticle = request.getParameter("nomArticle");
+				String libelle = request.getParameter("libelle");
+				listeEncheres = eManager.afficherEncheresAvecParametres(nomArticle, libelle, listeEncheres);
+				request.setAttribute("listeEncheres", listeEncheres);
+			} catch (BusinessException e) {
+				e.printStackTrace();
+			  }
+			RequestDispatcher rd =request.getRequestDispatcher("/WEB-INF/JSP/AccueilEncheresConnecte.jsp");
+			rd.forward(request, response);
+		}else {
+			doGet(request, response);
+		}
+			
 	}
 }

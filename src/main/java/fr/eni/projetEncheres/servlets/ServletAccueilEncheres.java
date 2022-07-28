@@ -26,12 +26,12 @@ public class ServletAccueilEncheres extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd =null;
+		if(request.getParameter("deconnexion")!=null) {
+			request.getSession().invalidate();
+		}
 		if(request.getSession().getAttribute("utilisateur_connecte")!=null) {
 			rd=request.getRequestDispatcher("ServletAccueilEncheresConnecte");
 			rd.forward(request, response);
-		}
-		if(request.getParameter("deconnexion")!=null) {
-			request.getSession().invalidate();
 		}
 		
 		List<Enchere> listeEncheres= null;
