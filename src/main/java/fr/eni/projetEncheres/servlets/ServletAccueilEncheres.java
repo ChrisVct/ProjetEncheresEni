@@ -52,11 +52,12 @@ public class ServletAccueilEncheres extends HttpServlet {
 			String nomArticle = request.getParameter("nomArticle");
 			String libelle = request.getParameter("libelle");
 			List<Enchere> listeEncheres = new ArrayList<>();
+			List<Enchere> listeNulle = null;
 			//Envoi des données à la BLL
 			try {
 				EnchereManager eManager = EnchereManager.getInstance();
 				//déclarer une liste(tableau) (listeEnchere) + (afficherEncheresAvecParametres)
-				listeEncheres = eManager.afficherEncheresAvecParametres(nomArticle, libelle);
+				listeEncheres = eManager.afficherEncheresAvecParametres(nomArticle, libelle, listeNulle);
 				//Retourner la liste à la JSP
 				request.setAttribute("listeEncheres", listeEncheres);
 			} catch (BusinessException e) {
@@ -73,13 +74,13 @@ public class ServletAccueilEncheres extends HttpServlet {
 	
 		//int ??noUtilisateur?? = ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).getNoUtilisateur();
 		//si tu recois ... tu fais ...
-		getinstance
-		if(request.getParameter("enchereouverte") !null
-				emanager.afficherEncheresOuvertes()
-				
-				if(request.getParameter("ecobyID") !null
-						if(request.getParameter("ecobyID")
-						emanager.afficherAchatencours()
+//		getinstance
+//		if(request.getParameter("enchereouverte") !null
+//				emanager.afficherEncheresOuvertes()
+//				
+//				if(request.getParameter("ecobyID") !null
+//						if(request.getParameter("ecobyID")
+//						emanager.afficherAchatencours()
 		
 		//recuperer le cas ou mes encheres en cours sont cochés => lancer fonction en bll
 				

@@ -48,7 +48,7 @@ public class ServletInscription extends HttpServlet {
 			
 			request.getSession().setAttribute("utilisateur_connecte", utilisateurConnecte);
 			request.setAttribute("connexion", "ok");
-			rd=request.getRequestDispatcher("ServletAccueilEncheres");
+			rd=request.getRequestDispatcher("ServletAccueilEncheresConnecte");
 		} catch (BusinessException e) {
 			List<String> msgErr = new ArrayList<>();
 			

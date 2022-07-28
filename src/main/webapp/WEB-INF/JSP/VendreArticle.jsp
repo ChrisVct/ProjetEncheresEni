@@ -177,7 +177,7 @@
             Enregistrer
           </button>
           <a
-            href="ServletAccueilEncheres"
+            href="ServletAccueilEncheresConnecte"
             class="btn btn-secondary col-5 offset-2 m-auto"
           >
             Annuler

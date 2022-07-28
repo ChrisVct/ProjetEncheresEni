@@ -23,13 +23,8 @@ import fr.eni.projetEncheres.bo.Utilisateur;
 		},		
 		urlPatterns = {
 				"/ServletProfil",
-<<<<<<< HEAD
-				
-=======
->>>>>>> branch 'main' of https://github.com/ChrisVct/ProjetEncheresEni.git
 				"/ServletModifierProfil",
-				"/ServletVendreNouvelArticle"
-//				,"/ServletInscription"
+				"/ServletVendreNouvelArticle",
 				}
 		)
 

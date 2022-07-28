@@ -75,12 +75,14 @@
           <label for="ville" class="col-sm-6 col-form-label">Ville</label>
           <p class="col-sm-6">${utilisateurAAfficher.getVille()}</p>
         </div>
-        <a 
-         href="<%=request.getContextPath()%>/ServletModifierProfil"
-         class="btn btn-secondary col-6 m-auto" 
-         >
-          Modifier
-        </a>
+        <c:if test="${utilisateur_connecte.getPseudo() == utilisateurAAfficher.getPseudo() }">
+	        <a 
+	         href="<%=request.getContextPath()%>/ServletModifierProfil"
+	         class="btn btn-secondary col-6 m-auto" 
+	         >
+	          Modifier
+	        </a>
+        </c:if>
       </div>
       <!-- fermeture boite affichage profil -->
     </main>

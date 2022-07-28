@@ -37,7 +37,7 @@ public class ServletConnexionUtilisateur extends HttpServlet {
 			if(utilisateurATester!=null) {
 				request.getSession().setAttribute("utilisateur_connecte", utilisateurATester);
 				request.setAttribute("connexion", "ok");
-				rd=request.getRequestDispatcher("ServletAccueilEncheres");
+				rd=request.getRequestDispatcher("ServletAccueilEncheresConnecte");
 			}
 		} catch (BusinessException e) {
 			List<String> msgErr = new ArrayList<>();

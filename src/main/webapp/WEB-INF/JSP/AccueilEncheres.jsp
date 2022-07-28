@@ -50,47 +50,7 @@
 		    <div class="col-md text-center">
 		      <button type="submit" name="recherche" class="btn btn-primary btn-lg btn-block mt-3">Rechercher</button>
 		    </div>
-		    
-				<div class="container mt-3">
-					<div class="row">
-						<div class="col-md">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" id="flexRadioDefault" name="flexRadioDefault1" checked>
-								<label class="form-check-label" for="flexRadioDefault">Mes achats</label>
-								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="" checked>
-									<label class="form-check-label" for="flexCheckChecked">Enchères ouvertes</label>
-								</div>
-								<div class="form-check">
-							  		<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="">
-									<label class="form-check-label" for="flexCheckDefault">Enchères en cours</label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="">
-									<label class="form-check-label" for="flexCheckDefault">Enchères remportées</label>
-								</div>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"  value="" id="flexRadioDefault2" name="flexRadioDefault1">
-							<label class="form-check-label" for="flexRadioDefault2">Mes ventes</label>
-								<input class="form-check-input" type="radio" name="flexRadioDefault" id="inlineRadio2" value="option2">
-							<label class="form-check-label" for="">Mes ventes</label>
-								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="">
-									<label class="form-check-label" for="flexCheckDefault">Ventes en cours</label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="">
-									<label class="form-check-label" for="flexCheckDefault">Ventes non débutées</label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="">
-									<label class="form-check-label" for="flexCheckDefault">Ventes terminées</label>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+
 		  </form>
 		</div>
     </main>

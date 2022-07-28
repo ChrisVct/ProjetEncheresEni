@@ -30,14 +30,23 @@ public class EnchereManager {
 		return listeEncheres;
 	}
 	
-	public List<Enchere> afficherEncheresAvecParametres(String nomArticle, String libelle) {		
+	public List<Enchere> afficherEncheresAvecParametres(String nomArticle, String libelle, List<Enchere> liste) {		
 		List<Enchere> listeEncheresAvecParametres = new ArrayList<>();
-		for (Enchere e : listeEncheres) {
-			if ((e.getArticle().getNomArticle().toLowerCase()).contains(nomArticle.toLowerCase().trim()) &&
-					(libelle.equals("Toutes") ? true : (e.getArticle().getCategorie().getLibelle().equals(libelle))) ) {
-				listeEncheresAvecParametres.add(e);
+		if(liste==null) {
+			for (Enchere e : listeEncheres) {
+				if ((e.getArticle().getNomArticle().toLowerCase()).contains(nomArticle.toLowerCase().trim()) &&
+						(libelle.equals("Toutes") ? true : (e.getArticle().getCategorie().getLibelle().equals(libelle))) ) {
+					listeEncheresAvecParametres.add(e);
+				}
 			}
-		}	
+		}else {
+			for (Enchere e : liste) {
+				if ((e.getArticle().getNomArticle().toLowerCase()).contains(nomArticle.toLowerCase().trim()) &&
+						(libelle.equals("Toutes") ? true : (e.getArticle().getCategorie().getLibelle().equals(libelle))) ) {
+					listeEncheresAvecParametres.add(e);
+				}
+			}
+		}
 		return listeEncheresAvecParametres;
 	}
 	
