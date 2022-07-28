@@ -42,7 +42,7 @@
 				    	 
 				    	 <div class=" mb-3 row">
 			                    <label for="pseudo" class="col-sm-4 col-form-label"
-			                    >Pseudo</label
+			                    >Pseudo*</label
 			                    >
 			                    <div class="col-sm-6">
 			                    <input
@@ -50,8 +50,8 @@
 			                        class="form-control"
 			                        id="pseudo"
 			                        name="pseudo"
-			                        required
 			                        value="${utilisateur_connecte.getPseudo()}"
+			                        required
 			                    />
 			                    </div>
 			                </div>
@@ -71,14 +71,13 @@
 			                        class="form-control"
 			                        id="telephone"
 			                        name="telephone"
-			                        required
 			                        value="${utilisateur_connecte.getTelephone()}"
 			                    />
 			                    </div>
 			                 </div>
 			                     <div class="mb-3 row">
 			                    <label for="codePostal" class="col-sm-4 col-form-label"
-			                    >Code postal</label
+			                    >Code postal*</label
 			                    >
 			                    <div class="col-sm-6">
 			                    <input
@@ -91,10 +90,10 @@
 			                    />
 			                    </div>
 		                    </div>
-			                    <div class="mb-3 row">
+		                    	<div class="mb-3 row">
 			                    
-					          <label for="MotDePasse" class="col-sm-4 " >Mot de passe actuel</label>
-					         <p class="col-sm-5" >${utilisateur_connecte.getMotDePasse()}</p>
+					          <label for="MotDePasse" class="col-sm-4 " >Crédit</label>
+					         <p class="col-sm-5" >${utilisateur_connecte.getCredit()}</p>
 					      </div>
 			                    
 		         </div>   <!-- fermeture boite de gauche -->   
@@ -106,7 +105,7 @@
 					        
 					         <div class="mb-3 row">
 			                    <label for="email" class="col-sm-4 col-form-label"
-			                    >email</label
+			                    >email*</label
 			                    >
 			                    <div class="col-sm-6">
 			                    <input
@@ -121,7 +120,7 @@
 		                    </div>
 			                    <div class="mb-3 row">
 			                    <label for="rue" class="col-sm-4 col-form-label"
-			                    >Rue</label
+			                    >Rue*</label
 			                    >
 			                    <div class="col-sm-6">
 			                    <input
@@ -136,7 +135,7 @@
 	                       </div>
 			                    <div class="mb-3 row">
 			                    <label for="ville" class="col-sm-4 col-form-label"
-			                    >Ville</label
+			                    >Ville*</label
 			                    >
 			                    <div class="col-sm-6">
 			                    <input

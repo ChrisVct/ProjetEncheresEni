@@ -18,13 +18,12 @@ import fr.eni.projetEncheres.bo.Utilisateur;
 
 @WebFilter(
 		dispatcherTypes = {
-					DispatcherType.REQUEST,
-					
+					DispatcherType.REQUEST
 		},		
 		urlPatterns = {
 				"/ServletProfil",
 				"/ServletModifierProfil",
-				"/ServletVendreNouvelArticle",
+				"/ServletVendreNouvelArticle"
 				}
 		)
 
@@ -45,7 +44,6 @@ public class FilterRedirigeantUtilisateurNonConnecte extends HttpFilter implemen
 		}else {
 			chain.doFilter(request, response);
 		}
-
 	}
 
 }

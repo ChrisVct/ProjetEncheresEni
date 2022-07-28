@@ -83,7 +83,7 @@
           </div>
         </div>
         <a
-          href="<%=request.getContextPath()%>/ServletInscription"
+          href="Inscription"
           class="btn btn-secondary btn-lg mt-5 col-10 m-auto"
         >
           Créer un compte

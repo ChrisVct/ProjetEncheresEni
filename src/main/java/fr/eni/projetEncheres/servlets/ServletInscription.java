@@ -45,7 +45,7 @@ public class ServletInscription extends HttpServlet {
 		try {
 			UtilisateurManager UManager =  UtilisateurManager.getInstance();
 			Utilisateur utilisateurConnecte = UManager.ajouterUtilisateur(pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,motDePasseConfirmation);
-			
+			utilisateurConnecte.setMotDePasse("");
 			request.getSession().setAttribute("utilisateur_connecte", utilisateurConnecte);
 			request.setAttribute("connexion", "ok");
 			rd=request.getRequestDispatcher("ServletAccueilEncheresConnecte");

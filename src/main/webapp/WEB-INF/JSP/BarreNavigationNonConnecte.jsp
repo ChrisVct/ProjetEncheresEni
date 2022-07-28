@@ -1,6 +1,13 @@
 <nav class="navbar navbar-expand-lg bg-info col-lg-6 mx-auto rounded-3"style="--bs-bg-opacity: .5;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="<%=request.getContextPath()%>/ServletAccueilEncheres">ENI-Enchères</a>
+    <a class="navbar-brand" href="<%=request.getContextPath()%>/ServletAccueilEncheres">
+    	<img
+    	alt="logo du site"
+    	src="image/logoENIEncheres.png"
+    	style="width:125px;border-radius:5px;"
+    	>
+    </a>
+    
     <button
       class="navbar-toggler"
       type="button"

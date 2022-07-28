@@ -20,7 +20,8 @@ public abstract class CodesResultatBLL {
 	public static final int MDP_PAS_IDENTIQUE = 20006;
 	public static final int Password_INCORRECT = 20007;
 	public static final int FORMAT_EMAIL_INCORRECT = 20008;
-	public static final int PSEUDO_TROP_LONG = 20009;
+	public static final int SAISIE_TROP_LONGUE = 20009;
+	public static final int TEL_CONTIENT_CHARACTER_NON_NUMERIQUE = 20010;
 
 
 }
