@@ -25,7 +25,11 @@ public class ServletAccueilEncheres extends HttpServlet {
     
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		RequestDispatcher rd =null;
+		if(request.getSession().getAttribute("utilisateur_connecte")!=null) {
+			rd=request.getRequestDispatcher("ServletAccueilEncheresConnecte");
+			rd.forward(request, response);
+		}
 		if(request.getParameter("deconnexion")!=null) {
 			request.getSession().invalidate();
 		}
@@ -41,7 +45,7 @@ public class ServletAccueilEncheres extends HttpServlet {
 //		System.out.println(listeEncheres);
 		request.setAttribute("listeEncheres", listeEncheres);
 		System.out.println(request.getSession().getAttribute("utilisateur_connecte"));
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/AccueilEncheres.jsp");
+		rd = request.getRequestDispatcher("/WEB-INF/JSP/AccueilEncheres.jsp");
 		rd.forward(request, response);
 	}
 
