@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bll.EnchereManager;
 import fr.eni.projetEncheres.bo.Enchere;
-import fr.eni.projetEncheres.bo.Utilisateur;
 
 
 /**

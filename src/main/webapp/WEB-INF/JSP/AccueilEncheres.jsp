@@ -14,6 +14,7 @@
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
     />
+    <link rel="icon" href="image/favicon.png" type="image/icon type"/>
   </head>
   <body>
     <header>
@@ -48,7 +49,7 @@
 			</div>
 		    </div>
 		    <div class="col-md text-center">
-		      <button type="submit" name="recherche" class="btn btn-primary btn-lg btn-block mt-3">Rechercher</button>
+		      <button type="submit" name="recherche" class="btn btn-info btn-lg btn-block mt-3">Rechercher</button>
 		    </div>
 
 		  </form>
@@ -61,7 +62,7 @@
 				<div class="card mb-4 mx-auto" style="max-width: 540px;">
 				  <div class="row g-0">
 				    <div class="col-md-4">
-				      <img src="..." class="img-fluid rounded-start" alt="...">
+				      <img src="image/chaiseEnBois.jpeg" class="img-fluid rounded-start" alt="...">
 				    </div>
 				    <div class="col-md-8">
 				      <div class="card-body">
