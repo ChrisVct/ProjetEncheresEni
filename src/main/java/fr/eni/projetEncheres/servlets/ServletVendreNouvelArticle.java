@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bll.ArticleManager;
 import fr.eni.projetEncheres.bo.Utilisateur;
 @WebServlet("/ServletVendreNouvelArticle")
@@ -33,9 +34,14 @@ public class ServletVendreNouvelArticle extends HttpServlet {
 		int noUtilisateur = ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).getNoUtilisateur();
 		
 		//envoyer en BLL
-		ArticleManager aManager=ArticleManager.getInstance();
-		aManager.ajouterArticle(nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial, libelle,
-				noUtilisateur , rueRetrait, codePostalRetrait, villeRetrait);
+		try {
+			ArticleManager aManager=ArticleManager.getInstance();
+			aManager.ajouterArticle(nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial, libelle,
+					noUtilisateur , rueRetrait, codePostalRetrait, villeRetrait);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		doGet(request, response);
 	}
 }

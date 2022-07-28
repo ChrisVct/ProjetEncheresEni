@@ -27,10 +27,41 @@ public class ArticleManager {
 	}
 	
 	public void ajouterArticle(String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int prixInitial, String libelle,
-			int noUtilisateur, String rueRetrait, String codePostalRetrait, String villeRetrait) {
+		LocalDate dateFinEncheres, int prixInitial, String libelle,
+		int noUtilisateur, String rueRetrait, String codePostalRetrait, String villeRetrait) throws BusinessException {
 		
 		//vérifier les données et les envoyer dans la DAL
+		BusinessException businessException = new BusinessException();
+		this.verifierNullite(nomArticle,businessException);
+		this.verifierNullite(libelle,businessException);
+		this.verifierNullite(String.valueOf(prixInitial),businessException);
+		this.verifierNullite(String.valueOf(dateDebutEncheres),businessException);
+		this.verifierNullite(String.valueOf(dateFinEncheres),businessException);
+		this.verifierNullite(rueRetrait,businessException);
+		this.verifierNullite(codePostalRetrait,businessException);
+		this.verifierNullite(villeRetrait,businessException);
+		if (businessException.hasErreurs()) {
+			throw businessException;
+		}
+		
+		this.verifierTailleChamps(nomArticle, 30, businessException);
+		this.verifierTailleChamps(description, 300, businessException);
+		this.verifierTailleChamps(rueRetrait, 30, businessException);
+		this.verifierTailleChamps(codePostalRetrait, 15, businessException);
+		this.verifierTailleChamps(villeRetrait, 30, businessException);
+		if (businessException.hasErreurs()) {
+			throw businessException;
+		}
+		
+		if(dateDebutEncheres.isBefore(LocalDate.now())) {
+			businessException.ajouterErreur(CodesResultatBLL.DATE_DEBUT_ENCHERE_INVALIDE);
+			throw businessException;
+		}
+		if(dateFinEncheres.isBefore( dateDebutEncheres)) {
+			businessException.ajouterErreur(CodesResultatBLL.DATE_FIN_ENCHERE_INVALIDE);
+			throw businessException;
+		}
+		
 		String statut = "ATT";
 		if(dateDebutEncheres.isEqual(LocalDate.now())) {
 			statut="ECO";
@@ -39,11 +70,17 @@ public class ArticleManager {
 				new Categorie(libelle), statut, new Utilisateur(noUtilisateur));
 		Retrait retrait = new Retrait(rueRetrait, codePostalRetrait, villeRetrait);
 		
-		try {
-			daoArticle.insertArticleRetrait(article, retrait);
-		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		daoArticle.insertArticleRetrait(article, retrait);
+		
+	}
+	private void verifierNullite(String identifiant, BusinessException businessException) {
+		if(identifiant.trim()=="") {
+			businessException.ajouterErreur(CodesResultatBLL.CHAMPS_ARTICLE_VIDE);
+		}
+	}
+	private void verifierTailleChamps(String champsAVerifier, int nbMax, BusinessException businessException) throws BusinessException {
+		if(champsAVerifier.length()>nbMax) {
+			businessException.ajouterErreur(CodesResultatBLL.SAISIE_TROP_LONGUE);
 		}
 		
 	}

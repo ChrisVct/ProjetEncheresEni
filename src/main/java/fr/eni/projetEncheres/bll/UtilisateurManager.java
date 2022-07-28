@@ -109,8 +109,6 @@ public class UtilisateurManager {
 		return utilisateur;
 	}
 
-
-
 	public Utilisateur miseAJourUtilisateur(int noUtilisateur,String pseudo,String nom,String prenom,String email,String telephone,String rue,String codePostal,String ville,String motDePasse,Integer credit,boolean administrateur) throws BusinessException {
 			BusinessException businessException = new BusinessException();
 			Utilisateur utilisateurARetourner =null;
@@ -222,7 +220,7 @@ public class UtilisateurManager {
          if (motDePasse.length() >= MAX && uppercaseCounter >= MIN_UPPERCASE 
         		 	&& lowercaseCounter >= MIN_LOWERCASE && digitCounter >= NUM_DIGITS && specialCounter >= SPECIAL) { 
          }else{
-        	 businessException.ajouterErreur(CodesResultatBLL.Password_INCORRECT);
+        	 businessException.ajouterErreur(CodesResultatBLL.MDP_INCORRECT);
          }
 		
 	}

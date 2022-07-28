@@ -16,6 +16,7 @@ public class Categorie implements Serializable {
 	 */
 	public Categorie(String libelle) {
 		this.libelle = libelle;
+		
 		if(libelle.equals("Informatique"))
 			setNoCategorie(1);
 		if(libelle.equals("Ameublement"))
