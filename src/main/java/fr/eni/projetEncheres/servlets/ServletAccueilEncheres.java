@@ -71,8 +71,18 @@ public class ServletAccueilEncheres extends HttpServlet {
 			doGet(request, response);
 		}
 	
+		//int ??noUtilisateur?? = ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).getNoUtilisateur();
 		//si tu recois ... tu fais ...
+		getinstance
+		if(request.getParameter("enchereouverte") !null
+				emanager.afficherEncheresOuvertes()
+				
+				if(request.getParameter("ecobyID") !null
+						if(request.getParameter("ecobyID")
+						emanager.afficherAchatencours()
 		
-		int noUtilisateur = ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).getNoUtilisateur();
+		//recuperer le cas ou mes encheres en cours sont cochés => lancer fonction en bll
+				
+		
 	}
 }
