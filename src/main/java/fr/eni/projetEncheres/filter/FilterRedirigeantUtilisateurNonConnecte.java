@@ -23,7 +23,8 @@ import fr.eni.projetEncheres.bo.Utilisateur;
 		urlPatterns = {
 				"/ServletProfil",
 				"/ServletModifierProfil",
-				"/ServletVendreNouvelArticle"
+				"/ServletVendreNouvelArticle",
+				"/ServletAccueilEncheresConnecte"
 				}
 		)
 
@@ -33,11 +34,7 @@ public class FilterRedirigeantUtilisateurNonConnecte extends HttpFilter implemen
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		
-				//A supprimer plus tard, sert à simuler l'utilisateur connecté
-//				Utilisateur moi = new Utilisateur("cricri", "vichit", "christophe", "mail@mail.com", "0606060606", "rue", "14000", "caen");
-//				httpRequest.getSession().setAttribute("utilisateur_connecte", moi);
-		
+
 		if(httpRequest.getSession().getAttribute("utilisateur_connecte")==null) {
 			RequestDispatcher rd = httpRequest.getRequestDispatcher("/ServletConnexionUtilisateur");
 			rd.forward(httpRequest, httpResponse);
