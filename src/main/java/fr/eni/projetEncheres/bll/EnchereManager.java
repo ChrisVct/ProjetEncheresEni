@@ -5,7 +5,6 @@ import java.util.List;
 
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bo.Enchere;
-import fr.eni.projetEncheres.dal.DAO;
 import fr.eni.projetEncheres.dal.DAOEnchere;
 import fr.eni.projetEncheres.dal.DAOFactory;
 
@@ -32,31 +31,34 @@ public class EnchereManager {
 	
 	public List<Enchere> afficherEncheresAvecParametres(String nomArticle, String libelle, List<Enchere> liste) {		
 		List<Enchere> listeEncheresAvecParametres = new ArrayList<>();
-		if(liste==null) {
-			for (Enchere e : listeEncheres) {
-				if ((e.getArticle().getNomArticle().toLowerCase()).contains(nomArticle.toLowerCase().trim()) &&
-						(libelle.equals("Toutes") ? true : (e.getArticle().getCategorie().getLibelle().equals(libelle))) ) {
-					listeEncheresAvecParametres.add(e);
+			if(liste==null) {
+				for (Enchere e : listeEncheres) {
+					if ((e.getArticle().getNomArticle().toLowerCase()).contains(nomArticle.toLowerCase().trim()) &&
+							(libelle.equals("Toutes") ? true : (e.getArticle().getCategorie().getLibelle().equals(libelle))) ) {
+						listeEncheresAvecParametres.add(e);
+					}
 				}
-			}
-		}else {
-			for (Enchere e : liste) {
-				if ((e.getArticle().getNomArticle().toLowerCase()).contains(nomArticle.toLowerCase().trim()) &&
-						(libelle.equals("Toutes") ? true : (e.getArticle().getCategorie().getLibelle().equals(libelle))) ) {
-					listeEncheresAvecParametres.add(e);
+			}else {
+				for (Enchere e : liste) {
+					if ((e.getArticle().getNomArticle().toLowerCase()).contains(nomArticle.toLowerCase().trim()) &&
+							(libelle.equals("Toutes") ? true : (e.getArticle().getCategorie().getLibelle().equals(libelle))) ) {
+						listeEncheresAvecParametres.add(e);
+					}
 				}
-			}
-		}
+			 }
 		return listeEncheresAvecParametres;
 	}
 	
 	public List<Enchere> afficherAchatEnCours(int noUtilisateur) throws BusinessException {
 		List<Enchere> listeAchatsEnCours = new ArrayList<>();
 		listeAchatsEnCours = daoEnchere.selectEcoById(noUtilisateur);
-		
 		return listeAchatsEnCours;
 	}
-
 	
+	public List<Enchere> afficherAchatsRemportes(int noUtilisateur) throws BusinessException {
+		List<Enchere> listeAchatsRemportes = new ArrayList<>();
+		listeAchatsRemportes = daoEnchere.selectAllFinWinnedById(noUtilisateur);
+		return listeAchatsRemportes;
+	}
 }
 

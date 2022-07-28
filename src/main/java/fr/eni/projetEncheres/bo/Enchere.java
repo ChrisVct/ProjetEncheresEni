@@ -14,13 +14,8 @@ public class Enchere implements Serializable {
 	public Enchere() {
 	}
 	
-	public Enchere(String nomArticle, Utilisateur acheteur, Article article) {
-		this.acheteur = acheteur;
-		this.article = article;
-	}
-	
 	/**
-	 *  utilisé pour le select_all enchere de la page d'accueil(mode non connecte)
+	 * Constructeur utilisé pour executer le select_all des enchère en page d'accueil(mode non connect)
 	 * @param montantEnchere
 	 * @param acheteur
 	 * @param article
@@ -37,8 +32,7 @@ public class Enchere implements Serializable {
 				" - Utilisateur : " +this.getAcheteur()+" - Article : " +this.getArticle()+
 				"\n";
 	}
-	
-		
+			
 	public LocalDate getDateEnchere() {
 		return dateEnchere;
 	}
@@ -64,10 +58,4 @@ public class Enchere implements Serializable {
 	public void setArticle(Article article) {
 		this.article = article;
 	}
-	
 }
-
-
-//this.article ajouterencheres
-
-//dans article ajouter une méthode pour recuperer tableau enchere ou modifier enchere en cours

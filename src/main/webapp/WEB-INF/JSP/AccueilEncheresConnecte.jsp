@@ -14,6 +14,7 @@
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
     />
+    <link rel="icon" href="image/favicon.png" type="image/icon type" />
   </head>
   <body>
     <header>
@@ -58,7 +59,7 @@
 								<input class="form-check-input" type="radio" id="flexRadioDefault" name="flexRadioDefault1" checked>
 								<label class="form-check-label" for="flexRadioDefault">Mes achats</label>
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="" id="encheresOuvertes" name="encheresOuvertes" checked>
+									<input class="form-check-input" type="checkbox" value="" id="encheresOuvertes" name="encheresOuvertes">
 									<label class="form-check-label" for="encheresOuvertes">Enchères ouvertes</label>
 								</div>
 								<div class="form-check">
@@ -73,19 +74,17 @@
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"  value="" id="flexRadioDefault2" name="flexRadioDefault1">
 							<label class="form-check-label" for="flexRadioDefault2">Mes ventes</label>
-								<input class="form-check-input" type="radio" name="flexRadioDefault" id="inlineRadio2" value="option2">
-							<label class="form-check-label" for="">Mes ventes</label>
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="">
-									<label class="form-check-label" for="flexCheckDefault">Ventes en cours</label>
+									<input class="form-check-input" type="checkbox" value="" id="ventesEnCours" name="ventesEnCours">
+									<label class="form-check-label" for="ventesEnCours">Ventes en cours</label>
 								</div>
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="">
-									<label class="form-check-label" for="flexCheckDefault">Ventes non débutées</label>
+									<input class="form-check-input" type="checkbox" value="" id="ventesAttente" name="ventesAttente">
+									<label class="form-check-label" for="ventesAttente">Ventes non débutées</label>
 								</div>
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="">
-									<label class="form-check-label" for="flexCheckDefault">Ventes terminées</label>
+									<input class="form-check-input" type="checkbox" value="" id="ventesFinies" name="ventesFinies">
+									<label class="form-check-label" for="ventesFinies">Ventes terminées</label>
 								</div>
 							</div>
 						</div>
@@ -101,14 +100,14 @@
 				<div class="card mb-4 mx-auto" style="max-width: 540px;">
 				  <div class="row g-0">
 				    <div class="col-md-4">
-				      <img src="..." class="img-fluid rounded-start" alt="...">
+				      <img src="image/chaiseEnBois.jpeg" class="img-fluid rounded-start" alt="Une Chaise">
 				    </div>
 				    <div class="col-md-8">
 				      <div class="card-body">
 				        <h5 class="card-title">Nom de l'article : ${l.article.nomArticle}</h5>
 				        <p class="card-text"> Prix : ${l.montantEnchere} points </p>
 				        <p class="card-text"> Fin de l'enchère : ${l.article.dateFinEncheres}</p>
-				        <p class="card-text"> Vendeur : ${l.article.vendeur.pseudo} </p>
+				        <p class="card-text"> Vendeur : <a href="ServletProfil?pseudoAAfficher=${l.article.vendeur.pseudo}">${l.article.vendeur.pseudo}</a></p>
 				      </div>
 				    </div>
 				  </div>

@@ -30,8 +30,7 @@ public class ArticleManager {
 			LocalDate dateFinEncheres, int prixInitial, String libelle,
 			int noUtilisateur, String rueRetrait, String codePostalRetrait, String villeRetrait) {
 		
-		//vérifier données
-		//envoyer données en DAL
+		//vérifier les données et les envoyer dans la DAL
 		String statut = "ATT";
 		if(dateDebutEncheres.isEqual(LocalDate.now())) {
 			statut="ECO";
