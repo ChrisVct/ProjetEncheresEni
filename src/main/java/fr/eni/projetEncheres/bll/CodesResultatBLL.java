@@ -51,9 +51,9 @@ public abstract class CodesResultatBLL {
 	 */
 	public static final int TEL_CONTIENT_CHARACTER_NON_NUMERIQUE = 20010;
 	/**
-	 * Un champs null ou rempli avec espacement
+	 *la taille des champs requis est trop grand
 	 */
-	public static final int CHAMPS_ARTICLE_VIDE=20011;
+	public static final int SAISIE_TROP_LONGUE_VENDRE_ARTICLE=20011;
 	/**
 	 * Date de début enchère inférieure à date du jour
 	 */
