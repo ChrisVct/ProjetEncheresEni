@@ -31,18 +31,17 @@ public class ServletAccueilEncheres extends HttpServlet {
 		}
 		if(request.getSession().getAttribute("utilisateur_connecte")!=null) {
 			rd=request.getRequestDispatcher("ServletAccueilEncheresConnecte");
-			rd.forward(request, response);
+		}else {
+			List<Enchere> listeEncheres= null;
+			try {
+				EnchereManager eManager = EnchereManager.getInstance();
+				listeEncheres = eManager.afficherEncheresOuvertes();
+			} catch (BusinessException e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("listeEncheres", listeEncheres);
+			rd = request.getRequestDispatcher("/WEB-INF/JSP/AccueilEncheres.jsp");
 		}
-		
-		List<Enchere> listeEncheres= null;
-		try {
-			EnchereManager eManager = EnchereManager.getInstance();
-			listeEncheres = eManager.afficherEncheresOuvertes();
-		} catch (BusinessException e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("listeEncheres", listeEncheres);
-		rd = request.getRequestDispatcher("/WEB-INF/JSP/AccueilEncheres.jsp");
 		rd.forward(request, response);
 	}
 
