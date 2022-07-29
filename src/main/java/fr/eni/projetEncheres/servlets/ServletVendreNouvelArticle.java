@@ -2,6 +2,8 @@ package fr.eni.projetEncheres.servlets;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bll.ArticleManager;
 import fr.eni.projetEncheres.bo.Utilisateur;
+import fr.eni.projetEncheres.messages.LecteurMessage;
 @WebServlet("/ServletVendreNouvelArticle")
 public class ServletVendreNouvelArticle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -21,6 +24,7 @@ public class ServletVendreNouvelArticle extends HttpServlet {
 		rd.forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = null;
 		String nomArticle = request.getParameter("nomArticle");
 		String description = request.getParameter("description");
 		String libelle = request.getParameter("libelle");
@@ -33,15 +37,22 @@ public class ServletVendreNouvelArticle extends HttpServlet {
 		
 		int noUtilisateur = ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).getNoUtilisateur();
 		
-		//envoyer en BLL
 		try {
 			ArticleManager aManager=ArticleManager.getInstance();
 			aManager.ajouterArticle(nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial, libelle,
 					noUtilisateur , rueRetrait, codePostalRetrait, villeRetrait);
+			request.setAttribute("nouvel_article_ok", nomArticle);
+			rd=request.getRequestDispatcher("ServletAccueilEncheresConnecte");
 		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+
+			List<String> msgErr = new ArrayList<>();
+			for(int i : ((BusinessException) e).getListeCodesErreur()) {
+				msgErr.add(LecteurMessage.getMessageErreur(i));
+			}
+			request.setAttribute("listeCodesErreur", msgErr);
+			rd=request.getRequestDispatcher("/WEB-INF/JSP/VendreArticle.jsp");
 		}
-		doGet(request, response);
+		rd.forward(request, response);
 	}
 }

@@ -27,7 +27,11 @@
     </header>
     
     <main>
-	<div><h1 class="text-center p-5">Liste des enchères</h1></div>
+    <c:if test="${!empty nouvel_article_ok }">
+    	<p style="color:green;" class="text-center mt-5">${nouvel_article_ok } a bien été ajouté !</p>
+    </c:if>
+	<div>
+	<h1 class="text-center p-5">Liste des enchères</h1></div>
 		<div class="container">
 		  <form class="row mt-4 p-6 mx-auto" role="search" style="max-width: 1000px;" action="ServletAccueilEncheresConnecte" method="POST">
 		    <div class="col-md text-center">
@@ -92,6 +96,8 @@
 				</div>
 		  </form>
 		</div>
+
+
     </main>
 
 	<div class="row mx-auto p-5" style="max-width: 1280px;">
@@ -104,10 +110,18 @@
 				    </div>
 				    <div class="col-md-8">
 				      <div class="card-body">
-				        <h5 class="card-title">Nom de l'article : ${l.article.nomArticle}</h5>
-				        <p class="card-text"> Prix : ${l.montantEnchere} points </p>
-				        <p class="card-text"> Fin de l'enchère : ${l.article.dateFinEncheres}</p>
-				        <p class="card-text"> Vendeur : <a href="ServletProfil?pseudoAAfficher=${l.article.vendeur.pseudo}">${l.article.vendeur.pseudo}</a></p>
+				        <h5 class="card-title">Nom de l'article : ${l.getArticle().getNomArticle()}</h5>
+				        
+				        <c:if test="${l.getMontantEnchere() > 0}">
+				       		 <p class="card-text"> Prix : ${l.getMontantEnchere()} points </p>
+				        </c:if>
+     				    <c:if test="${l.getMontantEnchere()==0}">
+				       		 <p class="card-text"> Prix : ${l.getArticle().getPrixInitial()} points </p>
+				        </c:if>
+				        
+				        
+				        <p class="card-text"> Fin de l'enchère : ${l.getArticle().getDateFinEncheres()}</p>
+				        <p class="card-text"> Vendeur : <a href="ServletProfil?pseudoAAfficher=${l.getArticle().getVendeur().getPseudo()}">${l.getArticle().getVendeur().getPseudo()}</a></p>
 				      </div>
 				    </div>
 				  </div>

@@ -20,7 +20,11 @@ public class ServletAccueilEncheresConnecte extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		RequestDispatcher rd =request.getRequestDispatcher("/WEB-INF/JSP/AccueilEncheresConnecte.jsp");
+		if (request.getAttribute("nouvel_article_ok")!=null) {
+			request.setAttribute("nouvel_article_ok", request.getAttribute("nouvel_article_ok"));
+		}
 		EnchereManager eManager;
 		try {
 			eManager = EnchereManager.getInstance();
@@ -33,7 +37,10 @@ public class ServletAccueilEncheresConnecte extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getAttribute("connexion")==null) {
+		if (request.getAttribute("nouvel_article_ok")!=null) {
+			request.setAttribute("nouvel_article_ok", request.getAttribute("nouvel_article_ok"));
+		}
+		if(request.getAttribute("connexion")==null && request.getAttribute("nouvel_article_ok")==null) {
 
 			int noUtilisateur =  ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).getNoUtilisateur();
 			List<Enchere> listeEncheres=new ArrayList<>();

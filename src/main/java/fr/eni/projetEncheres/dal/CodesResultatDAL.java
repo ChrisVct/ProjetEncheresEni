@@ -22,6 +22,14 @@ public abstract class CodesResultatDAL {
 	 * Echec de la mise à jour de l'utilisateur.
 	 */
 	public static final int Update_UTILISATEUR_ERREUR =10003;
+	/**
+	 * Echec de connexion à la BDD .
+	 */
+	public static final int ECHEC_CONNEXION_BDD =10004;
+	/**
+	 * Erreur lors de l'ajout de l'article en base de données.
+	 */
+	public static final int ECHEC_INSERT_ARTICLE=10005;
 
 
 

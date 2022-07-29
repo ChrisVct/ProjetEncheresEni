@@ -22,9 +22,9 @@ public class Retrait implements Serializable {
 	 * @param ville
 	 */
 	public Retrait(String rue, String codePostal, String ville) {
-		this.rue = rue;
-		this.codePostal = codePostal;
-		this.ville = ville;
+		this.setRue(rue);
+		this.setCodePostal(codePostal);
+		this.setVille(ville);
 	}
 
 	@Override

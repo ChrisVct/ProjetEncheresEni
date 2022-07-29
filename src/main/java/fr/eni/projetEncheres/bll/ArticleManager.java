@@ -66,8 +66,10 @@ public class ArticleManager {
 		if(dateDebutEncheres.isEqual(LocalDate.now())) {
 			statut="ECO";
 		}
+		
+		Categorie cat =new Categorie(libelle);
 		Article article = new Article(nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial,
-				new Categorie(libelle), statut, new Utilisateur(noUtilisateur));
+				cat, statut, new Utilisateur(noUtilisateur));
 		Retrait retrait = new Retrait(rueRetrait, codePostalRetrait, villeRetrait);
 		
 		daoArticle.insertArticleRetrait(article, retrait);
@@ -82,6 +84,5 @@ public class ArticleManager {
 		if(champsAVerifier.length()>nbMax) {
 			businessException.ajouterErreur(CodesResultatBLL.SAISIE_TROP_LONGUE);
 		}
-		
 	}
 }

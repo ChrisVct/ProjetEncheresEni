@@ -11,11 +11,9 @@ import fr.eni.projetEncheres.dal.DAOFactory;
 public class EnchereManager {
 	private DAOEnchere daoEnchere;
 	private static EnchereManager instance;
-	private static List<Enchere> listeEncheres;
 	
 	private  EnchereManager() throws BusinessException {
 		this.daoEnchere = DAOFactory.getDAOEnchere();
-		listeEncheres = daoEnchere.selectAll();
 	}
 	
 	public static EnchereManager getInstance() throws BusinessException {
@@ -26,12 +24,14 @@ public class EnchereManager {
 	}
 	
 	public List<Enchere> afficherEncheresOuvertes() throws BusinessException {
+		List<Enchere> listeEncheres = daoEnchere.selectAll();
 		return listeEncheres;
 	}
 	
-	public List<Enchere> afficherEncheresAvecParametres(String nomArticle, String libelle, List<Enchere> liste) {		
+	public List<Enchere> afficherEncheresAvecParametres(String nomArticle, String libelle, List<Enchere> liste) throws BusinessException {	
 		List<Enchere> listeEncheresAvecParametres = new ArrayList<>();
 			if(liste==null) {
+				List<Enchere> listeEncheres = daoEnchere.selectAll();
 				for (Enchere e : listeEncheres) {
 					if ((e.getArticle().getNomArticle().toLowerCase()).contains(nomArticle.toLowerCase().trim()) &&
 							(libelle.equals("Toutes") ? true : (e.getArticle().getCategorie().getLibelle().equals(libelle))) ) {

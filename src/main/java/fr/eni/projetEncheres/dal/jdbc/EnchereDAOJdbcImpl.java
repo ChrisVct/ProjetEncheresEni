@@ -66,9 +66,10 @@ public class EnchereDAOJdbcImpl implements DAOEnchere {
 					int noUtilisateurAcheteur= rs.getInt("no_utilisateur_acheteur");
 					int noArticle =rs.getInt("no_article");
 					String categorie = rs.getString("libelle");
+					int prixInitial = rs.getInt("prix_initial");
 					
 					Enchere enchere = new Enchere(montant_enchere, new Utilisateur(noUtilisateurAcheteur),
-										new Article(noArticle,nom_article, dateFinEncheres, new Categorie(categorie), new Utilisateur(pseudoVendeur)));
+										new Article(noArticle,nom_article, dateFinEncheres, prixInitial, new Categorie(categorie), new Utilisateur(pseudoVendeur)));
 					
 					listeEncheres.add(enchere);
 				}

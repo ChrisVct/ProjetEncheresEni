@@ -21,7 +21,7 @@ public class Categorie implements Serializable {
 			setNoCategorie(1);
 		if(libelle.equals("Ameublement"))
 			setNoCategorie(2);
-		if(libelle.equals("Vêtement"))
+		if(libelle.equals("Vetement"))
 			setNoCategorie(3);
 		if(libelle.equals("Sport&Loisirs"))
 			setNoCategorie(4);

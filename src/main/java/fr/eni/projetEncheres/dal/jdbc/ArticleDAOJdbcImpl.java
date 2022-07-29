@@ -20,6 +20,7 @@ public class ArticleDAOJdbcImpl implements DAOArticle {
 
 	@Override
 	public void insertArticleRetrait(Article article, Retrait retrait) throws BusinessException {
+		BusinessException businessException = new BusinessException();
 		try (Connection cnx = ConnectionProvider.getConnection())
 		{
 			cnx.setAutoCommit(false);
@@ -50,16 +51,14 @@ public class ArticleDAOJdbcImpl implements DAOArticle {
 				cnx.rollback();
 				cnx.setAutoCommit(true);
 				e.printStackTrace();
-				BusinessException businessException = new BusinessException();
-				businessException.ajouterErreur(CodesResultatDAL.INSERT_ARTICLES_ECHEC);
+				businessException.ajouterErreur(CodesResultatDAL.ECHEC_INSERT_ARTICLE);
 				throw businessException;
 			}
 			cnx.commit();
 			cnx.setAutoCommit(true);
 		} catch (Exception e) {
 			e.printStackTrace();
-			BusinessException businessException = new BusinessException();
-			businessException.ajouterErreur(CodesResultatDAL.INSERT_ARTICLES_ECHEC);
+			businessException.ajouterErreur(CodesResultatDAL.ECHEC_CONNEXION_BDD);
 			throw businessException;
 		}
 	}

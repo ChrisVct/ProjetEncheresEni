@@ -66,7 +66,7 @@
               <option selected disabled value="">Toutes</option>
               <option >Informatique</option>
               <option >Ameublement</option>
-              <option >Vêtement</option>
+              <option value="Vetement">Vêtement</option>
               <option >Sport&Loisirs</option>
             </select>
           </div>
@@ -184,6 +184,11 @@
           </a>
         </div>
       </form>
+	      <c:if test="${!empty listeCodesErreur }">
+		      	<c:forEach var="err" items="${listeCodesErreur}">
+					<p style="color:red;">${err }</p>
+				</c:forEach>
+		</c:if>
     </main>
 
     <script
