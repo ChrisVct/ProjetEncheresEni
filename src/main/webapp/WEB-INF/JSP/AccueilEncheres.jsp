@@ -67,7 +67,12 @@
 				    <div class="col-md-8">
 				      <div class="card-body">
 				        <h5 class="card-title">Nom de l'article : ${l.getArticle().getNomArticle()}</h5>
-				        <p class="card-text"> Prix : ${l.getMontantEnchere()} points </p>
+				        <c:if test="${l.getMontantEnchere() > 0}">
+				       		 <p class="card-text"> Prix : ${l.getMontantEnchere()} points </p>
+				        </c:if>
+     				    <c:if test="${l.getMontantEnchere()==0}">
+				       		 <p class="card-text"> Prix : ${l.getArticle().getPrixInitial()} points </p>
+				        </c:if>
 				        <p class="card-text"> Fin de l'enchère : ${l.getArticle().getDateFinEncheres()}</p>
 				        <p class="card-text"> Vendeur : ${l.getArticle().getVendeur().getPseudo()} </p>
 				      </div>
