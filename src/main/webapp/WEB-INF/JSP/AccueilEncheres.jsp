@@ -42,7 +42,7 @@
 					  <option>Toutes</option>
 					  <option>Informatique</option>
 					  <option>Ameublement</option>
-					  <option>Vêtement</option>
+					  <option value="Vetement">Vêtement</option>
 					  <option>Sport&Loisirs</option>
 					</select>
 				</div>
@@ -66,10 +66,10 @@
 				    </div>
 				    <div class="col-md-8">
 				      <div class="card-body">
-				        <h5 class="card-title">Nom de l'article : ${l.article.nomArticle}</h5>
-				        <p class="card-text"> Prix : ${l.montantEnchere} points </p>
-				        <p class="card-text"> Fin de l'enchère : ${l.article.dateFinEncheres}</p>
-				        <p class="card-text"> Vendeur : ${l.article.vendeur.pseudo} </p>
+				        <h5 class="card-title">Nom de l'article : ${l.getArticle().getNomArticle()}</h5>
+				        <p class="card-text"> Prix : ${l.getMontantEnchere()} points </p>
+				        <p class="card-text"> Fin de l'enchère : ${l.getArticle().getDateFinEncheres()}</p>
+				        <p class="card-text"> Vendeur : ${l.getArticle().getVendeur().getPseudo()} </p>
 				      </div>
 				    </div>
 				  </div>
