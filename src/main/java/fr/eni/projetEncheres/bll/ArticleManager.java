@@ -77,12 +77,12 @@ public class ArticleManager {
 	}
 	private void verifierNullite(String identifiant, BusinessException businessException) {
 		if(identifiant.trim()=="") {
-			businessException.ajouterErreur(CodesResultatBLL.CHAMPS_ARTICLE_VIDE);
+			businessException.ajouterErreur(CodesResultatBLL.CHAMPS_VIDE);
 		}
 	}
 	private void verifierTailleChamps(String champsAVerifier, int nbMax, BusinessException businessException) throws BusinessException {
 		if(champsAVerifier.length()>nbMax) {
-			businessException.ajouterErreur(CodesResultatBLL.SAISIE_TROP_LONGUE);
+			businessException.ajouterErreur(CodesResultatBLL.SAISIE_TROP_LONGUE_VENDRE_ARTICLE);
 		}
 	}
 }
