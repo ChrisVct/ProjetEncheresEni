@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-info col-lg-6 mx-auto rounded-3"style="--bs-bg-opacity: .5;">
+<nav class="navbar navbar-expand-lg bg-info col-xxl-8 mx-auto rounded-3"style="--bs-bg-opacity: .5;">
   <div class="container-fluid">
     <a class="navbar-brand" href="<%=request.getContextPath()%>/ServletAccueilEncheres">
     	<img

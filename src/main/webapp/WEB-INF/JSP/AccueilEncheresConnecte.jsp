@@ -31,7 +31,7 @@
     	<p style="color:green;" class="text-center mt-5">${nouvel_article_ok } a bien été ajouté !</p>
     </c:if>
 	<div>
-	<h1 class="text-center p-5">Liste des enchères</h1></div>
+	<h1 class="text-center my-3">Liste des enchères</h1></div>
 		<div class="container">
 		  <form class="row mt-4 p-6 mx-auto" role="search" style="max-width: 1000px;" action="ServletAccueilEncheresConnecte" method="POST">
 		    <div class="col-md text-center">

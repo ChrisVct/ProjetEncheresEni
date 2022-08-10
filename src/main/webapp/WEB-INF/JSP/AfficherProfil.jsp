@@ -17,71 +17,69 @@
   </head>
   <body>
     <header>
-	  <c:if test="${empty utilisateur_connecte }">
-	  	<%@include file="BarreNavigationNonConnecte.jsp" %>
-	  </c:if>
-	  
-	  <c:if test="${!empty utilisateur_connecte }">
-	  	<%@include file="BarreNavigationConnecte.jspf" %>
-	  </c:if>
+      <c:if test="${empty utilisateur_connecte }">
+        <%@include file="BarreNavigationNonConnecte.jsp" %>
+      </c:if>
+
+      <c:if test="${!empty utilisateur_connecte }">
+        <%@include file="BarreNavigationConnecte.jspf" %>
+      </c:if>
     </header>
     <main>
-   
-      <div
-        class="position-absolute top-50 start-50 translate-middle row col-12 col-md-6"
-      >
-        <!-- boite affichage profil -->
-
+      <h1 class="my-3 text-center">Profil</h1>
+      <div class="row col-12 col-md-6 mx-auto">
         <div class="mb-3 row">
-          <label for="pseudo" class="col-sm-6 col-form-label">Pseudo</label>
-          <p class="col-sm-6">${utilisateurAAfficher.getPseudo()}</p>
+          <label for="pseudo" class="col-6 col-form-label">Pseudo</label>
+          <p class="col-6">${utilisateurAAfficher.getPseudo()}</p>
         </div>
 
         <div class="mb-3 row">
-          <label for="nom" class="col-sm-6 col-form-label">Nom</label>
-          <p class="col-sm-6">${utilisateurAAfficher.getNom()}</p>
+          <label for="nom" class="col-6 col-form-label">Nom</label>
+          <p class="col-6">${utilisateurAAfficher.getNom()}</p>
         </div>
 
         <div class="mb-3 row">
-          <label for="prenom" class="col-sm-6 col-form-label">Prènom</label>
-          <p class="col-sm-6">${utilisateurAAfficher.getPrenom()}</p>
+          <label for="prenom" class="col-6 col-form-label">Prènom</label>
+          <p class="col-6">${utilisateurAAfficher.getPrenom()}</p>
         </div>
 
         <div class="mb-3 row">
-          <label for="email" class="col-sm-6 col-form-label">Email</label>
-          <p class="col-sm-6">${utilisateurAAfficher.getEmail()}</p>
+          <label for="email" class="col-6 col-form-label">Email</label>
+          <p class="col-6">${utilisateurAAfficher.getEmail()}</p>
         </div>
 
         <div class="mb-3 row">
-          <label for="telephone" class="col-sm-6 col-form-label"
+          <label for="telephone" class="col-6 col-form-label"
             >Téléphone</label
           >
-          <p class="col-sm-6">${utilisateurAAfficher.getTelephone()}</p>
+          <p class="col-6">${utilisateurAAfficher.getTelephone()}</p>
         </div>
 
         <div class="mb-3 row">
-          <label for="rue" class="col-sm-6 col-form-label">Rue</label>
-          <p class="col-sm-6">${utilisateurAAfficher.getRue()}</p>
+          <label for="rue" class="col-6 col-form-label">Rue</label>
+          <p class="col-6">${utilisateurAAfficher.getRue()}</p>
         </div>
 
         <div class="mb-3 row">
-          <label for="codePostal" class="col-sm-6 col-form-label"
+          <label for="codePostal" class="col-6 col-form-label"
             >Code postal</label
           >
-          <p class="col-sm-6">${utilisateurAAfficher.getCodePostal()}</p>
+          <p class="col-6">${utilisateurAAfficher.getCodePostal()}</p>
         </div>
 
         <div class="mb-3 row">
-          <label for="ville" class="col-sm-6 col-form-label">Ville</label>
-          <p class="col-sm-6">${utilisateurAAfficher.getVille()}</p>
+          <label for="ville" class="col-6 col-form-label">Ville</label>
+          <p class="col-6">${utilisateurAAfficher.getVille()}</p>
         </div>
-        <c:if test="${utilisateur_connecte.getPseudo() == utilisateurAAfficher.getPseudo() }">
-	        <a 
-	         href="<%=request.getContextPath()%>/ServletModifierProfil"
-	         class="btn btn-secondary col-6 m-auto" 
-	         >
-	          Modifier
-	        </a>
+        <c:if
+          test="${utilisateur_connecte.getPseudo() == utilisateurAAfficher.getPseudo() }"
+        >
+          <a
+            href="<%=request.getContextPath()%>/ServletModifierProfil"
+            class="btn btn-secondary col-6 m-auto"
+          >
+            Modifier
+          </a>
         </c:if>
       </div>
       <!-- fermeture boite affichage profil -->

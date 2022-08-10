@@ -13,6 +13,7 @@
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
     />
+    <link rel="icon" href="image/favicon.png" type="image/icon type" />
   </head>
   <body>
     <header>
@@ -24,6 +25,7 @@
 	  </c:if>
     </header>
     <main>
+    <h1 class="text-center my-3">Connexion</h1>
       <form
         class="row col-12 col-md-4 position-absolute top-50 start-50 translate-middle "
         action="ServletConnexionUtilisateur"
@@ -60,6 +62,7 @@
               class="form-control"
               name="motDePasse"
               required
+              value="@Dmin123456789"
             />
           </div>
         </div>

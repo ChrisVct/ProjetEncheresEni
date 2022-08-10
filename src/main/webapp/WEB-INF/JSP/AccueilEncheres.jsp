@@ -27,7 +27,7 @@
     </header>
     
     <main>
-	<div><h1 class="text-center p-5">Liste des enchères</h1></div>
+	<div><h1 class="text-center my-3">Liste des enchères</h1></div>
 		<div class="container">
 		  <form class="row mt-4 p-6 mx-auto" role="search" style="max-width: 1000px;" action="ServletAccueilEncheres" method="POST">
 		    <div class="col-md text-center">

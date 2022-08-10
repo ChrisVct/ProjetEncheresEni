@@ -13,6 +13,7 @@
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
     />
+    <link rel="icon" href="image/favicon.png" type="image/icon type" />
   </head>
   <header>
     <c:if test="${empty utilisateur_connecte }">
@@ -25,14 +26,14 @@
   </header>
   <body>
     <main>
-      <h2 class="mx-auto text-center col-6">Nouvelle vente</h2>
+      <h1 class="my-3 text-center">Nouvelle vente</h1>
       <p class="mx-auto text-center col-6 text-danger">(*Champs obligatoires)</p>
       <form
         class="row col-4 mx-auto"
         action="ServletVendreNouvelArticle"
         method="POST"
       >
-        <div class="mb-3 row">
+        <div class="mb-3 row mx-auto">
           <label for="nomArticle" class="col-sm-4 col-form-label"
             >Article*</label
           >
@@ -46,7 +47,7 @@
             />
           </div>
         </div>
-        <div class="mb-3 row">
+        <div class="mb-3 row mx-auto">
           <label for="description" class="form-label col-4">Description</label>
           <div class="col-sm-8">
             <textarea
@@ -57,7 +58,7 @@
             ></textarea>
           </div>
         </div>
-        <div class="mb-3 row">
+        <div class="mb-3 row mx-auto">
           <label for="libelle" class="col-sm-4 col-form-label"
             >Catégories*</label
           >
@@ -71,7 +72,7 @@
             </select>
           </div>
         </div>
-        <div class="mb-3 row">
+        <div class="mb-3 row mx-auto">
           <label for="photoArticle" class="col-sm-4 col-form-label"
             >Photo de l'article</label
           >
@@ -85,7 +86,7 @@
             />
           </div>
         </div>
-        <div class="mb-3 row">
+        <div class="mb-3 row mx-auto">
           <label for="prixInitial" class="col-sm-4 col-form-label"
             >Mise à prix*</label
           >
@@ -99,7 +100,7 @@
             />
           </div>
         </div>
-        <div class="mb-3 row">
+        <div class="mb-3 row mx-auto">
           <label for="dateDebutEncheres" class="col-sm-4 col-form-label"
             >Début de l'enchère*</label
           >
@@ -113,7 +114,7 @@
             />
           </div>
         </div>
-        <div class="mb-3 row">
+        <div class="mb-3 row mx-auto">
           <label for="dateFinEncheres" class="col-sm-4 col-form-label"
             >Fin de l'enchère*</label
           >
@@ -128,7 +129,7 @@
           </div>
         </div>
         <div class="border border-dark p-3 my-3">
-          <div class="mb-3 row">
+          <div class="mb-3 row mx-auto">
             <label for="rueRetrait" class="col-sm-4 col-form-label" >Rue*</label>
             <div class="col-sm-8">
               <input
@@ -141,7 +142,7 @@
               />
             </div>
           </div>
-          <div class="mb-3 row">
+          <div class="mb-3 row mx-auto">
             <label for="codePostalRetrait" class="col-sm-4 col-form-label" 
               >Code Postal*</label
             >
@@ -156,7 +157,7 @@
               />
             </div>
           </div>
-          <div class="mb-3 row">
+          <div class="mb-3 row mx-auto">
             <label for="villeRetrait" class="col-sm-4 col-form-label" 
               >Ville*</label
             >
@@ -172,7 +173,7 @@
             </div>
           </div>
         </div>
-        <div class="row col-6 m-auto">
+        <div class="row col-10 m-auto">
           <button type="submit" class="btn btn-primary col-5">
             Enregistrer
           </button>

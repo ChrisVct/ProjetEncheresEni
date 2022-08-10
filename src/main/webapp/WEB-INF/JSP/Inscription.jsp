@@ -13,206 +13,206 @@
       rel="stylesheet"
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
-      
     />
     <link rel="icon" href="image/favicon.png" type="image/icon type" />
   </head>
   <body>
     <header>
-	  <c:if test="${empty utilisateur_connecte }">
-	  	<%@include file="BarreNavigationNonConnecte.jsp" %>
-	  </c:if>
-	  
-	  <c:if test="${!empty utilisateur_connecte }">
-	  	<%@include file="BarreNavigationConnecte.jspf" %>
-	  </c:if>
+      <c:if test="${empty utilisateur_connecte }">
+        <%@include file="BarreNavigationNonConnecte.jsp" %>
+      </c:if>
+
+      <c:if test="${!empty utilisateur_connecte }">
+        <%@include file="BarreNavigationConnecte.jspf" %>
+      </c:if>
     </header>
     <main>
-  
-        <form class="container text-center" method="post" action="<%=request.getContextPath()%>/ServletInscription"><!--boite principal-->
-           
-            <c:if test="${!empty listeCodesErreur }">
-			<c:forEach var="err" items="${listeCodesErreur}">
-				<p style="color:red;">${err }</p>
-			</c:forEach>
-		</c:if>
-		
-            <div >
-                <div class="row">
-                  <div class="col">
-                    
-                <div class="mb-3 row">
-                    <label for="pseudo" class="col-sm-4 col-form-label"
-                    >Pseudo</label
-                    >
-                    <div class="col-sm-6">
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="pseudo"
-                        name="pseudo"
-                        required
-                        placeholder="Votre pseudo"
-                    />
-                    </div>
-                </div>
-                <div class="mb-3 row"><!-- entrée prenom-->
-                    <label for="prenom" class="col-sm-4 col-form-label"
-                    >Prenom</label
-                    >
-                    <div class="col-sm-6">
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="prenom"
-                        name="prenom"
-                        required
-                        placeholder="Votre prénom"
-                    />
-                    </div>
-                </div>
-                <div class="mb-3 row"><!-- entrée téléphone-->
-                    <label for="telephone" class="col-sm-4 col-form-label" 
-                    >Téléphone</label
-                    >
-                    <div class="col-sm-6">
-                    <input
-                    	
-                        type="text"
-                        class="form-control"
-                        id="telephone"
-                        name="telephone"
-                        placeholder="Ex : 0606060606"
-                    />
-                    </div>
-                </div>
-                
-                <div class="mb-3 row"><!-- entrée code postal-->
-                    <label for="codePostal" class="col-sm-4 col-form-label"
-                    >Code Postal</label
-                    >
-                    <div class="col-sm-6">
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="codePostal"
-                        name="codePostal"
-                        required
-                        placeholder="Ex : 83000"
-                    />
-                    </div>
-                </div>
-                
-                <div class="mb-3 row"><!-- entrée mot de passe-->
-                    <label for="motDePasse" class="col-sm-4 col-form-label" 
-                    >Votre mot de passe</label
-                    >
-                    <div class="col-sm-6">
-                    <input
-                        type="password"
-                        class="form-control"
-                        id="motDePasse"
-                        name="motDePasse"
-                        required
-                        placeholder="doit contenir 1 MAJ et 1 MIN @!:/;.?, "
-                    />
-                    
-                    </div>
-                </div>
-            </div><!--fermeture clonne droite-->
-            <div class="col">
-                <!--colonne de gauche-->
-                <div class="mb-3 row"><!-- entrée nom-->
-                    <label for="nom" class="col-sm-4 col-form-label"
-                    >Nom</label
-                    >
-                    <div class="col-sm-6">
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="nom"
-                        name="nom"
-                        required
-                        placeholder="Votre nom"
-                    />
-                    </div>
-                </div>
-                <div class="mb-3 row"><!-- entrée email-->
-                    <label for="email" class="col-sm-4 col-form-label"
-                    >email</label
-                    >
-                    <div class="col-sm-6">
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="email"
-                        name="email"
-                        required
-                        placeholder="Ex : email@email.com"
-                    />
-                    </div>
-                </div>
-                <div class="mb-3 row"><!-- entrée rue-->
-                    <label for="rue" class="col-sm-4 col-form-label"
-                    >Rue</label
-                    >
-                    <div class="col-sm-6">
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="rue"
-                        name="rue"
-                        required
-                        placeholder="Nom de rue"
-                    />
-                    </div>
-                </div>
-                <div class="mb-3 row"><!-- entrée ville-->
-                    <label for="ville" class="col-sm-4 col-form-label"
-                    >Ville</label
-                    >
-                    <div class="col-sm-6">
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="ville"
-                        name="ville"
-                        required
-                        placeholder="Ex : Toulon"
-                    />
-                    </div>
-                
-                    </div>
-                   <div class="mb-3 row"><!-- entrée confimation-->
-                            <label for="motDePasseConfirmation" class="col-sm-4 col-form-label"
-                            >Confirmation mot de passe</label
-                            >
-                            <div class="col-sm-6">
-                            <input
-                                type="password"
-                                class="form-control"
-                                id="motDePasseConfirmation"
-                                name="motDePasseConfirmation"
-                                onpaste="return false"
-                                required
-                                placeholder="********"
-                            />
-                            
-                            </div>
-                        </div>
-                                                    
-            </div> <!--fermeture clonne gauche-->   
-        </div class="col-6"> <!--colonne bouton-->
-	       	<div class="mb-3 row">
-	           <button type="submit" class="btn btn-primary col-5 ">Créer</button>  
-	           <a href="<%=request.getContextPath()%>/ServletAccueilEncheres" class="btn btn-secondary col-5 offset-1">Annuler</a>                 
-	        </div>
-<%-- 	           <%request.getContextPath(); %> --%>
-				</div><!--fermeture boite principal-->
-      
-    </form>
-        
-   </main>
+      <h1 class="text-center my-3">Mon profil</h1>
+      <form
+        class="container-xxl text-center my-5 col-12 col-xxl-6"
+        method="post"
+        action="<%=request.getContextPath()%>/ServletInscription"
+      >
+        <c:if test="${!empty listeCodesErreur }">
+          <c:forEach var="err" items="${listeCodesErreur}">
+            <p style="color: red">${err }</p>
+          </c:forEach>
+        </c:if>
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <div class="mb-3 row">
+              <label
+                for="pseudo"
+                class="col-sm-4 col-form-label mx-auto"
+                >Pseudo</label
+              >
+              <div class="col-sm-6 mx-auto">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="pseudo"
+                  name="pseudo"
+                  required
+                  placeholder="Votre pseudo"
+                />
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="prenom" class="col-sm-4 col-form-label mx-auto"
+                >Prenom</label
+              >
+              <div class="col-sm-6 mx-auto">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="prenom"
+                  name="prenom"
+                  required
+                  placeholder="Votre prénom"
+                />
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="telephone" class="col-sm-4 col-form-label mx-auto"
+                >Téléphone</label
+              >
+              <div class="col-sm-6 mx-auto">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="telephone"
+                  name="telephone"
+                  placeholder="Ex : 0606060606"
+                />
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="codePostal" class="col-sm-4 col-form-label mx-auto"
+                >Code Postal</label
+              >
+              <div class="col-sm-6 mx-auto">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="codePostal"
+                  name="codePostal"
+                  required
+                  placeholder="Ex : 83000"
+                />
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="motDePasse" class="col-sm-4 col-form-label mx-auto"
+                >Mot de passe</label
+              >
+              <div class="col-sm-6 mx-auto">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="motDePasse"
+                  name="motDePasse"
+                  required
+                  placeholder="doit contenir 1 MAJ et 1 MIN @!:/;.?, "
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="mb-3 row">
+              <label for="nom" class="col-sm-4 col-form-label mx-auto"
+                >Nom</label
+              >
+              <div class="col-sm-6 mx-auto">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nom"
+                  name="nom"
+                  required
+                  placeholder="Votre nom"
+                />
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="email" class="col-sm-4 col-form-label mx-auto"
+                >mail</label
+              >
+              <div class="col-sm-6 mx-auto">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="Ex : email@email.com"
+                />
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="rue" class="col-sm-4 col-form-label mx-auto"
+                >Rue</label
+              >
+              <div class="col-sm-6 mx-auto">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="rue"
+                  name="rue"
+                  required
+                  placeholder="Nom de rue"
+                />
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="ville" class="col-sm-4 col-form-label mx-auto"
+                >Ville</label
+              >
+              <div class="col-sm-6 mx-auto">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="ville"
+                  name="ville"
+                  required
+                  placeholder="Ex : Toulon"
+                />
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label
+                for="motDePasseConfirmation"
+                class="col-sm-4 col-form-label mx-auto"
+                >Confirmation mot de passe</label
+              >
+              <div class="col-sm-6 mx-auto">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="motDePasseConfirmation"
+                  name="motDePasseConfirmation"
+                  onpaste="return false"
+                  required
+                  placeholder="********"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="my-3 row mx-auto">
+            <button
+              type="submit"
+              class="btn btn-primary col-8 col-md-4 mx-auto my-2"
+            >
+              Créer
+            </button>
+            <a
+              href="<%=request.getContextPath()%>/ServletAccueilEncheres"
+              class="btn btn-secondary col-8 col-md-4 mx-auto my-2"
+              >Annuler</a
+            >
+          </div>
+        </div>
+      </form>
+    </main>
 
     <footer></footer>
     <script
@@ -222,3 +222,4 @@
     ></script>
   </body>
 </html>
+
