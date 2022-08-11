@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import fr.eni.projetEncheres.BusinessException;
@@ -18,7 +19,7 @@ import fr.eni.projetEncheres.dal.ConnectionProvider;
 import fr.eni.projetEncheres.dal.DAOEnchere;
 
 public class EnchereDAOJdbcImpl implements DAOEnchere {
-	private static final String SELECT_ALL =				"SELECT nom_article, montant_enchere, date_fin_encheres, prix_initial, pseudo as pseudo_vendeur,"+
+	private static final String SELECT_ALL =				"SELECT nom_article, photo, montant_enchere, date_fin_encheres, prix_initial, pseudo as pseudo_vendeur,"+
 															"ench.no_utilisateur as no_utilisateur_acheteur, ench.no_article, libelle FROM ARTICLES "+
 															"JOIN CATEGORIES ON Articles.no_categorie = CATEGORIES.no_categorie "+
 															"JOIN UTILISATEURS ON ARTICLES.no_utilisateur_vendeur = UTILISATEURS.no_utilisateur "+
@@ -67,9 +68,11 @@ public class EnchereDAOJdbcImpl implements DAOEnchere {
 					int noArticle =rs.getInt("no_article");
 					String categorie = rs.getString("libelle");
 					int prixInitial = rs.getInt("prix_initial");
+					byte[] image = rs.getBytes("photo");
+					String encode = Base64.getEncoder().encodeToString(image);
 					
 					Enchere enchere = new Enchere(montant_enchere, new Utilisateur(noUtilisateurAcheteur),
-										new Article(noArticle,nom_article, dateFinEncheres, prixInitial, new Categorie(categorie), new Utilisateur(pseudoVendeur)));
+										new Article(noArticle,nom_article, dateFinEncheres, prixInitial, new Categorie(categorie), new Utilisateur(pseudoVendeur), encode));
 					
 					listeEncheres.add(enchere);
 				}

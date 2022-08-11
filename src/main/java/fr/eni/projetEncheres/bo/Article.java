@@ -1,5 +1,7 @@
 package fr.eni.projetEncheres.bo;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -19,7 +21,11 @@ public class Article implements Serializable {
 	private Categorie categorie;
 	private String statut; 		//Valeur ATT, ECO, FIN
 	private Utilisateur vendeur;
+	private String image;
+//	private Image image;
 	
+
+
 	public Article() {
 	}
 	
@@ -73,13 +79,14 @@ public class Article implements Serializable {
 	 * @param dateFinEncheres
 	 * @param vendeur
 	 */
-	public Article(int noArticle, String nomArticle, LocalDate dateFinEncheres, int prixInitial, Categorie categorie, Utilisateur vendeur ) {
+	public Article(int noArticle, String nomArticle, LocalDate dateFinEncheres, int prixInitial, Categorie categorie, Utilisateur vendeur, String image ) {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.dateFinEncheres = dateFinEncheres;
 		this.prixInitial = prixInitial;
 		this.categorie = categorie;
 		this.vendeur = vendeur;
+		this.image = image ;
 	}
 	/**
 	 * 
@@ -126,9 +133,15 @@ public class Article implements Serializable {
 						 " Statut=" +this.getStatut()+
 						 " Vendeur=" +this.getVendeur();
 	}					 
-	
+	public void setImage(String image) {
+		this.image = image;
+	}
 	public int getNoArticle() {
 		return noArticle;
+	}
+
+	public String getImage() {
+		return image;
 	}
 
 	public void setNoArticle(int noArticle) {

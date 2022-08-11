@@ -32,6 +32,7 @@
         class="row col-4 mx-auto"
         action="ServletVendreNouvelArticle"
         method="POST"
+        enctype="multipart/form-data"
       >
         <div class="mb-3 row mx-auto">
           <label for="nomArticle" class="col-sm-4 col-form-label"
@@ -78,10 +79,10 @@
           >
           <div class="col-sm-8">
             <input
-              type="button"
+              type="file"
               class="form-control"
               id="photoArticle"
-              name="photoArticle"
+              name="cheminImage"
               value="UPLOADER"
             />
           </div>

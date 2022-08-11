@@ -1,5 +1,8 @@
 package fr.eni.projetEncheres.dal.jdbc;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,11 +18,11 @@ import fr.eni.projetEncheres.dal.DAOArticle;
 
 public class ArticleDAOJdbcImpl implements DAOArticle {
 	
-	private static final String INSERT_ARTICLES ="INSERT INTO ARTICLES VALUES (?,?,?,?,?,?,?,?,?)";
+	private static final String INSERT_ARTICLES ="INSERT INTO ARTICLES VALUES (?,?,?,?,?,?,?,?,?,?)";
 	private static final String INSERT_RETRAITS ="INSERT INTO RETRAITS VALUES (?,?,?,?)";
 
 	@Override
-	public void insertArticleRetrait(Article article, Retrait retrait) throws BusinessException {
+	public void insertArticleRetrait(Article article, Retrait retrait, InputStream cheminImage) throws BusinessException {
 		BusinessException businessException = new BusinessException();
 		try (Connection cnx = ConnectionProvider.getConnection())
 		{
@@ -35,6 +38,8 @@ public class ArticleDAOJdbcImpl implements DAOArticle {
 				pstmt.setInt(7, article.getVendeur().getNoUtilisateur());
 				pstmt.setInt(8, article.getCategorie().getNoCategorie());
 				pstmt.setString(9, article.getStatut());
+				pstmt.setBlob(10, cheminImage);
+				
 				pstmt.executeUpdate();
 				ResultSet rs = pstmt.getGeneratedKeys();
 				if(rs.next())

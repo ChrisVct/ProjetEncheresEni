@@ -106,7 +106,7 @@
 				<div class="card mb-4 mx-auto" style="max-width: 540px;">
 				  <div class="row g-0">
 				    <div class="col-md-4">
-				      <img src="image/chaiseEnBois.jpeg" class="img-fluid rounded-start" alt="Une Chaise">
+				      <img src="data:image/jpeg;base64,${l.getArticle().image }" class="img-fluid rounded-start" alt="...">
 				    </div>
 				    <div class="col-md-8">
 				      <div class="card-body">

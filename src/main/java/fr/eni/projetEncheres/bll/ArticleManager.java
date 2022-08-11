@@ -1,5 +1,6 @@
 package fr.eni.projetEncheres.bll;
 
+import java.io.InputStream;
 import java.time.LocalDate;
 
 import fr.eni.projetEncheres.BusinessException;
@@ -28,7 +29,7 @@ public class ArticleManager {
 	
 	public void ajouterArticle(String nomArticle, String description, LocalDate dateDebutEncheres,
 		LocalDate dateFinEncheres, int prixInitial, String libelle,
-		int noUtilisateur, String rueRetrait, String codePostalRetrait, String villeRetrait) throws BusinessException {
+		int noUtilisateur, String rueRetrait, String codePostalRetrait, String villeRetrait, InputStream cheminImage) throws BusinessException {
 		
 		//vérifier les données et les envoyer dans la DAL
 		BusinessException businessException = new BusinessException();
@@ -72,7 +73,7 @@ public class ArticleManager {
 				cat, statut, new Utilisateur(noUtilisateur));
 		Retrait retrait = new Retrait(rueRetrait, codePostalRetrait, villeRetrait);
 		
-		daoArticle.insertArticleRetrait(article, retrait);
+		daoArticle.insertArticleRetrait(article, retrait, cheminImage);
 		
 	}
 	private void verifierNullite(String identifiant, BusinessException businessException) {
