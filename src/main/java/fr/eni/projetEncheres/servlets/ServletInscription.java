@@ -41,16 +41,15 @@ public class ServletInscription extends HttpServlet {
 		String email= request.getParameter("email");
 		String telephone= request.getParameter("telephone");
 		String rue= request.getParameter("rue");
-		String code_postal= request.getParameter("codePostal");
+		String codePostal= request.getParameter("codePostal");
 		String ville= request.getParameter("ville");
-		String mot_de_passe= request.getParameter("motDePasse");
+		String motDePasse= request.getParameter("motDePasse");
 		String motDePasseConfirmation=request.getParameter("motDePasseConfirmation");
 		
 		RequestDispatcher rd = null;
 		try {
 			UtilisateurManager UManager =  UtilisateurManager.getInstance();
-			Utilisateur utilisateurConnecte = UManager.ajouterUtilisateur(pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,motDePasseConfirmation);
-			utilisateurConnecte.setMotDePasse("");
+			Utilisateur utilisateurConnecte = UManager.ajouterUtilisateur(pseudo,nom,prenom,email,telephone,rue,codePostal,ville,motDePasse,motDePasseConfirmation);
 			request.getSession().setAttribute("utilisateur_connecte", utilisateurConnecte);
 			request.setAttribute("connexion", "ok");
 			rd=request.getRequestDispatcher("ServletAccueilEncheresConnecte");

@@ -8,6 +8,7 @@ import fr.eni.projetEncheres.BusinessException;
 import fr.eni.projetEncheres.bo.Utilisateur;
 import fr.eni.projetEncheres.dal.DAO;
 import fr.eni.projetEncheres.dal.DAOFactory;
+import jersey.repackaged.com.google.common.hash.Hashing;
 
 public class UtilisateurManager {
 	private DAO<Utilisateur> daoUtilisateur;
@@ -20,6 +21,14 @@ public class UtilisateurManager {
 	}
 	
 	public static UtilisateurManager getInstance() throws BusinessException {
+		System.out.println("--- Liste tampon dans le getInstance, cad arrivée sur la bll ---");
+		if(listeUtilisateurs!=null) {
+			
+		for (Utilisateur util : listeUtilisateurs) {
+			System.out.println("util " + util);
+		}
+		System.out.println("--- Retour vers Servlet d'Inscription ---");
+		}
 		if(instance==null) {
 			instance = new UtilisateurManager();
 		}
@@ -37,6 +46,7 @@ public class UtilisateurManager {
 	}
 	
 	public Utilisateur verifierConnection(String identifiant, String motDePasse) throws BusinessException {
+
 		Utilisateur utilisateurARetouner = null;
 		BusinessException businessException = new BusinessException();
 		this.verifierNullite(identifiant, businessException);
@@ -44,7 +54,7 @@ public class UtilisateurManager {
 			throw businessException;
 		}
 		
-		utilisateurARetouner = this.verifierIdentifiants(identifiant,motDePasse, listeUtilisateurs);
+		utilisateurARetouner = this.verifierIdentifiants(identifiant,motDePasse);
 
 		if(utilisateurARetouner==null) {
 			businessException.ajouterErreur(CodesResultatBLL.AUTHENTIFICATION_ERREUR);
@@ -103,49 +113,63 @@ public class UtilisateurManager {
 		daoUtilisateur.insert(utilisateur);
 		utilisateur.setCredit(100);
 		utilisateur.setAdministrateur(false);
-		
-		//Enregistre le nouvel utilisateur en mémoire tampon
+		System.out.println("mdp juste avant ajout en tampon = " + utilisateur.getMotDePasse());
 		listeUtilisateurs.add(utilisateur);
-		return utilisateur;
+
+		//creation d'un tmp car utilisateur.setMotDePasse("") modifie la valeur dans listeUtilisateurs
+		Utilisateur tmp = new Utilisateur(utilisateur.getNoUtilisateur(), pseudo.trim(), nom.trim(), prenom.trim(), email.trim(), telephone.trim(), rue.trim(), codePostal.trim(), ville.trim(), "", 100, false);
+
+		return tmp;
 	}
 
-	public Utilisateur miseAJourUtilisateur(int noUtilisateur,String pseudo,String nom,String prenom,String email,String telephone,String rue,String codePostal,String ville,String motDePasse,Integer credit,boolean administrateur) throws BusinessException {
+	public Utilisateur miseAJourUtilisateur(int noUtilisateur,String pseudo,String nom,String prenom,String email,String telephone,String rue,String codePostal,
+			String ville,String motDePasse,Integer credit,boolean administrateur, String nouveauMotDePasse, String confirmationMotDePasse) throws BusinessException {
 			BusinessException businessException = new BusinessException();
 			Utilisateur utilisateurARetourner =null;
 
+
 			for(Utilisateur util : listeUtilisateurs) {
 				if(noUtilisateur == util.getNoUtilisateur()) {
-					//vérfier si pseudo a été changé
-					if(!pseudo.trim().equalsIgnoreCase(util.getPseudo())) {
-						this.verifierNullite(pseudo, businessException);
-						this.verifierTailleChamps(pseudo, 30, businessException);
-						this.verifierUnicitePseudo(pseudo, businessException);
+					if(!hasherMotDePasse(motDePasse).equals(util.getMotDePasse())) {
+						businessException.ajouterErreur(CodesResultatBLL.AUTHENTIFICATION_ERREUR);
+					}else {
+						//vérfier si pseudo a été changé
+						if(!pseudo.trim().equalsIgnoreCase(util.getPseudo())) {
+							this.verifierNullite(pseudo, businessException);
+							this.verifierTailleChamps(pseudo, 30, businessException);
+							this.verifierUnicitePseudo(pseudo, businessException);
+						}
+						//vérifier email a changé (si oui, faire les vérifs)
+						if(!email.equalsIgnoreCase(util.getEmail())) {
+							this.verifierNullite(email, businessException);
+							this.verifierTailleChamps(email, 100, businessException);
+							this.verifierFormatEmail(email, businessException);
+							this.verifierUniciteEmail(email, businessException);
+						}
+						//vérifier code postal a changé (si oui, faire les vérifs)
+						if(!rue.trim().equalsIgnoreCase(util.getRue())) {
+							this.verifierNullite(rue, businessException);
+							this.verifierTailleChamps(rue, 30, businessException);
+						}
+						if(!ville.trim().equalsIgnoreCase(util.getVille())) {
+							this.verifierNullite(ville, businessException);
+							this.verifierTailleChamps(ville, 30, businessException);
+						}
+						if(!codePostal.trim().equalsIgnoreCase(util.getCodePostal())) {
+							this.verifierNullite(codePostal, businessException);
+							this.verifierTailleChamps(codePostal, 10, businessException);
+						}
+						//vérifier telephone a changé (si oui, faire les vérifs)
+						if((!telephone.trim().equals(util.getTelephone())) && !telephone.equals("")) {
+							this.verifierFormatTelephone(telephone, businessException);
+						}
+						if(nouveauMotDePasse!="") {
+							if(nouveauMotDePasse.equals(confirmationMotDePasse)) {
+								verifierConformiteMotDePasse(nouveauMotDePasse, businessException);
+								motDePasse=nouveauMotDePasse;
+							}
+						}
 					}
-					//vérifier email a changé (si oui, faire les vérifs)
-					if(!email.equalsIgnoreCase(util.getEmail())) {
-						this.verifierNullite(email, businessException);
-						this.verifierTailleChamps(email, 100, businessException);
-						this.verifierFormatEmail(email, businessException);
-						this.verifierUniciteEmail(email, businessException);
-					}
-					//vérifier code postal a changé (si oui, faire les vérifs)
-					if(!rue.trim().equalsIgnoreCase(util.getRue())) {
-						this.verifierNullite(rue, businessException);
-						this.verifierTailleChamps(rue, 30, businessException);
-					}
-					if(!ville.trim().equalsIgnoreCase(util.getVille())) {
-						this.verifierNullite(ville, businessException);
-						this.verifierTailleChamps(ville, 30, businessException);
-					}
-					if(!codePostal.trim().equalsIgnoreCase(util.getCodePostal())) {
-						this.verifierNullite(codePostal, businessException);
-						this.verifierTailleChamps(codePostal, 10, businessException);
-					}
-					//vérifier telephone a changé (si oui, faire les vérifs)
-					if((!telephone.trim().equals(util.getTelephone())) && !telephone.equals("")) {
-						this.verifierFormatTelephone(telephone, businessException);
-					}
-					//vérifier telephone a changé (si oui, faire les vérifs)
 				}
 			}
 			
@@ -153,7 +177,7 @@ public class UtilisateurManager {
 				throw businessException;
 			}
 			
-			utilisateurARetourner= new Utilisateur(noUtilisateur, pseudo.trim(), nom.trim(), prenom.trim(), email.trim(), telephone.trim(), rue.trim(), codePostal.trim(), ville.trim(), motDePasse, credit, administrateur);
+			utilisateurARetourner= new Utilisateur(noUtilisateur, pseudo.trim(), nom.trim(), prenom.trim(), email.trim(), telephone.trim(), rue.trim(), codePostal.trim(), ville.trim(), hasherMotDePasse(motDePasse), credit, administrateur);
 			daoUtilisateur.update(utilisateurARetourner);
 			
 			for (Utilisateur u : listeUtilisateurs) {
@@ -164,6 +188,7 @@ public class UtilisateurManager {
 					u.setRue(rue.trim());
 					u.setCodePostal(codePostal.trim());
 					u.setVille(ville.trim());
+					u.setMotDePasse(hasherMotDePasse(motDePasse));
 				}
 			}
 			//penser à mettre à jour la liste tampon
@@ -269,7 +294,7 @@ public class UtilisateurManager {
 		}
 	}
 
-	private Utilisateur verifierIdentifiants(String identifiant, String motDePasse, List<Utilisateur> listeUtilisateurs) {
+	private Utilisateur verifierIdentifiants(String identifiant, String motDePasse) {
 		Utilisateur utilisateurARetourner=null; 
 		for (Utilisateur u : listeUtilisateurs) {
 			if(identifiant.equalsIgnoreCase(u.getEmail()) ||

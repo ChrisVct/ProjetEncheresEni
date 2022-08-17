@@ -111,6 +111,7 @@
                   class="form-control"
                   id="motDePasse"
                   name="motDePasse"
+                   value="@Dmin123456789"
                   required
                   placeholder="doit contenir 1 MAJ et 1 MIN @!:/;.?, "
                 />
@@ -193,6 +194,7 @@
                   onpaste="return false"
                   required
                   placeholder="********"
+                   value="@Dmin123456789"
                 />
               </div>
             </div>

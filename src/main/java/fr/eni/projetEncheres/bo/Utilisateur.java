@@ -18,6 +18,8 @@ public class Utilisateur implements Serializable {
 	private int credit;
 	private boolean administrateur;
 	
+	
+	
 	public Utilisateur() {
 	}
 	

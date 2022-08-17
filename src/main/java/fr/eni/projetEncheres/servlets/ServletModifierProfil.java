@@ -40,10 +40,12 @@ public class ServletModifierProfil extends HttpServlet {
 		String rue= request.getParameter("rue");
 		String codePostal= request.getParameter("codePostal");
 		String ville= request.getParameter("ville");
+		String motDePasse = request.getParameter("motDePasse");
+		String nouveauMotDePasse = request.getParameter("nouveauMotDePasse");
+		String confirmationMotDePasse = request.getParameter("confirmationMotDePasse");
 		
 		String nom = ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).getNom();
 		String prenom = ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).getPrenom();
-		String motDePasse = ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).getMotDePasse();
 		int noUtilisateur = ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).getNoUtilisateur();
 		int credit = ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).getCredit();
 		boolean administrateur = ((Utilisateur)request.getSession().getAttribute("utilisateur_connecte")).isAdministrateur();
@@ -52,7 +54,7 @@ public class ServletModifierProfil extends HttpServlet {
 		
 		try {
 			UtilisateurManager uManager=UtilisateurManager.getInstance();
-			Utilisateur tmpUtilisateur = uManager.miseAJourUtilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+			Utilisateur tmpUtilisateur = uManager.miseAJourUtilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur, nouveauMotDePasse, confirmationMotDePasse);
 			request.setAttribute("utilisateurAAfficher", tmpUtilisateur);
 			request.getSession().invalidate();
 			request.getSession().setAttribute("utilisateur_connecte", tmpUtilisateur);

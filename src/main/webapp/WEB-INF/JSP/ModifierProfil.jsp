@@ -27,26 +27,19 @@
   <body>
     <h1 class="my-3 text-center">Modifier profil</h1>
     <form
-      class="container text-center"
-      method="post"
-      action="ServletModifierProfil"
+    class="container text-center row col-12 col-md-8 mx-auto""
+    method="post"
+    action="ServletModifierProfil"
     >
-      <c:if test="${!empty listeCodesErreur }">
-        <c:forEach var="err" items="${listeCodesErreur}">
-          <p style="color: red">${err }</p>
-        </c:forEach>
-      </c:if>
+    <c:if test="${!empty listeCodesErreur }">
+      <c:forEach var="err" items="${listeCodesErreur}">
+        <p style="color: red">${err }</p>
+      </c:forEach>
+    </c:if>
 
-      <div
-        class="position-absolute top-50 start-50 translate-middle row col-12 col-md-6"
-      >
-        <div class="row">
-          <!--ouverture boite de colonne -->
           <div class="col-6">
-            <!-- ouverture boite de gauche -->
-
             <div class="mb-3 row">
-              <label for="pseudo" class="col-sm-4 col-form-label"
+              <label for="pseudo" class="col-sm-6 col-form-label"
                 >Pseudo*</label
               >
               <div class="col-sm-6">
@@ -62,12 +55,14 @@
             </div>
 
             <div class="mb-3 row">
-              <label for="prenom" class="col-sm-4">Prènom</label>
-              <p class="col-sm-5">${utilisateur_connecte.getPrenom()}</p>
+              <label for="prenom" class="col-sm-6 col-form-label">Prénom</label>
+              <p class="col-sm-5 text-start my-auto">
+                ${utilisateur_connecte.getPrenom()}
+              </p>
             </div>
 
             <div class="mb-3 row">
-              <label for="telephone" class="col-sm-4 col-form-label"
+              <label for="telephone" class="col-sm-6 col-form-label"
                 >Téléphone</label
               >
               <div class="col-sm-6">
@@ -81,7 +76,7 @@
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="codePostal" class="col-sm-4 col-form-label"
+              <label for="codePostal" class="col-sm-6 col-form-label"
                 >Code postal*</label
               >
               <div class="col-sm-6">
@@ -96,20 +91,35 @@
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="MotDePasse" class="col-sm-4">Crédit</label>
-              <p class="col-sm-5">${utilisateur_connecte.getCredit()}</p>
-            </div>
-          </div>
-          <!-- fermeture boite de gauche -->
-          <div class="col-6">
-            <!-- ouverture boite de droite -->
-            <div class="mb-3 row">
-              <label for="nom" class="col-sm-4">Nom</label>
-              <p class="col-sm-5">${utilisateur_connecte.getNom()}</p>
+              <label for="motDePasse" class="col-sm-6 col-form-label"
+                >Mot de passe*</label
+              >
+              <div class="col-sm-6">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="motDePasse"
+                  name="motDePasse"
+                  required
+                />
+              </div>
             </div>
 
             <div class="mb-3 row">
-              <label for="email" class="col-sm-4 col-form-label">email*</label>
+              <label for="MotDePasse" class="col-sm-6 col-form-label">Crédit</label>
+              <p class="col-sm-5 text-center my-auto">${utilisateur_connecte.getCredit()}</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="mb-3 row">
+              <label for="nom" class="col-sm-6 col-form-label">Nom</label>
+              <p class="col-sm-5 text-start my-auto">
+                ${utilisateur_connecte.getNom()}
+              </p>
+            </div>
+
+            <div class="mb-3 row">
+              <label for="email" class="col-sm-6 col-form-label">email*</label>
               <div class="col-sm-6">
                 <input
                   type="text"
@@ -122,7 +132,7 @@
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="rue" class="col-sm-4 col-form-label">Rue*</label>
+              <label for="rue" class="col-sm-6 col-form-label">Rue*</label>
               <div class="col-sm-6">
                 <input
                   type="text"
@@ -135,7 +145,7 @@
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="ville" class="col-sm-4 col-form-label">Ville*</label>
+              <label for="ville" class="col-sm-6 col-form-label">Ville*</label>
               <div class="col-sm-6">
                 <input
                   type="text"
@@ -147,15 +157,37 @@
                 />
               </div>
             </div>
+            <div class="mb-3 row">
+              <label for="nouveauMotDePasse" class="col-sm-6 col-form-label"
+                >Nouveau mot de passe</label
+              >
+              <div class="col-sm-6 my-auto">
+                <input
+                  type="text"
+                  class="form-control "
+                  id="nouveauMotDePasse"
+                  name="nouveauMotDePasse"
+                />
+              </div>
+            </div>
+            <div class="mb-3 row ">
+              <label for="confirmationMotDePasse" class="col-sm-6 col-form-label"
+                >Confirmer nouveau mot de passe</label
+              >
+              <div class="col-sm-6 my-auto">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="confirmationMotDePasse"
+                  name="confirmationMotDePasse"
+                />
+              </div>
+            </div>
           </div>
-          <!-- fermeture boite de droite -->
         </div>
-        <!-- fermeture boite de colonne -->
         <button type="submit" class="btn btn-primary col-4 offset-4">
           Enregistrer
         </button>
-      </div>
-      <!-- fermetureboite info  -->
     </form>
 
     <script
@@ -165,4 +197,3 @@
     ></script>
   </body>
 </html>
-    

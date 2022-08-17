@@ -17,7 +17,7 @@ import fr.eni.projetEncheres.dal.DAO;
 public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 	private static final String SELECT_ALL = "SELECT * FROM UTILISATEURS";
 	private static final String INSERT_UTILISATEURS ="INSERT INTO UTILISATEURS VALUES(?,?,?,?,?,?,?,?,?,100,0)";
-	private static final String UPDATE_UTILISATEURS="UPDATE UTILISATEURS SET pseudo=?,email=?,telephone=?,rue=?,code_postal=?,ville=? WHERE no_utilisateur=?";
+	private static final String UPDATE_UTILISATEURS="UPDATE UTILISATEURS SET pseudo=?,email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=? WHERE no_utilisateur=?";
 	
 	@Override
 	public  void insert(Utilisateur utilisateur)throws BusinessException {
@@ -108,13 +108,15 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 			pstmt.setString(4,utilisateur.getRue());
 			pstmt.setString(5,utilisateur.getCodePostal());
 			pstmt.setString(6,utilisateur.getVille());
-			pstmt.setInt(7,utilisateur.getNoUtilisateur());
+			pstmt.setString(7,utilisateur.getMotDePasse());
+			pstmt.setInt(8,utilisateur.getNoUtilisateur());
 			
 			pstmt.executeUpdate();
 			
 		} catch (Exception e) {
 			BusinessException businessException = new BusinessException();
 			businessException.ajouterErreur(CodesResultatDAL.Update_UTILISATEUR_ERREUR);
+			e.printStackTrace();
 			throw businessException;
 		}
 	}
