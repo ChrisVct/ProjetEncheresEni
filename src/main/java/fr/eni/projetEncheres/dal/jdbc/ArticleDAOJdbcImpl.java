@@ -20,6 +20,7 @@ public class ArticleDAOJdbcImpl implements DAOArticle {
 	
 	private static final String INSERT_ARTICLES ="INSERT INTO ARTICLES VALUES (?,?,?,?,?,?,?,?,?,?)";
 	private static final String INSERT_RETRAITS ="INSERT INTO RETRAITS VALUES (?,?,?,?)";
+	private static final String SELECT_BY_ID_AND_STATUS ="SELECT * FROM articles WHERE no_utilisateur_vendeur= ? and statut_vente like ? or statut_vente like ? or statut_vente like ?";
 
 	@Override
 	public void insertArticleRetrait(Article article, Retrait retrait, InputStream cheminImage) throws BusinessException {
@@ -94,6 +95,12 @@ public class ArticleDAOJdbcImpl implements DAOArticle {
 	@Override
 	public void insert(Article t) throws BusinessException {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public List<Article> selectMesVentes(int noUtilisateur, List<String> listeStatus) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

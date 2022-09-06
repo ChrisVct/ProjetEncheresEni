@@ -46,7 +46,7 @@
 					  <option>Toutes</option>
 					  <option>Informatique</option>
 					  <option>Ameublement</option>
-					  <option>Vêtement</option>
+					  <option value="Vetement">Vêtement</option>
 					  <option>Sport&Loisirs</option>
 					</select>
 				</div>
@@ -76,7 +76,7 @@
 								</div>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"  value="" id="flexRadioDefault2" name="flexRadioDefault1">
+								<input class="form-check-input" type="radio"  value="" id="flexRadioDefault2" name="flexRadioDefault2">
 							<label class="form-check-label" for="flexRadioDefault2">Mes ventes</label>
 								<div class="form-check">
 									<input class="form-check-input" type="checkbox" value="" id="ventesEnCours" name="ventesEnCours">

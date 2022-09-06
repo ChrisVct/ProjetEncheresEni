@@ -21,14 +21,6 @@ public class UtilisateurManager {
 	}
 	
 	public static UtilisateurManager getInstance() throws BusinessException {
-		System.out.println("--- Liste tampon dans le getInstance, cad arrivée sur la bll ---");
-		if(listeUtilisateurs!=null) {
-			
-		for (Utilisateur util : listeUtilisateurs) {
-			System.out.println("util " + util);
-		}
-		System.out.println("--- Retour vers Servlet d'Inscription ---");
-		}
 		if(instance==null) {
 			instance = new UtilisateurManager();
 		}
@@ -113,7 +105,6 @@ public class UtilisateurManager {
 		daoUtilisateur.insert(utilisateur);
 		utilisateur.setCredit(100);
 		utilisateur.setAdministrateur(false);
-		System.out.println("mdp juste avant ajout en tampon = " + utilisateur.getMotDePasse());
 		listeUtilisateurs.add(utilisateur);
 
 		//creation d'un tmp car utilisateur.setMotDePasse("") modifie la valeur dans listeUtilisateurs
